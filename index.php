@@ -11,23 +11,10 @@
     <script src="js/mainScript.js"></script>
 </head>
 <body>
-    <nav class="navBar">
-
-        <div class="logo">
-
-        </div>
-
-        <p>Alejandro</p>
-
-        <ul class="navContainer">
-            <li class="navItem"><a href="#">Home</a></li>
-            <li class="navItem"><a href="#">Browse</a></li>
-            <li class="navItem"><a href="#">Tienda</a></li>
-            <li class="navItem"><a href="#">Subir video</a></li>
-
-            <li id="loginBtn" class="navItem logBtn"><a href="#">Log-in / Registro</a></li>
-        </ul>
-    </nav>
+    <?php
+        //Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
+        include "includes/navbarInclude.php";
+    ?>
 
     <section class="mainContainer">
         <div class="paginator">
@@ -105,7 +92,7 @@
     </section>
 
     <?php
-    include "includes/loginInclude.php";
+        include "includes/loginInclude.php";
     ?>
 </body>
 </html>

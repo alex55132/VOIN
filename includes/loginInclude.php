@@ -7,15 +7,36 @@
         <input id="username" type="text" placeholder="Username" name="username">
         <label class="labelTextInput" for="password">Contraseña: </label>
         <input id="password" type="password" placeholder="Password" name="password">
-        <div class="recuerdameBtn">
+        <div class="rememberCheckBoxContainer">
             <input class="rememberCheckBox" id="rememberCheckBox" name="rememberCheckBox" type="checkbox" value="remember"/>
             <label for="rememberCheckBox">Recuérdame</label>
         </div>
 
         <a class="forgotPassLink link" href="#">He olvidado mi contraseña</a>
-        <p class="registerLink">¿No tienes cuenta? <a class="link" href="#">Regístrate</a></p>
+        <p class="registerLink">¿No tienes cuenta? <a class="link" href="#" id="registerLink">Regístrate</a></p>
         <button class="submitBtn" type="button">LOG-IN</button>
     </form>
     <div class="clearDiv"></div>
 </div>
 
+<div id="registerFormContainer" class="loginForm hidden">
+    <h1>REGÍSTRATE</h1>
+    <form id="registerForm" action="#">
+        <label class="labelTextInput" for="usernameRegister">Nombre de usuario:</label>
+        <input id="usernameRegister" type="text" placeholder="Username" name="registerUsername">
+        <label class="labelTextInput" for="emailRegister">E-mail</label>
+        <input id="emailRegister" type="text" placeholder="E-mail" name="registerEmail">
+        <label class="labelTextInput" for="passwordRegister">Contraseña: </label>
+        <input id="passwordRegister" type="password" placeholder="Password" name="password">
+        <label class="labelTextInput" for="passwordRegister">Confirmar contraseña: </label>
+        <input id="confirmPasswordRegister" type="password" placeholder="ConfirmPassword" name="registerConfirmPassword">
+
+        <div class="termsConditionsCheckBoxContainer">
+            <input class="termsConditionsCheckBox" id="termsConditionsCheckBox" name="termsConditionsCheckBox" type="checkbox" value="accept"/>
+            <label for="termsConditionsCheckBox">Acepto los <span class="link">términos y condiciones </span> y la <span class="link">Política de Privacidad</span></label>
+        </div>
+
+        <button class="submitBtn" type="button">REGISTRARSE</button>
+    </form>
+    <div class="clearDiv"></div>
+</div>
