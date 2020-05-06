@@ -1,0 +1,146 @@
+/* Navbar */
+.logo {
+    height: 20%;
+    width: 80%;
+    margin: 10%;
+
+    background-color: #F2785C;
+}
+.navBar {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    left: 0 !important;
+    top: 0 !important;
+    background-color: #050326;
+}
+
+.navItem {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 20%;
+    background-color: #F2785C;
+    list-style: none;
+    border-radius: 5px;
+}
+
+.navItem a {
+    text-decoration: none;
+    color: #050326;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.navContainer {
+    margin: 0;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 80%;
+    position: relative;
+}
+
+.logBtn {
+    position: absolute;
+    width: 80%;
+    bottom: 5%;
+}
+
+/* Login */
+
+.hidden {
+    display: none;
+}
+
+.backgroundLogin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+}
+
+.loginForm {
+    position: fixed;
+    top: 5%;
+    left: 15%;
+    width: 70%;
+    height: 58%;
+    background-color: white;
+    border-radius: 5px;
+    opacity: 1 !important;
+}
+
+.loginForm h1 {
+    text-align: center;
+}
+
+.loginForm input {
+    border: 3px solid black;
+    border-radius: 5px;
+    height: 50px;
+    margin-left: 10%;
+    margin-top: 15px;
+    width: 80%;
+}
+
+.labelTextInput {
+    display: block;
+    margin-top: 1%;
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+.loginForm input::placeholder {
+    color: #151312;
+    opacity: 0.7;
+}
+
+.forgotPassLink {
+    display: inline-block;
+    margin-left: 10%;
+}
+
+.registerLink {
+    display: inline-block;
+    margin: 0;
+    margin-right: 10%;
+    margin-left: 5%;
+}
+
+.link {
+    margin-top: 25px !important;
+}
+
+.submitBtn {
+    clear: both;
+    float: right;
+    margin-right: 10%;
+    margin-top: 15px;
+
+    height: 47px;
+    width: 107px;
+    background-color: #050326;
+    color: white;
+    border-radius: 5px;
+}
+
+.rememberCheckBox {
+    width: 10px !important;
+    height: 10px !important;
+
+    border-radius: 5px !important;
+    border: 1px solid #050326 !important;
+}
+
+.link {
+    color: #1400FF;
+    text-decoration: none;
+}
+
+.clearDiv {
+    clear: both;
+}
