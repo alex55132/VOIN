@@ -17,8 +17,7 @@
 
         </div>
 
-        <p>Alejandro</p>
-
+            <p>David</p>
         <ul class="navContainer">
             <li class="navItem"><a href="#">Home</a></li>
             <li class="navItem"><a href="#">Browse</a></li>
