@@ -16,6 +16,7 @@
         <div class="logo">
 
         </div>
+
             <p>David</p>
         <ul class="navContainer">
             <li class="navItem"><a href="#">Home</a></li>
