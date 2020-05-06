@@ -105,6 +105,8 @@
 
     <?php
     include "includes/loginInclude.php";
+
+    echo "Hola";
     ?>
 </body>
 </html>
