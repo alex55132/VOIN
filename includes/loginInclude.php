@@ -18,3 +18,7 @@
     </form>
     <div class="clearDiv"></div>
 </div>
+
+<?php
+    echo "Probando...";
+?>
