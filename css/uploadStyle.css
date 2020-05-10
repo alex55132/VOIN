@@ -1,0 +1,137 @@
+.mainContainer {
+    width: 70% !important;
+    left: 25% !important;
+}
+
+.uploadTitle {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.uploadTitle h2 {
+    color: #F2785C;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.uploadTitle hr {
+    border: 1px solid #F2785C;
+}
+
+.uploadContainer {
+    width: 100%;
+    background-color: #050326;
+    padding: 15px;
+}
+
+.controlContainer {
+    display: flex;
+    flex-direction: row;
+    min-height: 400px;
+}
+
+.fileContainer {
+    background-color: white;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #050326;
+}
+
+.fileUploadContainer img, .fileUploadContainer p{
+    text-align: center;
+    width: 100%;
+    color: #a9a8ab;
+}
+
+.dataContainer {
+    width: 50%;
+    padding: 15px;
+}
+
+.inputSingleLined {
+    height: 35px !important;
+}
+
+.inputForm {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 3px solid #050326;
+}
+
+.miniaturaFileUploadContainer {
+    width: 35%;
+    height: 35px;
+}
+
+.miniaturaFileUploadContainer button {
+    position: relative;
+    left: 0;
+    height: 35px;
+    width: 100%;
+
+}
+
+.videoUploadBtn {
+    background-color: #F2785C;
+    border: 2px solid #F2785C;
+    border-radius: 5px;
+    color: #050326;
+    font-weight: bold;
+}
+
+#videoUploadButton {
+    width: 35%;
+    height: 30px;
+    margin-top: 45px;
+    float: right;
+}
+
+.miniaturaFileUploadContainer input {
+    position: relative;
+    left: 0;
+    top: -35px;
+    margin-top: 0;
+    margin-botton: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.progressBarContainer {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progressBar {
+    width: 100%;
+    height: 20px;
+    background-color: white;
+    border: 4px solid #F2785C;
+    border-radius: 5px;
+}
+
+.progressBar p {
+    margin: 0;
+    position: relative;
+    top: -20px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.loadBackground {
+    width: 100%;
+    height: 100%;
+
+    background-color: #F2785C;
+    transition: width 1s;
+}
