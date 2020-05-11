@@ -1,13 +1,3 @@
-body {
-    margin: 0;
-    background-color: #252359;
-    height: 100%;
-}
-
-html {
-    height: 100%;
-}
-
 .mainContainer {
     width: 80%;
     position: relative;

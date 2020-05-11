@@ -1,3 +1,27 @@
+
+/* Common style for all pages */
+
+body {
+    margin: 0;
+    background-color: #252359;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.mainContainer {
+    width: 80%;
+    position: relative;
+    left: 20%;
+    /*background-color: black;*/
+    min-height: 1px;
+    height: 100%;
+}
+
+/* End of common styles for all pages */
+
 /* Navbar */
 .logo {
     height: 20%;
