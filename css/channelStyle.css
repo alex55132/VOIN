@@ -1,0 +1,158 @@
+.channelIconContainer {
+    width: 100%;
+    height: 38%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.channelIconContainer p {
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: 32%;
+    height: 25px;
+    bottom: 25px;
+    margin-left: 22.5%;
+    margin-right: 22.5%;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.channelIconImg {
+    width: 35%;
+    height: 100%;
+}
+
+.channelContentContainer {
+    width: 96%;
+    height: 100%;
+    padding: 20px;
+}
+
+.topVideosTitle {
+    background-color: #252359;
+}
+
+.topVideosTitle h1 {
+    color: #F2785C;
+    font-size: 32px;
+}
+
+.topVideosTitle hr {
+    border: 2px solid #F2785C;
+    width: 100%;
+}
+
+.topVideosDisplayer {
+    width: 100%;
+    height: 250px;
+    background-color: #050326;
+    display: flex;
+
+    overflow-x: auto;
+}
+
+.carouselController {
+    margin: 0;
+    /*display: block;*/
+    width: 50%;
+    height: 20%;
+    background-color: #F2785C;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.scrollController {
+    height: 100%;
+    width: 10%;
+    min-width: 100px;
+    background-color: #050326;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.video {
+    height: 100%;
+    width: 31%;
+    margin-left: 1%;
+    margin-right: 1%;
+    flex: 0 0 31%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    position: relative;
+    left: -33%;
+
+    transition: left 1s, right 1s, transform 1s;
+}
+
+#video1 {
+    order: 1;
+}
+#video2 {
+    order: 2;
+}
+#video3 {
+    order: 3;
+}
+#video4 {
+    order: 4;
+}
+#video5 {
+    order: 5;
+}
+#video6 {
+    order: 6;
+}
+
+.video h3, .video h4 {
+    margin: 0;
+    text-align: center;
+    color: white;
+}
+
+.video img {
+    width: 100%;
+    height: 70%;
+}
+
+.videoScroller {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+    padding-top: 10px;
+}
+
+.fullVideosContainer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #050326;
+    padding: 20px;
+}
+
+.videoListItem {
+    width: 20% !important;
+    height: 15% !important;
+    flex: 0 0 23%;
+    margin-bottom: 1%;
+    position: initial;
+}
+
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
