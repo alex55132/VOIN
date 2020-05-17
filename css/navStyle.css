@@ -1,3 +1,27 @@
+
+/* Common style for all pages */
+
+body {
+    margin: 0;
+    background-color: #252359;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.mainContainer {
+    width: 80%;
+    position: relative;
+    left: 20%;
+    /*background-color: black;*/
+    min-height: 1px;
+    height: 100%;
+}
+
+/* End of common styles for all pages */
+
 /* Navbar */
 .logo {
     height: 20%;
@@ -68,7 +92,9 @@
     top: 5%;
     left: 15%;
     width: 70%;
-    height: 58%;
+    /*height: 58%;*/
+    height: auto;
+    padding-bottom: 20px;
     background-color: white;
     border-radius: 5px;
     opacity: 1 !important;
@@ -122,18 +148,24 @@
     margin-top: 15px;
 
     height: 47px;
-    width: 107px;
+    width: 120px;
     background-color: #050326;
     color: white;
     border-radius: 5px;
+
+    font-weight: bold;
 }
 
-.rememberCheckBox {
+.rememberCheckBox, .termsConditionsCheckBox {
     width: 10px !important;
     height: 10px !important;
 
     border-radius: 5px !important;
     border: 1px solid #050326 !important;
+}
+
+.rememberCheckBoxContainer, .termsConditionsCheckBoxContainer {
+    font-weight: bold;
 }
 
 .link {
@@ -144,3 +176,4 @@
 .clearDiv {
     clear: both;
 }
+

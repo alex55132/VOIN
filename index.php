@@ -5,28 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>VOIN</title>
+    <title>VOIN - Home</title>
     <link rel="stylesheet" href="css/homeStyle.css">
     <link rel="stylesheet" href="css/navStyle.css">
     <script src="js/mainScript.js"></script>
 </head>
 <body>
-    <nav class="navBar">
-
-        <div class="logo">
-
-        </div>
-
-            <p>David</p>
-        <ul class="navContainer">
-            <li class="navItem"><a href="#">Home</a></li>
-            <li class="navItem"><a href="#">Browse</a></li>
-            <li class="navItem"><a href="tienda.php">Tienda</a></li>
-            <li class="navItem"><a href="#">Subir video</a></li>
-
-            <li id="loginBtn" class="navItem logBtn"><a href="#">Log-in / Registro</a></li>
-        </ul>
-    </nav>
+    <?php
+        //Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
+        include "includes/navbarInclude.php";
+    ?>
 
     <section class="mainContainer">
         <div class="paginator">
@@ -104,7 +92,7 @@
     </section>
 
     <?php
-    include "includes/loginInclude.php";
+        include "includes/loginInclude.php";
     ?>
 </body>
 </html>
