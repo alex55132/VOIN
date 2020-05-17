@@ -1,0 +1,53 @@
+
+body{
+    background: linear-gradient(to right, rgba(5,3,38,1) 0%, rgba(102,97,188,1) 100%);
+}
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #050326;
+    width: 100vw;
+}
+footer>div{
+    float: left;
+
+}
+.botonComPro{
+    width: 10vw;
+    margin:2vh 0 ;
+    margin-left: 5vw;
+
+}
+.proFin{
+    box-sizing: border-box;
+    padding: 0 3vw;
+    text-align: justify;
+    word-wrap: break-word;
+    width: 50vw;
+    font-size: 4vh;
+
+}
+.titPro>h2{
+    font-size: 6vh;
+}
+.titPro p{
+    color: #FFFFFF;
+}
+.enlace>p>a{
+    color: #FFFFFF;
+}
+.enlace{
+    float: right;
+    margin-right: 2vw;
+}
+.cantidadPro>p{
+    margin-left: 2vw;
+
+}
+footer{
+    font-size: 3vh;
+}
+.descripcion{
+    color: #FFFFFF;
+}
