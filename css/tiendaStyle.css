@@ -1,0 +1,84 @@
+.producto{
+    display: flex;
+}
+.producto>div{
+    width: 100vw;
+}
+.desPro{
+    width: calc(((100vw - 70vh)*0.6));
+    box-sizing: border-box;
+    padding: 0 3vw;
+    text-align: justify;
+    word-wrap: break-word;
+
+ }
+.comPro{
+    width: calc((100vw - 70vh)*0.4);
+    box-sizing: border-box;
+    padding: 0 3vw;
+}
+.proizq{
+    background: linear-gradient(to right, rgba(5,3,38,1) 0%, rgba(102,97,188,1) 100%);
+    display: block;
+    padding: 3vh;
+}
+.proizq>div{
+    float: left;
+}
+.fotoproducto{
+    height: 60vh;
+    width: 60vh;
+}
+.fotoproducto>img{
+    height: 100%;
+    width: 100%;
+}
+.proder{
+    background: linear-gradient(to left, rgba(5,3,38,1) 0%, rgba(102,97,188,1) 100%);
+    display: block;
+    padding: 3vh;
+}
+.proder>div{
+    float: right;
+}
+section{
+    position: absolute;
+    top: 92px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body{
+    top:0;
+    left: 0;
+}
+.titPro>h2{
+ margin-top: 0;
+    font-size: 5vh;
+    color: #F2785C;
+}
+.incluyePro{
+    font-size: 4vh;
+    color: #FFF;
+    height: 35vh;
+}
+.botonComPro{
+    background: #F2785C;
+    text-align: center;
+    height: 6vh;
+    border-radius: 2vh;
+    box-sizing: border-box;
+    padding:1vh;
+    font-size: 3vh;
+}
+
+.texto{
+    height: 54vh;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+.sabermas,.cantidadPro{
+    color: #FFFFFF;
+    text-align: center;
+}
