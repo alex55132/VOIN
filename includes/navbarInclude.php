@@ -6,7 +6,7 @@
 
     <ul class="navContainer">
         <li class="navItem"><a href="index.php">Home</a></li>
-        <li class="navItem"><a href="#">Browse</a></li>
+        <li class="navItem"><a href="browse.php">Browse</a></li>
         <li class="navItem"><a href="#">Tienda</a></li>
         <li class="navItem"><a href="upload.php">Subir video</a></li>
 
