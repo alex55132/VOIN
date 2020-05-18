@@ -53,6 +53,8 @@
         </div>
     </div>
 </section>
-
+<?php
+include "includes/loginInclude.php";
+?>
 </body>
 </html>
