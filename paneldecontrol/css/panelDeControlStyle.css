@@ -1,0 +1,97 @@
+.mainContainer {
+    margin: auto;
+    width: 90%;
+    /*position: relative;
+    top: 15%;*/
+    margin-top: 1%;
+    /*background-color: rgba(255, 255, 255, 0.47);*/
+    height: calc(100% - 20%);
+}
+
+.controlPanelTabsContainer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.itemVideos {
+    width: 24%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    height: 80%;
+    background-color: #F2785C;
+    border-radius: 5px 5px 0 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemVideos h1 {
+    margin: 0;
+    color: #050326;
+}
+
+.selected {
+    height: 100% !important;
+}
+
+.displayVideoContainer {
+    width: 100%;
+    height: 95%;
+    background-color: rgba(255, 255, 255, 0.47);
+}
+
+.displayerHeader {
+    width: 100%;
+    height: 50px;
+    background-color: #a9a8ab;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.displayerHeader h3 {
+    width: 15%;
+    margin-left: 15px;
+}
+
+.displayerBody {
+    height: 90%;
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemRow {
+    width: 99%;
+    height: 100px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+}
+.itemRow p {
+    display: block;
+    width: 16%;
+    margin-left: 1%;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.actionIcon {
+    width: 10% !important;
+}
+
+.itemRow img {
+    width: 15%;
+    height: 100%;
+}
+
+.icon {
+    width: 100% !important;
+}

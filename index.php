@@ -33,6 +33,9 @@
             <hr class="separadorTitle">
 
             <div class="videosDisplay">
+                <?php
+                    //TODO: GENERAR LISTADO DE VIDEOS
+                ?>
                 <div class="videoItem">
                     <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
                     <h3>Titulo de video 1</h3>

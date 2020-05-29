@@ -34,16 +34,33 @@
 .fileContainer {
     background-color: white;
     width: 50%;
+    /*display: flex;
+    justify-content: center;
+    align-items: center;*/
+    border: 2px dashed #050326;
+}
+
+.fileUploadContainer {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    border: 2px dashed #050326;
 }
 
 .fileUploadContainer img, .fileUploadContainer p{
     text-align: center;
     width: 100%;
     color: #a9a8ab;
+}
+
+.inputFile {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: -100%;
+    opacity: 0;
 }
 
 .dataContainer {
@@ -62,6 +79,14 @@
     height: auto;
     border-radius: 5px;
     border: 3px solid #050326;
+}
+
+.selectItem {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    color: #767676;
+    background-color: #ffffff;
 }
 
 .miniaturaFileUploadContainer {
@@ -129,9 +154,25 @@
 }
 
 .loadBackground {
-    width: 100%;
+    width: 0%;
     height: 100%;
 
     background-color: #F2785C;
     transition: width 1s;
+}
+
+.miniaturaPreview {
+    margin-top: 1%;
+    width: 35%;
+    height: 25%;
+    background-color: grey;
+    float: left;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.miniaturaPreview img {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }

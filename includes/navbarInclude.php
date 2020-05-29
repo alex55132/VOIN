@@ -9,7 +9,9 @@
         <li class="navItem"><a href="browse.php">Browse</a></li>
         <li class="navItem"><a href="#">Tienda</a></li>
         <li class="navItem"><a href="upload.php">Subir video</a></li>
-
+        <?php
+            //TODO: SESSION HANDLING
+        ?>
         <li id="loginBtn" class="navItem logBtn"><a href="#">Log-in / Registro</a></li>
     </ul>
 </nav>
