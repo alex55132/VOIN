@@ -24,6 +24,7 @@ function registerListeners() {
     registerLink.addEventListener("click", function () {
         loginFormContainer.classList.add("hidden");
         registerFormContainer.classList.remove("hidden");
-    })
+    });
 }
+
 

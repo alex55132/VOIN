@@ -11,91 +11,73 @@
     <script src="js/mainScript.js"></script>
 </head>
 <body>
-    <?php
-        //Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
-        include "includes/navbarInclude.php";
-    ?>
+<?php
+session_start();
+//$_SESSION['userId'] = 2;
 
-    <section class="mainContainer">
-        <div class="paginator">
-            <div class="paginatorItem flechaIzq"><-</div>
-            <div class="paginatorItem"></div>
-            <div class="paginatorItem"></div>
-            <div class="paginatorItem"></div>
-            <div class="paginatorItem"></div>
-            <div class="paginatorItem"></div>
-            <div class="paginatorItem"></div>
-            <div class="paginatorItem flechaDer">-></div>
+include_once "utils/utils.php";
+require_once "Classes/Listador.php";
+//Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
+include "includes/navbarInclude.php";
+?>
+
+<section class="mainContainer">
+
+    <div class="videosContainer">
+        <h1 class="mainTitle">Home</h1>
+        <hr class="separadorTitle">
+
+        <div class="videosDisplay">
+            <?php
+            $videoArray = [];
+            if(isDataAvailable($_GET)) {
+                if(isDataAvailable($_GET['categoryId'])) {
+                    $videoArray = Listador::listarVideos(0, 9, 0, false, addslashes($_GET['categoryId']));
+                } else {
+                    if(isDataAvailable($_SESSION)) {
+                        if (isDataAvailable($_SESSION['userId'])) {
+                            $videoArray = Listador::listarVideos(0, 9, $_SESSION['userId'], true);
+                        } else {
+                            $videoArray = Listador::listarVideos(0, 9, 0, false);
+                        }
+                    } else {
+                        $videoArray = Listador::listarVideos(0, 9, 0, false);
+                    }
+                }
+            } else {
+                $videoArray = Listador::listarVideos(0, 9, 0, false);
+            }
+
+            $displayCounter = 9;
+
+            for ($i = 0; $i < sizeof($videoArray); $i++) {
+                $video = $videoArray[$i];
+                echo '<div class="videoItem" id="video'.$video->getId().'">
+                                    <img src="' . $video->getMiniatura() . '">
+                                    <h3>' . $video->getTitulo() . '</h3>
+                                    <h4>By ' . $video->getNombreUsuario() . '</h4>
+                                    <h4>' . $video->getVisualizaciones() . ' rep</h4>
+                                  </div>';
+                $displayCounter = $displayCounter - 1;
+            }
+
+            if ($displayCounter > 0) {
+                for ($e = 0; $e < $displayCounter; $e++) {
+                    echo '<div class="videoItem">
+                                        <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
+                                        <h3>Titulo de video 1</h3>
+                                        <h4>By alexby</h4>
+                                        <h4>35562 rep</h4>
+                                    </div>';
+                }
+            }
+            ?>
         </div>
+    </div>
+</section>
 
-        <div class="videosContainer">
-            <h1 class="mainTitle">Home</h1>
-            <hr class="separadorTitle">
-
-            <div class="videosDisplay">
-                <?php
-                    //TODO: GENERAR LISTADO DE VIDEOS
-                ?>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-                <div class="videoItem">
-                    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                    <h3>Titulo de video 1</h3>
-                    <h4>By alexby</h4>
-                    <h4>35562 rep</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <?php
-        include "includes/loginInclude.php";
-    ?>
+<?php
+include "includes/loginInclude.php";
+?>
 </body>
 </html>
