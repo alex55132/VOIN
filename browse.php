@@ -13,8 +13,16 @@
 </head>
 <body>
 <?php
+session_start();
+
 //Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
 include "includes/navbarInclude.php";
+require_once "Classes/Listador.php";
+require_once "Classes/Categoria.php";
+
+$categorias = Listador::listarCategorias();
+
+$canales = Listador::listarCanales();
 ?>
     <section class="mainContainer">
         <div class="categoryChannelContainer">
@@ -26,48 +34,17 @@ include "includes/navbarInclude.php";
             </div>
             <hr>
             <div class="categoryChannelContent">
-                <div class="itemCategoryChannel category">
-                    <div class="categoryImg">
-                        <img src="https://lh3.googleusercontent.com/zFwzo3mS8o47KuJj3HWBAKjB0Aem__fbxIu1U1sD47DtYQ5SddBKXwLIodIO24qpWS51vuCldw=w640-h400-e365">
-                    </div>
-                    <h3>Categoria 1</h3>
-                    <h4>N videos</h4>
-                </div>
-                <div class="itemCategoryChannel category">
-                    <div class="categoryImg">
-                        <img src="https://lh3.googleusercontent.com/zFwzo3mS8o47KuJj3HWBAKjB0Aem__fbxIu1U1sD47DtYQ5SddBKXwLIodIO24qpWS51vuCldw=w640-h400-e365">
-                    </div>
-                    <h3>Categoria 2</h3>
-                    <h4>N videos</h4>
-                </div>
-                <div class="itemCategoryChannel category">
-                    <div class="categoryImg">
-                        <img src="https://lh3.googleusercontent.com/zFwzo3mS8o47KuJj3HWBAKjB0Aem__fbxIu1U1sD47DtYQ5SddBKXwLIodIO24qpWS51vuCldw=w640-h400-e365">
-                    </div>
-                    <h3>Categoria 3</h3>
-                    <h4>N videos</h4>
-                </div>
-                <div class="itemCategoryChannel category">
-                    <div class="categoryImg">
-                        <img src="https://lh3.googleusercontent.com/zFwzo3mS8o47KuJj3HWBAKjB0Aem__fbxIu1U1sD47DtYQ5SddBKXwLIodIO24qpWS51vuCldw=w640-h400-e365">
-                    </div>
-                    <h3>Categoria 4</h3>
-                    <h4>N videos</h4>
-                </div>
-                <div class="itemCategoryChannel category">
-                    <div class="categoryImg">
-                        <img src="https://lh3.googleusercontent.com/zFwzo3mS8o47KuJj3HWBAKjB0Aem__fbxIu1U1sD47DtYQ5SddBKXwLIodIO24qpWS51vuCldw=w640-h400-e365">
-                    </div>
-                    <h3>Categoria 5</h3>
-                    <h4>N videos</h4>
-                </div>
-                <div class="itemCategoryChannel category">
-                    <div class="categoryImg">
-                        <img src="https://lh3.googleusercontent.com/zFwzo3mS8o47KuJj3HWBAKjB0Aem__fbxIu1U1sD47DtYQ5SddBKXwLIodIO24qpWS51vuCldw=w640-h400-e365">
-                    </div>
-                    <h3>Categoria 6</h3>
-                    <h4>N videos</h4>
-                </div>
+                <?php
+                    for ($i = 0; $i < sizeof($categorias); $i++) {
+                        $categoria = $categorias[$i];
+                        echo '<div class="itemCategoryChannel category" id="'.$categoria->getId().'">
+                                <div class="categoryImg">
+                                    <img src="'.$categoria->getImagen().'">
+                                </div>
+                                <h3>'.$categoria->getNombre().'</h3>
+                            </div>';
+                    }
+                ?>
                 <div class="displayMoreContainer">
                     <button type="button" id="verMasCategoryBtn">Ver más</button>
                 </div>
@@ -83,7 +60,20 @@ include "includes/navbarInclude.php";
             </div>
             <hr>
             <div class="categoryChannelContent">
-                <div class="itemCategoryChannel channel">
+                <?php
+                    for ($e = 0; $e < sizeof($canales); $e++) {
+                        $canal = $canales[$e];
+
+                        echo '<div class="itemCategoryChannel channel">
+                                <div class="categoryImg">
+                                    <img src="'.$canal->getImg().'">
+                                </div>
+                                <h3>'.$canal->getNombre().'</h3>
+                            </div>';
+                    }
+                ?>
+
+               <!-- <div class="itemCategoryChannel channel">
                     <div class="categoryImg">
                         <img src="https://imgs.classicfm.com/images/61630?crop=16_9&width=660&relax=1&signature=yUpYOmeFfocGYtAn9AJH6NCdl3g=">
                     </div>
@@ -117,14 +107,7 @@ include "includes/navbarInclude.php";
                     </div>
                     <h3>Canal 1</h3>
                     <h4>N videos</h4>
-                </div>
-                <div class="itemCategoryChannel channel">
-                    <div class="categoryImg">
-                        <img src="https://imgs.classicfm.com/images/61630?crop=16_9&width=660&relax=1&signature=yUpYOmeFfocGYtAn9AJH6NCdl3g=">
-                    </div>
-                    <h3>Canal 1</h3>
-                    <h4>N videos</h4>
-                </div>
+                </div>-->
                 <div class="displayMoreContainer">
                     <button type="button" id="verMasChannelBtn">Ver más</button>
                 </div>

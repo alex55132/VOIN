@@ -11,4 +11,13 @@ window.onload = function () {
         window.location.href = "./browseCategoriesChannels.php?displayChannels=true";
     });
 
+    let categoryList = document.getElementsByClassName("category");
+
+    for(let i = 0; i < categoryList.length; i++) {
+        categoryList[i].addEventListener("click", function () {
+            let idNumber = parseInt(this.id);
+            window.location.href = "index.php?categoryId="+idNumber;
+        });
+    }
+
 }

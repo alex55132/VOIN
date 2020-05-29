@@ -68,7 +68,7 @@ require_once "Classes/Listador.php";
     <h2>Videos relacionados</h2>
     <?php
 
-    $videos = Listador::listarVideos(0, 3, $_SESSION['userId']);
+    $videos = Listador::listarVideos(0, 3, $_SESSION['userId'], false);
 
     for($i = 0; $i < sizeof($videos); $i++) {
         $currentVideo = $videos[$i];

@@ -49,20 +49,28 @@ if(isDataAvailable($_GET)) {
         <hr>
         <div class="categoryListContainer">
             <?php
+            require_once "Classes/Listador.php";
+            require_once "Classes/Categoria.php";
+
+            $categorias = Listador::listarCategorias(0, null);
+            $canales = Listador::listarCanales(0, null, false, 0);
+
             if($displayCat) {
-                for ($i = 0; $i < 7; $i++) {
-                    echo '<div class="categoryListItem">
-                        <img class="categoryItemImage" src="https://i.blogs.es/148ebe/croacia-sunset/1366_2000.jpg">
-                        <h3 class="titleCategory">Categoria '.$i.'</h3>
-                        <h4 class="subtitleCategory">n videos</h4>
+
+                for ($i = 0; $i < sizeof($categorias); $i++) {
+                    $categoria = $categorias[$i];
+                    echo '<div class="categoryListItem" id="'.$categoria->getId().'">
+                        <img class="categoryItemImage" src="'.$categoria->getImagen().'">
+                        <h3 class="titleCategory">'.$categoria->getNombre().'</h3>
                      </div>';
                 }
             } else {
-                for ($i = 0; $i < 7; $i++) {
-                    echo '<div class="categoryListItem">
-                        <img class="categoryItemImage" src="https://cdnmundo1.img.sputniknews.com/img/107781/83/1077818343_0:20:1920:1058_1000x541_80_0_0_3f7ac8c423079b398ff937765d02e005.jpg">
-                        <h3 class="titleCategory">Nombre canal</h3>
-                        <h4 class="subtitleCategory">n videos</h4>
+                for ($i = 0; $i < sizeof($canales); $i++) {
+                    $canal = $canales[$i];
+                    echo '<div class="categoryListItem" id="'.$canal->getId().'">
+                        <img class="categoryItemImage" src="'.$canal->getImg().'">
+                        <h3 class="titleCategory">'.$canal->getNombre().'</h3>
+                        <h4 class="subtitleCategory">'.sizeof($canal->getVideosSubidos()).' videos</h4>
                      </div>';
                 }
             }
