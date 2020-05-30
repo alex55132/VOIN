@@ -217,7 +217,6 @@ class Producto
     }
     public function imprimirEnFicha(){
     $web=$this->obtenerWeb($this->id_empr);
-        var_dump($web);
             $html="<section>
     <div class='producto'>
         <div class='proizq'>
