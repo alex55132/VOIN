@@ -1,3 +1,12 @@
+<?php
+require "Classes/Producto.php";
+require "Classes/BaseDeDatos.php";
+require "Classes/Lista.php";
+$id=intval($_GET['id']);
+
+$producto=new Producto();
+$producto->ObtenerPorId($id);
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,11 +20,12 @@
     <link rel="stylesheet" href="css/productoStyle.css">
     <script src="js/tiendaScript.js"></script>
 </head>
-<body onload="cargar()">
+<body>
 <?php
 include "includes/navTienda.php";
+echo $producto->imprimirEnFicha();
 ?>
-<section>
+<!--<section>
     <div class="producto">
         <div class="proizq">
             <div class="fotoproducto">
@@ -45,6 +55,6 @@ include "includes/navTienda.php";
     <div class="enlace">
        <p><a href="#">drfgsertgre</a></p>
     </div>
-</footer>
+</footer>-->
 </body>
 </html>

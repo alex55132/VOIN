@@ -1,3 +1,10 @@
+<?php
+require "Classes/Producto.php";
+require "Classes/BaseDeDatos.php";
+require "Classes/Lista.php";
+$lista =new Lista();
+$lista->obtenerElementos();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +22,10 @@
 include "includes/navTienda.php";
 ?>
     <section>
-        <div class="producto">
+        <?php
+        echo $lista->imprimirMangasEnBack();
+        ?>
+        <!-- <div class="producto">
             <div class="proizq">
                 <div class="fotoproducto">
                     <img src="img/gatete.jpg" alt="producto">
@@ -76,7 +86,7 @@ include "includes/navTienda.php";
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </section>
 </body>
 </html>

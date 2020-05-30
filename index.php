@@ -1,3 +1,20 @@
+<?php
+require "Classes/BaseDeDatos.php";
+require "Classes/Usuarios.php";
+
+if (isset($_POST)&& !empty($_POST)){
+    $corr = addslashes($_POST['corr_usu']);
+    $pass = addslashes($_POST['contr_usu']);
+    $usuario=new Usuarios();
+    if ($usuario->login($corr,$pass)){
+        session_start();
+        $_SESSION['userId']=$usuario->getIdUsu();
+        echo "<script> alert('holi')</script>";
+    }else{
+        echo "<script> alert('esta mal')</script>";
+    }
+}
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -8,6 +25,7 @@
     <title>VOIN - Home</title>
     <link rel="stylesheet" href="css/homeStyle.css">
     <link rel="stylesheet" href="css/navStyle.css">
+    <script src="js/login.js"></script>
     <script src="js/mainScript.js"></script>
 </head>
 <body>
