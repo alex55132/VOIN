@@ -6,7 +6,7 @@ require_once "Usuario.php";
 
 class Listador
 {
-    public static function listarVideos($start = 0, $numberRows = 9, $channelId = 0, $following = false, $categoryId = 0)
+    public static function listarVideos($start = 0, $numberRows = 9, $channelId = 0, $following = false, $categoryId = 0, $mostPopular = false)
     {
 
         //Inicializamos variables
@@ -24,10 +24,20 @@ class Listador
             if ($following) {
                 $query = "SELECT video.id_video FROM video INNER JOIN relacion ON relacion.id_seguido = video.id_usu WHERE relacion.id_seguidor = " . $channelId . " ORDER BY video.id_video DESC LIMIT 0, 9";
             } else {
-                if ($channelId == 0) {
-                    $query = "SELECT id_video FROM video ORDER BY id_video DESC LIMIT " . $start . "," . $numberRows;
-                } else {
-                    $query = "SELECT id_video FROM video WHERE id_usu=" . $channelId . " ORDER BY id_video DESC LIMIT " . $start . "," . $numberRows;
+                //Comprobamos que el id dado existe
+                if(is_numeric($channelId)) {
+                    if ($channelId == 0) {
+                        //Mostramos los ultimos videos, no hay criterio
+                        $query = "SELECT id_video FROM video ORDER BY id_video DESC LIMIT " . $start . "," . $numberRows;
+                    } else {
+                        if($mostPopular) {
+                            //Sacamos los videos más populares del canal
+                            $query = "SELECT id_video FROM video WHERE id_usu = ".$channelId." ORDER BY visu_video DESC LIMIT ".$start.",".$numberRows;
+                        } else {
+                            //Mostramos los ultimos videos de un canal en concreto
+                            $query = "SELECT id_video FROM video WHERE id_usu=" . $channelId . " ORDER BY id_video DESC LIMIT " . $start . "," . $numberRows;
+                        }
+                    }
                 }
             }
         }

@@ -32,27 +32,27 @@ include "includes/navbarInclude.php";
             $videoArray = [];
             if(isDataAvailable($_GET)) {
                 if(isDataAvailable($_GET['categoryId'])) {
-                    $videoArray = Listador::listarVideos(0, 9, 0, false, addslashes($_GET['categoryId']));
+                    $videoArray = Listador::listarVideos(0, 9, 0, false, addslashes($_GET['categoryId']), false);
                 } else {
                     if(isDataAvailable($_SESSION)) {
                         if (isDataAvailable($_SESSION['userId'])) {
-                            $videoArray = Listador::listarVideos(0, 9, $_SESSION['userId'], true);
+                            $videoArray = Listador::listarVideos(0, 9, $_SESSION['userId'], true, 0, false);
                         } else {
-                            $videoArray = Listador::listarVideos(0, 9, 0, false);
+                            $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
                         }
                     } else {
-                        $videoArray = Listador::listarVideos(0, 9, 0, false);
+                        $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
                     }
                 }
             } else {
-                $videoArray = Listador::listarVideos(0, 9, 0, false);
+                $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
             }
 
             $displayCounter = 9;
 
             for ($i = 0; $i < sizeof($videoArray); $i++) {
                 $video = $videoArray[$i];
-                echo '<div class="videoItem" id="video'.$video->getId().'">
+                echo '<div class="videoItem" data-video-redirection="'.$video->getId().'" >
                                     <img src="' . $video->getMiniatura() . '">
                                     <h3>' . $video->getTitulo() . '</h3>
                                     <h4>By ' . $video->getNombreUsuario() . '</h4>

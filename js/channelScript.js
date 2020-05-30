@@ -4,12 +4,12 @@ let videoScroller;
 
 
 let items = {
-    "video1": 1,
-    "video2": 2,
-    "video3": 3,
-    "video4": 4,
-    "video5": 5,
-    "video6": 6,
+    "video1": 2,
+    "video2": 3,
+    "video3": 4,
+    "video4": 5,
+    "video5": 6,
+    "video6": 1,
 };
 
 let imagesEventsTriggered = 6;
@@ -54,6 +54,18 @@ window.onload = function () {
             imagesEventsTriggered++;
 
         }, false);
+    }
+
+    let videos = document.getElementsByClassName("video");
+    console.log(videos);
+
+    for(let i = 0; i < videos.length; i++) {
+        videos[i].addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            let idVideo = this.dataset["videoRedirection"];
+            window.location.href = "WatchVideo.php?videoId="+idVideo;
+        });
     }
 
 }

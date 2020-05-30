@@ -25,7 +25,7 @@ window.onload = function () {
     miniaturaPreview = document.getElementById("miniaturaPreview");
 
     let r = new Resumable({
-        /*Aqui hay un agujero de seguridad guapo, ya que mostramos ruta real de los archivos
+        /*Aqui hay un agujero de seguridad, ya que mostramos ruta real de los archivos
          Esto se solucionaria con rutas amigables usando el htaccess*/
         target:'Controllers/uploadFileController.php',
         method: "POST"
@@ -79,11 +79,9 @@ window.onload = function () {
     });
 
     r.on('progress', function (e) {
-        //console.log("PROGRESO");
         let percentage = document.getElementById("uploadPercentage");
         percentage.innerText = (r.progress() * 100).toFixed(2)
         document.getElementById("loadBackground").style.width = (r.progress() * 100).toString() + "%";
-        //console.log(r.progress());
     })
     if(!r.support) {
         sendNotification(2);

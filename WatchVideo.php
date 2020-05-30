@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/navStyle.css">
     <link rel="stylesheet" href="css/watchVideo.css">
+    <script src="js/WatchVideoScript.js"></script>
+    <script src="js/utilFunctions.js"></script>
     <title>VOIN - Video</title>
 </head>
 <body>
@@ -39,7 +41,7 @@ require_once "Classes/Listador.php";
         <p class="description">'.$video->getDescripcion().'</p>
 
         <p class="reproductions">
-            By <a href="#" class="userLink">'.$video->getNombreUsuario().'</a> <br>
+            By <a href="channel.php?channelId='.$video->getIdUsuario().'" class="userLink">'.$video->getNombreUsuario().'</a> <br>
             '.$video->getVisualizaciones().' reproducciones
         </p>
     </div>
@@ -68,12 +70,12 @@ require_once "Classes/Listador.php";
     <h2>Videos relacionados</h2>
     <?php
 
-    $videos = Listador::listarVideos(0, 3, $_SESSION['userId'], false);
+    $videos = Listador::listarVideos(0, 3, $_SESSION['userId'], false, 0, false);
 
     for($i = 0; $i < sizeof($videos); $i++) {
         $currentVideo = $videos[$i];
 
-        echo '<div class="relatedVideoItem">
+        echo '<div class="relatedVideoItem" data-video-redirection="'.$currentVideo->getId().'">
                 <img src="'.$currentVideo->getMiniatura().'">
                 <h3>'.$currentVideo->getTitulo().'</h3>
                 <h4>By '.$currentVideo->getNombreUsuario().'</h4>

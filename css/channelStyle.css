@@ -98,22 +98,22 @@
 }
 
 #video1 {
-    order: 1;
-}
-#video2 {
     order: 2;
 }
-#video3 {
+#video2 {
     order: 3;
 }
-#video4 {
+#video3 {
     order: 4;
 }
-#video5 {
+#video4 {
     order: 5;
 }
-#video6 {
+#video5 {
     order: 6;
+}
+#video6 {
+    order: 1;
 }
 
 .video h3, .video h4 {
@@ -144,7 +144,7 @@
 
 .videoListItem {
     width: 20% !important;
-    height: 15% !important;
+    height: 320px !important;
     flex: 0 0 23%;
     margin-bottom: 1%;
     position: initial;
