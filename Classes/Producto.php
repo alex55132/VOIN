@@ -34,6 +34,7 @@ class Producto
         $this->descor_pro = $descor_pro;
         $this->img_pro = $img_pro;
         $this->directorio="imgs/tienda/";
+        $this->tabla="producto";
     }
     public function llenar($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $descor_pro="", $img_pro=""){
         $this->id_pro = $id_pro;
@@ -216,6 +217,7 @@ class Producto
     }
     public function imprimirEnFicha(){
     $web=$this->obtenerWeb($this->id_empr);
+        var_dump($web);
             $html="<section>
     <div class='producto'>
         <div class='proizq'>
@@ -261,10 +263,8 @@ class Producto
     public function ObtenerPorId($id){
         $sql="SELECT * FROM ".$this->tabla." WHERE 	id_pro=".$id;
         $conexion=new BaseDeDatos();
-        $res=$conexion->Consulta($sql);
-        list($id_pro, $id_empr, $nom_pro, $pre_pro, $stock_pro, $descr_pro,$descor_pro, $img_pro)=mysqli_fetch_array($res);
-        $this->llenar($id_pro, $id_empr, $nom_pro, $pre_pro, $stock_pro, $descr_pro,$descor_pro, $img_pro);
-
+        $res=$conexion->realizarConsulta($sql);
+        $this->llenar($res[0][0], $res[0][1], $res[0][2], $res[0][3], $res[0][4], $res[0][5],$res[0][6], $res[0][7]);
     }
     public function insertar($datos){
         $conexion = new BaseDeDatos();
