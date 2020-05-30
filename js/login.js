@@ -11,11 +11,13 @@ function login() {
         enviar=false;
     }
     if(!exPass.test(pass)){
+
         enviar=false;
     }
     if (enviar){
         document.getElementById("loginForm").submit();
     }else{
+        alert("Contraseña o email incorrecto");
     }
 }
 function registro() {

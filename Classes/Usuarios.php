@@ -168,11 +168,10 @@ class Usuarios
         $ok=false;
         $sql="SELECT id_usu FROM ".$this->tabla." WHERE corr_usu ='".$corr."' AND contr_usu='".md5($cont)."'";
         $conexion=new BaseDeDatos();
-        $res=$conexion->consultaOneRow($sql);
-        if ($conexion->numeroElementos()>0){
+        $res=$conexion->realizarConsulta($sql);
+        if ($res==null){
             $ok=true;
             $this->id_usu=$res['id_usu'];
-
         }else{
             $ok=false;
         }
@@ -181,10 +180,11 @@ class Usuarios
     public function insertarUsuario($nom,$correo,$contra){
         $bd=new BaseDeDatos();
         $sql ="INSERT INTO `cartera` (`cant_car`) VALUES ('25');";
-        $bd->consulta($sql);
+        $bd->iudQuery($sql);
         $sql ="SELECT max(id_car) as 'id_car' FROM `cartera`;";
-        $car=$bd->consultaOneRow($sql);
-        $sql = "INSERT INTO ".$this->tabla."(id_tipo, id_car, nom_usu, corr_usu, contr_usu) VALUES  (1,".$car['id_car'].",'".$nom."','".$correo."','".md5($contra)."')";
-        $bd->consulta($sql);
+        $car=$bd->realizarConsulta($sql);
+        var_dump($car);
+        $sql = "INSERT INTO ".$this->tabla."(id_tipo, id_car, nom_usu, corr_usu, contr_usu) VALUES  (1,".$car[0][0].",'".$nom."','".$correo."','".md5($contra)."')";
+        $bd->iudQuery($sql);
     }
 }
