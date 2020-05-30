@@ -13,13 +13,49 @@
 </head>
 <body>
 <?php
-include "includes/navbarInclude.php";
+require_once "utils/utils.php";
+
+$existeUsuario = false;
+
+if(isDataAvailable($_GET) && isDataAvailable($_GET['channelId'])) {
+    //Iniciamos la sesion
+    session_start();
+
+    include "includes/navbarInclude.php";
+
+    $channelId = $_GET['channelId'];
+    if(is_numeric($channelId)) {
+        //Es un numero, por lo que comenzamos a trabajar con este canal y a mostrar los datos relativos al canal
+        require_once "Classes/Usuario.php";
+
+        $usuario = Usuario::getUsuarioById($channelId);
+        if($usuario == null) {
+            header("Location: index.php");
+        }
+        $existeUsuario = true;
+    } else {
+        //Si el argumento pasado no es un numero redirigimos al index
+        header("Location: index.php");
+    }
+
+} else {
+    //Si no hay ningun dato por get redirigimos a la pagina inicial
+    header("Location: index.php");
+}
+
 ?>
 
 <section class="mainContainer">
     <div class="channelIconContainer">
-        <img class="channelIconImg" src="https://www.xtrafondos.com/wallpapers/espacio-estrellas-universo-nebulosa-3337.jpg">
-        <p>El nombre de canal más largo del mundoo</p>
+        <?php
+            if($existeUsuario) {
+                echo '<img class="channelIconImg" src="'.$usuario->getImg().'">
+                    <p>'.$usuario->getNombre().'</p>';
+            } else {
+                echo '<img class="channelIconImg" src="https://www.xtrafondos.com/wallpapers/espacio-estrellas-universo-nebulosa-3337.jpg">
+                    <p>El nombre de canal más largo del mundoo</p>';
+            }
+        ?>
     </div>
 
     <div class="channelContentContainer">
@@ -34,43 +70,37 @@ include "includes/navbarInclude.php";
                 </div>
                 <!-- TODO: ALTs en imagenes -->
                 <div id="videoScroller" class="videoScroller">
-                    <div id="video1" class="video videoScrollerItem">
-                        <img src="https://www.optoma.es/images/ProductApplicationFeatures/4kuhd/banner.jpg">
-                        <h3>Titulo de video 1</h3>
-                        <h4>By alexby</h4>
-                        <h4>35562 rep</h4>
-                    </div>
-                    <div id="video2" class="video videoScrollerItem">
-                        <img src="https://images.pexels.com/photos/1252869/pexels-photo-1252869.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-                        <h3>Titulo de video 2</h3>
-                        <h4>By alexby</h4>
-                        <h4>35562 rep</h4>
-                    </div>
-                    <div id="video3" class="video videoScrollerItem">
-                        <img src="https://www.adslzone.net/app/uploads/2016/06/emerald-moraine-lake_3840x2160-4k-uhd-wallpaper-1.jpg">
-                        <h3>Titulo de video 3</h3>
-                        <h4>By alexby</h4>
-                        <h4>35562 rep</h4>
-                    </div>
+                    <?php
+                    if($existeUsuario) {
+                            require_once "Classes/Listador.php";
 
-                    <div id="video4" class="video videoScrollerItem">
-                        <img src="https://www.giztele.com/wp-content/uploads/2017/04/descargar-trailers-y-demos-para-televisores-4k-1024x702.jpg">
-                        <h3>Titulo de video 4</h3>
-                        <h4>By alexby</h4>
-                        <h4>35562 rep</h4>
-                    </div>
-                    <div id="video5" class="video videoScrollerItem">
-                        <img src="https://fondosmil.com/fondo/17021.jpg">
-                        <h3>Titulo de video 5</h3>
-                        <h4>By alexby</h4>
-                        <h4>35562 rep</h4>
-                    </div>
-                    <div id="video6" class="video videoScrollerItem">
-                        <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
-                        <h3>Titulo de video 6</h3>
-                        <h4>By alexby</h4>
-                        <h4>35562 rep</h4>
-                    </div>
+                            $topVideos = Listador::listarVideos(0, 6, $channelId, false, 0, true);
+                            $videosCounter = 6;
+
+                            for ($i = 0; $i < sizeof($topVideos); $i++) {
+                                $video = $topVideos[$i];
+
+                                echo '<div id="video'.($i+1).'" class="video videoScrollerItem" data-video-redirection="'.$video->getId().'">
+                                        <img src="'.$video->getMiniatura().'">
+                                        <h3>'.$video->getTitulo().'</h3>
+                                        <h4>By '.$video->getNombreUsuario().'</h4>
+                                        <h4>'.$video->getVisualizaciones().' rep</h4>
+                                    </div>';
+                                $videosCounter--;
+                            }
+
+                            if($videosCounter > 0) {
+                                for ($e = (6 - $videosCounter); $e < 6; $e++) {
+                                    echo '<div id="video'.($e+1).'" class="video videoScrollerItem">
+                                            <img src="https://www.optoma.es/images/ProductApplicationFeatures/4kuhd/banner.jpg">
+                                            <h3>El usuario no tiene más videos</h3>
+                                        </div>';
+                                }
+                            }
+                        } else {
+                            header("Location: index.php");
+                        }
+                    ?>
                 </div>
 
                 <div class="scrollController righty">
@@ -83,7 +113,22 @@ include "includes/navbarInclude.php";
                 <hr>
             </div>
             <div class="fullVideosContainer">
-                <div class="video videoListItem">
+                <?php
+                    if($existeUsuario) {
+                        $videos = Listador::listarVideos(0, 12, $channelId, false, 0, false);
+
+                        for ($i = 0; $i < sizeof($videos); $i++) {
+                            $video = $videos[$i];
+                            echo '<div class="video videoListItem" data-video-redirection="'.$video->getId().'">
+                                    <img src="'.$video->getMiniatura().'">
+                                    <h3>'.$video->getTitulo().'</h3>
+                                    <h4>By '.$video->getNombreUsuario().'</h4>
+                                    <h4>'.$video->getVisualizaciones().' rep</h4>
+                                </div>';
+                        }
+                    }
+                ?>
+                <!--<div class="video videoListItem">
                     <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
                     <h3>Titulo de video 1</h3>
                     <h4>By alexby</h4>
@@ -130,12 +175,15 @@ include "includes/navbarInclude.php";
                     <h3>Titulo de video 1</h3>
                     <h4>By alexby</h4>
                     <h4>35562 rep</h4>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
 </section>
 
+<?php
+include "includes/loginInclude.php";
+?>
 
 </body>
 </html>

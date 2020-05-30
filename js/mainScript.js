@@ -24,6 +24,18 @@ function registerListeners() {
     registerLink.addEventListener("click", function () {
         loginFormContainer.classList.add("hidden");
         registerFormContainer.classList.remove("hidden");
-    })
+    });
+
+    let videos = document.getElementsByClassName("videoItem");
+
+    for(let i = 0; i < videos.length; i++) {
+        videos[i].addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            let idVideo = this.dataset["videoRedirection"];
+            window.location.href = "WatchVideo.php?videoId="+idVideo;
+        });
+    }
 }
+
 

@@ -1,7 +1,4 @@
 <?php
-
-
-
 class BaseDeDatos
 {
     private $url;
@@ -138,19 +135,5 @@ class BaseDeDatos
         }
 
         return $resultado;
-    }
-    public function ConsultaOneRow($consulta){
-        $this->resultado =   $this->conexion->query($consulta);
-        $res = mysqli_fetch_assoc($this->resultado );
-        return $res;
-    }
-    public function numeroElementos(){
-        $num=$this->resultado->num_rows;
-        return $num;
-    }
-    public function consulta($consulta){
-        $this->resultado =   $this->conexion->query($consulta);
-        $res = $this->resultado ;
-        return $res;
     }
 }
