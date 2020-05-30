@@ -1,0 +1,71 @@
+/*NavTienda*/
+#atras{
+    height: 70px;
+    width: 70px;
+    float: left;
+    margin: 10px;
+}
+#tiendaNav{
+    background: #050326;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+#usuario,#cartera>div{
+    float: left;
+    background: #F2785C;
+    margin: 10px;
+    border-radius: 2vh;
+    padding: 0 1vw;
+}
+#usuario>div{
+    float: left;
+
+}
+#icono{
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+}
+#icono>img{
+    height: 100%;
+    width: 100%;
+}
+#usuario>div>p{
+    margin: 0;
+
+}
+a{
+    text-decoration: none;
+    color: #050326;
+}
+#titulo{
+    color: #F2785C;
+    width: fit-content;
+    margin: auto;
+    font-size: 40px;
+    margin-top:20px ;
+}
+#cartera{
+    float: right;
+    margin-top:10px;
+    overflow: hidden;
+}
+#cartera>p{
+    float: left;
+    color: white;
+    margin-top: 25px;
+}
+#cartera>div{
+    width: 100px;
+    align-content: center;
+    overflow: hidden;
+}
+#cartera>div>p{
+    text-align: center;
+}
