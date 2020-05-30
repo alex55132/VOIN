@@ -9,9 +9,7 @@ if (isset($_POST)&& !empty($_POST)){
     if ($usuario->login($corr,$pass)){
         session_start();
         $_SESSION['userId']=$usuario->getIdUsu();
-        echo "<script> alert('holi')</script>";
     }else{
-        echo "<script> alert('esta mal')</script>";
     }
 }
 ?>
