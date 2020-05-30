@@ -2,11 +2,11 @@
 
 <div id="loginFormContainer" class="loginForm hidden">
     <h1>IDENTIFICATE</h1>
-    <form id="loginForm" action="#">
-        <label class="labelTextInput" for="username">Nombre de usuario:</label>
-        <input id="username" type="text" placeholder="Username" name="username">
+    <form id="loginForm" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+        <label class="labelTextInput" for="email">Nombre de usuario:</label>
+        <input id="email" type="text" placeholder="Email" name="corr_usu">
         <label class="labelTextInput" for="password">Contraseña: </label>
-        <input id="password" type="password" placeholder="Password" name="password">
+        <input id="password" type="password" placeholder="Password" name="contr_usu">
         <div class="rememberCheckBoxContainer">
             <input class="rememberCheckBox" id="rememberCheckBox" name="rememberCheckBox" type="checkbox" value="remember"/>
             <label for="rememberCheckBox">Recuérdame</label>
@@ -14,7 +14,7 @@
 
         <a class="forgotPassLink link" href="#">He olvidado mi contraseña</a>
         <p class="registerLink">¿No tienes cuenta? <a class="link" href="#" id="registerLink">Regístrate</a></p>
-        <button class="submitBtn" type="button">LOG-IN</button>
+        <button class="submitBtn" type="button" onclick="login()">LOG-IN</button>
     </form>
     <div class="clearDiv"></div>
 </div>
@@ -36,7 +36,7 @@
             <label for="termsConditionsCheckBox">Acepto los <span class="link">términos y condiciones </span> y la <span class="link">Política de Privacidad</span></label>
         </div>
 
-        <button class="submitBtn" type="button">REGISTRARSE</button>
+        <button class="submitBtn" type="button" onclick="registro()">REGISTRARSE</button>
     </form>
     <div class="clearDiv"></div>
 </div>

@@ -10,7 +10,7 @@
     padding: 0 3vw;
     text-align: justify;
     word-wrap: break-word;
-
+    font-size: 4vh;
  }
 .comPro{
     width: calc((100vw - 70vh)*0.4);

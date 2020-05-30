@@ -1,6 +1,4 @@
 <?php
-
-
 class BaseDeDatos
 {
     private $url;
