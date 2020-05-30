@@ -23,70 +23,9 @@ include "includes/navTienda.php";
 ?>
     <section>
         <?php
-        echo $lista->imprimirMangasEnBack();
+        echo $lista->imprimirProductosEnBack();
         ?>
-        <!-- <div class="producto">
-            <div class="proizq">
-                <div class="fotoproducto">
-                    <img src="img/gatete.jpg" alt="producto">
-                </div>
-                <div class="comPro">
-                    <div class="titPro">
-                        <h2>PRODUCTO</h2>
-                    </div>
-                    <div class="incluyePro">
-                        <p>tu puto padre en bragas</p>
-                    </div>
-                    <div class="botonComPro">
-                        5€
-                    </div>
-                    <div class="cantidadPro">
-                        <p>1 por persona</p>
-                    </div>
-                </div>
-                <div class="desPro">
-                    <div class="texto">
-                       <p>dfvneroibnerìovbnewrobvinweaìorfbneolujfwioueygfbioawuycbsdfvergrtgbdrtgdrtghfgweiuya
-                           </p>
 
-                    </div>
-                    <div class="sabermas">
-                        <a href="producto.php">+Saber más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="producto">
-            <div class="proder">
-                <div class="fotoproducto">
-                    <img src="img/gatete.jpg" alt="producto">
-                </div>
-                <div class="comPro">
-                    <div class="titPro">
-                        <h2>PRODUCTO</h2>
-                    </div>
-                    <div class="incluyePro">
-                        <p>tu puto padre en bragas</p>
-                    </div>
-                    <div class="botonComPro">
-                        5€
-                    </div>
-                    <div class="cantidadPro">
-                        <p>1 por persona</p>
-                    </div>
-                </div>
-                <div class="desPro">
-                    <div class="texto">
-                        <p>dfvneroibnerìovbnewrobvinweaìorfbneolujfwioueygfbioawuycbsdfvergrtgbdrtgdrtghfgweiuya
-                        </p>
-
-                    </div>
-                    <div class="sabermas">
-                        <a href="producto.php">+Saber más</a>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </section>
 </body>
 </html>
