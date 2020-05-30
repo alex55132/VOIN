@@ -20,4 +20,15 @@ window.onload = function () {
         });
     }
 
+    let channelList = document.getElementsByClassName("channel");
+
+    for(let i = 0; i < channelList.length; i++) {
+        channelList[i].addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            let idCanal = this.dataset["channelRedirection"];
+            window.location.href = "channel.php?channelId="+idCanal;
+        });
+    }
+
 }

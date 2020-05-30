@@ -29,30 +29,11 @@ window.onload = function () {
         item.addEventListener("click", function () {
             if(urlData != null && urlData['displayChannels'] === "true") {
                 let idNumber = parseInt(this.id);
-                window.location.href = "channel.php?userId=" + idNumber;
+                window.location.href = "channel.php?channelId=" + idNumber;
             } else {
                 let idNumber = parseInt(this.id);
                 window.location.href = "index.php?categoryId=" + idNumber;
             }
         });
     }
-}
-
-function getUrlParameters() {
-    let searchString = window.location.search;
-    let variables = {}
-    searchString = searchString.split("?")[1];
-
-    if(searchString === undefined) {
-        variables = null;
-    } else {
-        searchString = searchString.split("&");
-        for(let i = 0; i < searchString.length; i++) {
-            let pair = searchString[i].split("=");
-
-            variables[pair[0]] = pair[1];
-        }
-
-    }
-    return variables;
 }

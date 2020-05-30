@@ -64,7 +64,7 @@ $canales = Listador::listarCanales();
                     for ($e = 0; $e < sizeof($canales); $e++) {
                         $canal = $canales[$e];
 
-                        echo '<div class="itemCategoryChannel channel">
+                        echo '<div class="itemCategoryChannel channel" data-channel-redirection="'.$canal->getId().'">
                                 <div class="categoryImg">
                                     <img src="'.$canal->getImg().'">
                                 </div>

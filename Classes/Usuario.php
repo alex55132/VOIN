@@ -195,35 +195,41 @@ class Usuario
 
         $arrayDatos = $db->realizarConsulta($query);
 
-        $usuario = new Usuario($arrayDatos[0][0], $arrayDatos[0][4], $arrayDatos[0][5], $arrayDatos[0][6], $arrayDatos[0][7], $arrayDatos[0][1], $arrayDatos[0][3], null, null, null);
+        //Comprobamos que hay datos
+        if(sizeof($arrayDatos) > 0) {
+            $usuario = new Usuario($arrayDatos[0][0], $arrayDatos[0][4], $arrayDatos[0][5], $arrayDatos[0][6], $arrayDatos[0][7], $arrayDatos[0][1], $arrayDatos[0][3], null, null, null);
 
-        //Obtenemos los ids de los videos subidos
-        $queryVideos = "SELECT id_video FROM video WHERE id_usu=".$arrayDatos[0][0];
+            //Obtenemos los ids de los videos subidos
+            $queryVideos = "SELECT id_video FROM video WHERE id_usu=".$arrayDatos[0][0];
 
-        $videoDatos = $db->realizarConsulta($queryVideos);
-        $videosArray = [];
+            $videoDatos = $db->realizarConsulta($queryVideos);
+            $videosArray = [];
 
-        for($i = 0; $i < sizeof($videoDatos); $i++) {
-            array_push($videosArray, $videoDatos[$i][0]);
+            for($i = 0; $i < sizeof($videoDatos); $i++) {
+                array_push($videosArray, $videoDatos[$i][0]);
+            }
+
+            //Guardamos en el objeto los ids de los videos que ha subido
+            $usuario->setVideosSubidos($videosArray);
+
+            $querySuscripciones = "SELECT id_seguido FROM relacion WHERE id_seguidor = ".$arrayDatos[0][0];
+
+            $suscripcionesDatos = $db->realizarConsulta($querySuscripciones);
+            $suscripcionesArray = [];
+
+            for($i = 0; $i < sizeof($suscripcionesDatos); $i++) {
+                array_push($suscripcionesArray, $suscripcionesDatos[$i][0]);
+            }
+
+            $usuario->setSuscripciones($suscripcionesArray);
+
+            //TODO: COMPRAS REALIZADAS
+
+            $db->cerrarConexion();
+        } else {
+            $usuario = null;
         }
 
-        //Guardamos en el objeto los ids de los videos que ha subido
-        $usuario->setVideosSubidos($videosArray);
-
-        $querySuscripciones = "SELECT id_seguido FROM relacion WHERE id_seguidor = ".$arrayDatos[0][0];
-
-        $suscripcionesDatos = $db->realizarConsulta($querySuscripciones);
-        $suscripcionesArray = [];
-
-        for($i = 0; $i < sizeof($suscripcionesDatos); $i++) {
-            array_push($suscripcionesArray, $suscripcionesDatos[$i][0]);
-        }
-
-        $usuario->setSuscripciones($suscripcionesArray);
-
-        //TODO: COMPRAS REALIZADAS
-
-        $db->cerrarConexion();
 
         return $usuario;
     }
