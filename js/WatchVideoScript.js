@@ -19,10 +19,13 @@ window.onload = function () {
 
     viewPetition.onreadystatechange = function (aEvt) {
         if (viewPetition.readyState === 4) {
-            if(viewPetition.status === 200)
-                console.log(viewPetition.responseText)
-            else
+            if(viewPetition.status === 200) {
+                //console.log(viewPetition.responseText)
+                console.log("Exito");
+            }
+            else {
                 window.location.href = "index.php";
+            }
         }
     };
 
