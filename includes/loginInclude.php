@@ -27,7 +27,7 @@
         <label class="labelTextInput" for="emailRegister">E-mail</label>
         <input id="emailRegister" type="text" placeholder="E-mail" name="registerEmail">
         <label class="labelTextInput" for="passwordRegister">Contraseña: </label>
-        <input id="passwordRegister" type="password" placeholder="Password" name="password">
+        <input id="passwordRegister" type="password" placeholder="1 Mayuscula, 1 Minuscula, un numero y minimo 8 caracteres" name="password">
         <label class="labelTextInput" for="passwordRegister">Confirmar contraseña: </label>
         <input id="confirmPasswordRegister" type="password" placeholder="1 Mayuscula, 1 Minuscula, un numero y minimo 8 caracteres" name="registerConfirmPassword">
 
