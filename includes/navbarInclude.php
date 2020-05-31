@@ -10,8 +10,28 @@
         <li class="navItem"><a href="tienda.php">Tienda</a></li>
         <li class="navItem"><a href="upload.php">Subir video</a></li>
         <?php
-            //TODO: SESSION HANDLING
+        require_once "utils/utils.php";
+            if(isDataAvailable($_SESSION)) {
+                $userId = $_SESSION['userId'];
+
+                include_once "Classes/Usuario.php";
+
+                $usuario = Usuario::getUsuarioById($userId);
+
+                echo '<li class="navItem logged">
+                        <img src="imgs/gatete.jpg">
+                        <div class="loggedOptions">
+                            <p>Bienvenido '.$usuario->getNombre().'</p>
+                            <p><a href="#">Panel de control</a></p>
+                            <p><a href="channel.php?channelId='.$usuario->getId().'">Canal</a></p>
+                            <p><a href="logout.php">Logout </a></p>
+                        </div>
+                    </li>';
+            } else {
+                echo '<li id="loginBtn" class="navItem logBtn"><a href="#">Log-in / Registro</a></li>';
+            }
         ?>
-        <li id="loginBtn" class="navItem logBtn"><a href="#">Log-in / Registro</a></li>
+
+
     </ul>
 </nav>

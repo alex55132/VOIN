@@ -1,5 +1,5 @@
 <?php
-
+require_once "BaseDeDatos.php";
 
 class Lista
 {
@@ -16,8 +16,10 @@ class Lista
         $sql = "SELECT * FROM ".$this->tabla." ;";
         $conexion = new BaseDeDatos();
         $res = $conexion->realizarConsulta($sql);
-        $fila = new Producto($res[0][0], $res[0][1], $res[0][2], $res[0][3], $res[0][4], $res[0][5],$res[0][6], $res[0][7]);
-        array_push($this->lista, $fila);
+        for($i=0;$i<count($res);$i++){
+            $fila = new Producto($res[$i][0], $res[$i][1], $res[$i][2], $res[$i][3], $res[$i][4], $res[$i][5],$res[$i][6], $res[$i][7]);
+            array_push($this->lista, $fila);
+        }
     }
     public function imprimirProductosEnBack(){
 
