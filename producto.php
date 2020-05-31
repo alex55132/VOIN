@@ -2,6 +2,9 @@
 require "Classes/Producto.php";
 require "Classes/BaseDeDatos.php";
 require "Classes/Lista.php";
+
+session_start();
+
 $id=intval($_GET['id']);
 
 $producto=new Producto();
@@ -18,7 +21,7 @@ $producto->ObtenerPorId($id);
     <link rel="stylesheet" href="css/navTienda.css">
     <link rel="stylesheet" href="css/tiendaStyle.css">
     <link rel="stylesheet" href="css/productoStyle.css">
-
+    <script src="js/tiendaScript.js"></script>
 </head>
 <body>
 <?php
