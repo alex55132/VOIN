@@ -2,8 +2,12 @@
 require "Classes/Producto.php";
 require "Classes/BaseDeDatos.php";
 require "Classes/Lista.php";
+
+session_start();
+
 $lista =new Lista();
 $lista->obtenerElementos();
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,7 +19,7 @@ $lista->obtenerElementos();
     <title>Document</title>
     <link rel="stylesheet" href="css/navTienda.css">
     <link rel="stylesheet" href="css/tiendaStyle.css">
-
+    <script src="js/tiendaScript.js"></script>
 </head>
 <body>
 <?php

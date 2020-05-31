@@ -3,7 +3,7 @@
 <div id="loginFormContainer" class="loginForm hidden">
     <h1>IDENTIFICATE</h1>
     <form id="loginForm" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-        <label class="labelTextInput" for="email">Nombre de usuario:</label>
+        <label class="labelTextInput" for="email">Correo electrónico:</label>
         <input id="email" type="text" placeholder="Email" name="corr_usu">
         <label class="labelTextInput" for="password">Contraseña: </label>
         <input id="password" type="password" placeholder="Password" name="contr_usu">
@@ -29,7 +29,7 @@
         <label class="labelTextInput" for="passwordRegister">Contraseña: </label>
         <input id="passwordRegister" type="password" placeholder="Password" name="password">
         <label class="labelTextInput" for="passwordRegister">Confirmar contraseña: </label>
-        <input id="confirmPasswordRegister" type="password" placeholder="ConfirmPassword" name="registerConfirmPassword">
+        <input id="confirmPasswordRegister" type="password" placeholder="1 Mayuscula, 1 Minuscula, un numero y minimo 8 caracteres" name="registerConfirmPassword">
 
         <div class="termsConditionsCheckBoxContainer">
             <input class="termsConditionsCheckBox" id="termsConditionsCheckBox" name="termsConditionsCheckBox" type="checkbox" value="accept"/>
