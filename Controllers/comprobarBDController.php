@@ -1,6 +1,6 @@
 <?php
-include "../Classes/Usuarios.php";
-include "../Classes/BaseDeDatos.php";
+include_once "../Classes/Usuario.php";
+include_once "../Classes/BaseDeDatos.php";
 $correo=($_GET['correo']);
 $tabla=($_GET['tabla']);
 $nombre=($_GET['nombre']);
@@ -10,9 +10,11 @@ $conexion=new BaseDeDatos();
 $res=$conexion->realizarConsulta($sql);
 $final="";
 if ($res==null){
-    $usu=new Usuarios();
-    $usu->insertarUsuario($nombre,$correo,$contr);
-    header("index.php");
+    if(Usuario::insertarUsuario($nombre,$correo,$contr)) {
+        $final = "ok";
+    } else {
+        $final = "falloInsercion";
+    }
 }else{
     $final="repetido";
 }

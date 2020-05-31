@@ -15,10 +15,7 @@
 </head>
 <body>
 <?php
-//TODO: IMPLEMENTAR SESIONES
     session_start();
-    //SESION DE PRUEBA A FALTA DEL LOGIN
-    $_SESSION['userId'] = 1;
     $userId = $_SESSION['userId'];
     include "includes/navbarInclude.php";
     include_once "Classes/BaseDeDatos.php";

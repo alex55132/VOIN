@@ -36,6 +36,8 @@ foreach ($_FILES as $file) {
         $nombreArchivo = limpiar_caracteres_especiales($file['name']);
         $nombreArchivo = trim($nombreArchivo, " ");
         if (file_exists("../videos/" . $nombreArchivo)) {
+            //Devolvemos mensaje de error si ya hay algun archivo con ese nombre en el server
+            //TODO: NOMBRES GENERADOS ALEATORIAMENTE?
             header("HTTP/1.0 404 Not Found");
         } else {
             move_uploaded_file($file['tmp_name'], "../videos/" . $nombreArchivo . ".part" . $currentChunk);
