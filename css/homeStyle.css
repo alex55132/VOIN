@@ -42,6 +42,10 @@
     height: 70%;
 }
 
+.videoItem h3 {
+    font-size: 12px;
+}
+
 .videoItem h3, .videoItem h4 {
     color: white;
     margin: 0;

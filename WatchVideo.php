@@ -16,8 +16,8 @@
 session_start();
 
 //Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
-include "includes/navbarInclude.php";
-include "utils/utils.php";
+include_once "includes/navbarInclude.php";
+include_once "utils/utils.php";
 require_once "Classes/Video.php";
 require_once "Classes/Listador.php";
 
@@ -70,17 +70,21 @@ require_once "Classes/Listador.php";
     <h2>Videos relacionados</h2>
     <?php
 
-    $videos = Listador::listarVideos(0, 3, $_SESSION['userId'], false, 0, false);
+    if(isDataAvailable($_SESSION)) {
+        if(isDataAvailable($_SESSION['userId'])) {
+            $videos = Listador::listarVideos(0, 3, $_SESSION['userId'], false, 0, false);
 
-    for($i = 0; $i < sizeof($videos); $i++) {
-        $currentVideo = $videos[$i];
+            for($i = 0; $i < sizeof($videos); $i++) {
+                $currentVideo = $videos[$i];
 
-        echo '<div class="relatedVideoItem" data-video-redirection="'.$currentVideo->getId().'">
+                echo '<div class="relatedVideoItem" data-video-redirection="'.$currentVideo->getId().'">
                 <img src="'.$currentVideo->getMiniatura().'">
                 <h3>'.$currentVideo->getTitulo().'</h3>
                 <h4>By '.$currentVideo->getNombreUsuario().'</h4>
                 <h4>'.$currentVideo->getVisualizaciones().' reproducciones</h4>
             </div>';
+            }
+        }
     }
     ?>
 </aside>

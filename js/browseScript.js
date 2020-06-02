@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener('load',function () {
     let verMasCategoryBtn = document.getElementById("verMasCategoryBtn");
     let verMasChannelBtn = document.getElementById("verMasChannelBtn");
 
@@ -31,4 +31,4 @@ window.onload = function () {
         });
     }
 
-}
+});

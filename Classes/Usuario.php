@@ -174,7 +174,7 @@ class Usuario
 
 
 
-    public function __construct($id, $nombre, $correo, $fechaNacimiento, $img, $tipo, $dineroCartera, $videoSubidos = null, $suscripciones = null, $comprasRealizadas = null)
+    public function __construct($id = 0, $nombre = "", $correo = "", $fechaNacimiento = "", $img = null, $tipo = null, $dineroCartera = 0, $videoSubidos = null, $suscripciones = null, $comprasRealizadas = null)
     {
         $this->setId($id);
         $this->setNombre($nombre);
@@ -232,5 +232,30 @@ class Usuario
 
 
         return $usuario;
+    }
+
+    public function login($corr,$cont){
+        $ok=false;
+        $sql="SELECT id_usu FROM usuarios WHERE corr_usu ='".$corr."' AND contr_usu='".md5($cont)."'";
+        $conexion=new BaseDeDatos();
+        $res=$conexion->realizarConsulta($sql);
+        if ($res!=null){
+            $ok=true;
+            $this->setId($res[0][0]);
+        }else{
+            $ok=false;
+        }
+        return $ok;
+    }
+
+    public static function insertarUsuario($nom,$correo,$contra){
+        $bd=new BaseDeDatos();
+        $sql ="INSERT INTO `cartera` (`cant_car`) VALUES ('25');";
+        $bd->iudQuery($sql);
+        $sql ="SELECT max(id_car) as 'id_car' FROM `cartera`;";
+        $car=$bd->realizarConsulta($sql);
+        $sql = "INSERT INTO usuarios (id_tipo, id_car, nom_usu, contr_usu, corr_usu, fecNac_usu, img_usu) VALUES  (0,".$car[0][0].",'".$nom."','".md5($contra)."','".$correo."', '".date("Y/m/d")."', 'default.jpg')";
+        $resultado = $bd->iudQuery($sql);
+        return $resultado;
     }
 }

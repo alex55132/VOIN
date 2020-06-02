@@ -1,3 +1,18 @@
+<?php
+require "Classes/BaseDeDatos.php";
+require "Classes/Usuario.php";
+
+session_start();
+
+if (isset($_POST)&& !empty($_POST)){
+    $corr = addslashes($_POST['corr_usu']);
+    $pass = addslashes($_POST['contr_usu']);
+    $usuario=new Usuario();
+    if ($usuario->login($corr,$pass)){
+        $_SESSION['userId'] = $usuario->getId();
+    }
+}
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -8,12 +23,11 @@
     <title>VOIN - Home</title>
     <link rel="stylesheet" href="css/homeStyle.css">
     <link rel="stylesheet" href="css/navStyle.css">
+    <script src="js/login.js"></script>
     <script src="js/mainScript.js"></script>
 </head>
 <body>
 <?php
-session_start();
-//$_SESSION['userId'] = 2;
 
 include_once "utils/utils.php";
 require_once "Classes/Listador.php";
@@ -62,14 +76,14 @@ include "includes/navbarInclude.php";
             }
 
             if ($displayCounter > 0) {
-                for ($e = 0; $e < $displayCounter; $e++) {
+                /*for ($e = 0; $e < $displayCounter; $e++) {
                     echo '<div class="videoItem">
                                         <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e.jpg">
                                         <h3>Titulo de video 1</h3>
                                         <h4>By alexby</h4>
                                         <h4>35562 rep</h4>
                                     </div>';
-                }
+                }*/
             }
             ?>
         </div>

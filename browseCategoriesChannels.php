@@ -15,9 +15,10 @@
 </head>
 <body>
 <?php
+session_start();
 //Para incluir correctamente la navbar, es necesario usar un <link> al archivo de css navStyle
-include "includes/navbarInclude.php";
-include "utils/utils.php";
+include_once "includes/navbarInclude.php";
+include_once "utils/utils.php";
 
 $pageTitle = "Categorias";
 $displayCat = true;
