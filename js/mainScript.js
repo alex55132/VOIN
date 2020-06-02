@@ -1,6 +1,6 @@
-window.onload = function () {
+window.addEventListener('load', function () {
     registerListeners();
-}
+});
 
 
 function registerListeners() {
@@ -9,6 +9,7 @@ function registerListeners() {
     let loginFormContainer = document.getElementById("loginFormContainer");
     let registerFormContainer = document.getElementById("registerFormContainer");
     let registerLink = document.getElementById("registerLink");
+
 
     if(loginBtn !== null && backgroundLogin !== null && registerLink !== null) {
         loginBtn.addEventListener("click", function () {

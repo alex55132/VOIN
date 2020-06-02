@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener('load',function () {
     let itemList = document.getElementsByClassName("categoryListItem");
     let arraySubtitles = document.getElementsByClassName("subtitleCategory");
     let item;
@@ -36,4 +36,4 @@ window.onload = function () {
             }
         });
     }
-}
+});
