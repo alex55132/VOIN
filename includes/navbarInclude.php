@@ -22,7 +22,7 @@
                         <img src="imgs/gatete.jpg">
                         <div class="loggedOptions">
                             <p>Bienvenido '.$usuario->getNombre().'</p>
-                            <p><a href="#">Panel de control</a></p>
+                            <p><a href="paneldecontrol/panelDeControl.php">Panel de control</a></p>
                             <p><a href="channel.php?channelId='.$usuario->getId().'">Canal</a></p>
                             <p><a href="logout.php">Logout </a></p>
                         </div>

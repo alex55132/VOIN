@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener('load', function () {
     let videos = document.getElementsByClassName("relatedVideoItem");
 
     for(let i = 0; i < videos.length; i++) {
@@ -30,5 +30,5 @@ window.onload = function () {
     };
 
     viewPetition.send(formDataPetition);
-}
+});
 
