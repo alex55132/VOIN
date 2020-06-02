@@ -54,8 +54,16 @@
 }
 
 .displayerHeader h3 {
-    width: 15%;
+    /*width: 15%;*/
     margin-left: 15px;
+}
+
+.videoTableElement {
+    width: 15% !important;
+}
+
+.moderacionTableElement {
+    width: 35% !important;
 }
 
 .displayerBody {

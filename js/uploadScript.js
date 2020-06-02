@@ -12,7 +12,7 @@ let etiquetasVideo;
 let miniaturaInput;
 let miniaturaPreview;
 
-window.onload = function () {
+window.addEventListener('load',function () {
     notificationContainer = document.getElementById("notificationContainer");
     fileInput = document.getElementById("fileInput");
     videoUploadMessage = document.getElementById("videoUploadMessage");
@@ -93,7 +93,7 @@ window.onload = function () {
     closeNotification.addEventListener("click", function () {
         closeNotificationFunc();
     });
-}
+});
 
 let isNotificationActive = false;
 

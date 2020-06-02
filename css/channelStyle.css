@@ -37,14 +37,32 @@
     background-color: #252359;
 }
 
-.topVideosTitle h1 {
+.topVideosTitleElements {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.topVideosTitleElements h1 {
     color: #F2785C;
     font-size: 32px;
+    display: block;
+    width: 85%;
 }
 
 .topVideosTitle hr {
     border: 2px solid #F2785C;
     width: 100%;
+}
+
+.suscribeBtn {
+    width: 15%;
+    height: 40px;
+
+    font-weight: bold;
+    background-color: #F2785C;
+    border: 3px solid #050326;
+    border-radius: 5px;
 }
 
 .topVideosDisplayer {
