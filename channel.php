@@ -61,7 +61,24 @@ if(isDataAvailable($_GET) && isDataAvailable($_GET['channelId'])) {
     <div class="channelContentContainer">
         <div class="topVideosContainer">
             <div class="topVideosTitle">
-                <h1>Top videos</h1>
+                <div class="topVideosTitleElements">
+                    <h1>Top videos</h1>
+                    <?php
+                        if(isDataAvailable($_SESSION)) {
+                            if (isDataAvailable($_SESSION['userId'])) {
+                                if($existeUsuario) {
+                                    echo '<button class="suscribeBtn" id="suscribeBtn" data-suscriber="'.$_SESSION['userId'].'" data-suscribedTo="'.$channelId.'">Suscribirse</button>';
+                                } else {
+                                    echo '<button class="suscribeBtn">Suscribirse</button>';
+                                }
+                            } else {
+                                echo '<button class="suscribeBtn">Haz login para suscribirte</button>';
+                            }
+                        } else {
+                            echo '<button class="suscribeBtn">Haz login para suscribirte</button>';
+                        }
+                    ?>
+                </div>
                 <hr>
             </div>
             <div class="topVideosDisplayer">

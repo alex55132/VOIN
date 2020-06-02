@@ -34,8 +34,13 @@ class Listador
                             //Sacamos los videos más populares del canal
                             $query = "SELECT id_video FROM video WHERE id_usu = ".$channelId." ORDER BY visu_video DESC LIMIT ".$start.",".$numberRows;
                         } else {
-                            //Mostramos los ultimos videos de un canal en concreto
-                            $query = "SELECT id_video FROM video WHERE id_usu=" . $channelId . " ORDER BY id_video DESC LIMIT " . $start . "," . $numberRows;
+                            if($numberRows == 0) {
+                                //Mostramos los ultimos videos de un canal en concreto
+                                $query = "SELECT id_video FROM video WHERE id_usu=" . $channelId . " ORDER BY id_video DESC";
+                            } else {
+                                //Mostramos los ultimos videos de un canal en concreto limitados por numberRows
+                                $query = "SELECT id_video FROM video WHERE id_usu=" . $channelId . " ORDER BY id_video DESC LIMIT " . $start . "," . $numberRows;
+                            }
                         }
                     }
                 }

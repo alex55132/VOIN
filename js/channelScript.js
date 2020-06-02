@@ -14,7 +14,7 @@ let items = {
 
 let imagesEventsTriggered = 6;
 
-window.onload = function () {
+window.addEventListener('load', function () {
     leftScroller = document.getElementById("leftScroller");
     rightScroller = document.getElementById("rightScroller");
     videoScroller = document.getElementById("videoScroller");
@@ -68,7 +68,7 @@ window.onload = function () {
         });
     }
 
-}
+});
 
 //Util para saber en qué navegador estamos
 function whichTransitionEvent() {
