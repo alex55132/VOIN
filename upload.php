@@ -15,19 +15,25 @@
 </head>
 <body>
 <?php
-//TODO: IMPLEMENTAR SESIONES
+require_once "utils/utils.php";
     session_start();
-    //SESION DE PRUEBA A FALTA DEL LOGIN
-    $_SESSION['userId'] = 1;
-    $userId = $_SESSION['userId'];
-    include "includes/navbarInclude.php";
-    include_once "Classes/BaseDeDatos.php";
+    if(isDataAvailable($_SESSION)) {
+        if(isDataAvailable($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            include "includes/navbarInclude.php";
+            include_once "Classes/BaseDeDatos.php";
 
-    $db = new BaseDeDatos();
+            $db = new BaseDeDatos();
 
-    $categorias = $db->realizarConsulta("SELECT * FROM categoria");
+            $categorias = $db->realizarConsulta("SELECT * FROM categoria");
 
-    $db->cerrarConexion();
+            $db->cerrarConexion();
+        } else {
+            header("Location: index.php");
+        }
+    } else {
+        header("Location: index.php");
+    }
 ?>
 
 <div class="notificationContainer" id="notificationContainer">

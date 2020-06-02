@@ -26,7 +26,7 @@ if(isDataAvailable($_SESSION) && isDataAvailable($_POST) && isDataAvailable($_FI
     $fechaPubli = date('Y-m-d');
     $rutaVideo = str_replace(" ", "_", $rutaVideo);
 
-    $newMiniaturaName = hash("sha256", $miniaturaVideo['name']).".png";
+    $newMiniaturaName = substr(md5(time()), 0, 25).".png";
     _log("Nombre archivo hasheado: ".$newMiniaturaName."\n", "../logVideoUpload.txt");
 
     if(move_uploaded_file($miniaturaVideo['tmp_name'], "../imgs/miniaturas/".$newMiniaturaName)) {

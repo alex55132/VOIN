@@ -1,6 +1,6 @@
-window.onload = function () {
+window.addEventListener('load', function () {
     registerListeners();
-}
+});
 
 
 function registerListeners() {
@@ -10,21 +10,24 @@ function registerListeners() {
     let registerFormContainer = document.getElementById("registerFormContainer");
     let registerLink = document.getElementById("registerLink");
 
-    loginBtn.addEventListener("click", function () {
-        backgroundLogin.classList.remove("hidden");
-        loginFormContainer.classList.remove("hidden");
-    });
 
-    backgroundLogin.addEventListener("click", function () {
-        backgroundLogin.classList.add("hidden");
-        loginFormContainer.classList.add("hidden");
-        registerFormContainer.classList.add("hidden");
-    });
+    if(loginBtn !== null && backgroundLogin !== null && registerLink !== null) {
+        loginBtn.addEventListener("click", function () {
+            backgroundLogin.classList.remove("hidden");
+            loginFormContainer.classList.remove("hidden");
+        });
 
-    registerLink.addEventListener("click", function () {
-        loginFormContainer.classList.add("hidden");
-        registerFormContainer.classList.remove("hidden");
-    });
+        backgroundLogin.addEventListener("click", function () {
+            backgroundLogin.classList.add("hidden");
+            loginFormContainer.classList.add("hidden");
+            registerFormContainer.classList.add("hidden");
+        });
+
+        registerLink.addEventListener("click", function () {
+            loginFormContainer.classList.add("hidden");
+            registerFormContainer.classList.remove("hidden");
+        });
+    }
 
     let videos = document.getElementsByClassName("videoItem");
 

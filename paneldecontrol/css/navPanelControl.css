@@ -28,6 +28,12 @@ html {
     width: 10%;
 }
 
+.atrasBtn {
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
 .titleControlPanel {
     height: 100%;
     width: 65%;
