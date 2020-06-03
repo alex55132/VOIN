@@ -1,3 +1,16 @@
+<?php
+require_once "../utils/utils.php";
+$pestana = 0;
+if (isDataAvailable($_GET)) {
+    if (isDataAvailable($_GET['pestana']) && is_numeric($_GET['pestana'])) {
+        $pestana = $_GET['pestana'];
+    } else {
+        header("Location: ./panelDeControl.php?pestana=1");
+    }
+} else {
+    header("Location: ./panelDeControl.php?pestana=1");
+}
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -8,6 +21,14 @@
     <title>VOIN - Panel de control</title>
     <link rel="stylesheet" href="css/navPanelControl.css">
     <link rel="stylesheet" href="css/panelDeControlStyle.css">
+    <?php
+    if(isDataAvailable($pestana)) {
+        if ($pestana == 4) {
+            //Mostramos el script de gestion
+            echo "<script src='js/gestionControlPanelScript.js'></script>";
+        }
+    }
+    ?>
     <script src="js/navPanelControlScript.js"></script>
     <script src="js/controlPanelScript.js"></script>
 </head>
@@ -22,16 +43,6 @@ require_once "../includes/navbarPanelControl.php";
 <section class="mainContainer">
     <div class="controlPanelTabsContainer">
         <?php
-        $pestana = 0;
-        if (isDataAvailable($_GET)) {
-            if (isDataAvailable($_GET['pestana']) && is_numeric($_GET['pestana'])) {
-                $pestana = $_GET['pestana'];
-            } else {
-                header("Location: ./panelDeControl.php?pestana=1");
-            }
-        } else {
-            header("Location: ./panelDeControl.php?pestana=1");
-        }
 
         if (isDataAvailable($user)) {
             $accessLvl = $user->getTipo();
@@ -128,6 +139,7 @@ require_once "../includes/navbarPanelControl.php";
             if (isDataAvailable($pestana)) {
                 switch ($pestana) {
                     case 1:
+                        //Videos
                         echo '<h3 class="videoTableElement">Video</h3>
                                 <h3 class="videoTableElement">Titulo</h3>
                                 <h3 class="videoTableElement">Fecha</h3>
@@ -136,9 +148,31 @@ require_once "../includes/navbarPanelControl.php";
                                 <h3 class="videoTableElement">Acciones</h3>';
                         break;
                     case 2:
+                        //Moderacion
                         echo '<h3 class="moderacionTableElement">Video</h3>
                                 <h3 class="moderacionTableElement">Titulo</h3>
                                 <h3 class="moderacionTableElement">Autor</h3>';
+                        break;
+                    case 3:
+                        //Administracion
+                        break;
+                    case 4:
+                        //Gestion
+                        if(isset($_GET['item']) && !empty($_GET['item'])) {
+                            $item = $_GET['item'];
+
+                            switch ($item) {
+                                case 1:
+                                    //Head de categorias
+                                    break;
+                                case 2:
+                                    //Head de productos
+                                    break;
+                                case 3:
+                                    //Head de empresas
+                                    break;
+                            }
+                        }
                         break;
                 }
             }
@@ -182,6 +216,35 @@ require_once "../includes/navbarPanelControl.php";
                         break;
                     case 4:
                         //Pestaña de gestion
+                        if($user->getTipo() < 2) {
+                            header("Location: ../index.php");
+                        } else {
+                            //Comprobamos si el usuario ha seleccionado algun elemento en el panel de gestion
+                            if(isset($_GET['item']) && !empty($_GET['item']) && is_numeric($_GET['item'])) {
+                                $item = $_GET['item'];
+
+                                switch ($item) {
+                                    case 1:
+                                        //Contenido de categorias
+                                        break;
+                                    case 2:
+                                        //Contenido de productos
+                                        break;
+                                    case 3:
+                                        //Contenido de empresas
+                                        break;
+                                    default:
+                                        header("Location: panelDeControl.php");
+                                        break;
+                                }
+                            } else {
+                                echo "<div class='gestionContainer'>
+                                <div id='catItem' class='gestionItem'>Categorias (CAMBIAR POR LOGOS)</div>
+                                <div id='prodItem' class='gestionItem'>Productos</div>
+                                <div id='empItem' class='gestionItem'>Empresas</div>
+                                </div>";
+                            }
+                        }
                         break;
                     default:
                         //Ninguna opcion válida
