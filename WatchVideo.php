@@ -47,12 +47,12 @@ require_once "Classes/Listador.php";
     </div>
     <div class="likesContainer">
         <div class="likeContainerItem">
-            <span class="like">'.$video->getLikes().'</span>
-            <img src="imgs/LikeIcon.png">
+            <span class="like" id="likeValue">'.$video->getLikes().'</span>
+            <img src="imgs/LikeIcon.png" id="likeContainer">
         </div>
         <div class="likeContainerItem">
-            <span class="dislike">'.$video->getDislikes().'</span>
-            <img src="imgs/DislikeIcon.png">
+            <span class="dislike" id="dislikeValue">'.$video->getDislikes().'</span>
+            <img src="imgs/DislikeIcon.png" id="dislikeContainer">
         </div>
     </div>';
         } else {
