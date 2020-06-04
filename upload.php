@@ -12,6 +12,7 @@
     <script src="js/mainScript.js"></script>
     <script src="js/uploadScript.js"></script>
     <script src="js/resumable.js"></script>
+    <script src="js/login.js"></script>
 </head>
 <body>
 <?php

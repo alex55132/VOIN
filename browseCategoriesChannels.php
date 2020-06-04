@@ -11,6 +11,7 @@
     <script src="js/mainScript.js"></script>
     <script src="js/browseCategoriesChannelsScript.js"></script>
     <script src="js/utilFunctions.js"></script>
+    <script src="js/login.js"></script>
     <title>VOIN - Browse Categories</title>
 </head>
 <body>

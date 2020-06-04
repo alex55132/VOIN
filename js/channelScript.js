@@ -2,6 +2,8 @@ let leftScroller;
 let rightScroller;
 let videoScroller;
 
+let suscribeBtn;
+
 
 let items = {
     "video1": 2,
@@ -57,7 +59,6 @@ window.addEventListener('load', function () {
     }
 
     let videos = document.getElementsByClassName("video");
-    console.log(videos);
 
     for(let i = 0; i < videos.length; i++) {
         videos[i].addEventListener("click", function (e) {
@@ -65,6 +66,48 @@ window.addEventListener('load', function () {
 
             let idVideo = this.dataset["videoRedirection"];
             window.location.href = "WatchVideo.php?videoId="+idVideo;
+        });
+    }
+
+    let preventMultipleClick = false;
+
+    suscribeBtn = document.getElementById("suscribeBtn");
+    if(suscribeBtn != null) {
+        suscribeBtn.addEventListener("click", function () {
+            if(!preventMultipleClick) {
+                preventMultipleClick = true;
+                let suscribePetition = new XMLHttpRequest();
+
+                let data = new FormData();
+                let suscritoAId = suscribeBtn.dataset.suscribedto;
+                data.append("suscribedTo", suscritoAId);
+
+                suscribePetition.open("POST", "Controllers/suscribeController.php");
+
+                suscribePetition.onreadystatechange = function () {
+                    if (suscribePetition.readyState === 4) {
+                        if (suscribePetition.status === 200) {
+                            preventMultipleClick = false;
+                            console.log(suscribePetition.responseText);
+                            let jsonData = JSON.parse(suscribePetition.responseText);
+
+                            switch (jsonData.statusCode) {
+                                case 0:
+                                    alert("ERROR AL SUSCRIBIRSE");
+                                    break;
+                                case 1:
+                                    suscribeBtn.innerText = "Suscrito";
+                                    break;
+                                case 2:
+                                    suscribeBtn.innerText = "Suscribirse";
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                suscribePetition.send(data);
+            }
         });
     }
 

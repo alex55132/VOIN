@@ -38,7 +38,7 @@ if (isDataAvailable($_SESSION)) {
                     if (sizeof($arrayDatos) > 0) {
                         //Ya lo ha valorado, por lo que devolvemos error
                         $response['statusCode'] = 2;
-                        $response['message'] = "Se encontró un registro de valoracion";
+                        $response['message'] = "Ya has valorado este video";
                     } else {
                         //Introducimos la valoracion
 
