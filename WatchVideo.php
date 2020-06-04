@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/watchVideo.css">
     <script src="js/WatchVideoScript.js"></script>
     <script src="js/utilFunctions.js"></script>
+    <script src="js/login.js"></script>
     <title>VOIN - Video</title>
 </head>
 <body>
@@ -34,9 +35,11 @@ require_once "Classes/Listador.php";
 
             //Generamos un numero aleatorio para evitar que se guarde en caché. De esta manera, nos ahorramos problemas probados en Firefox
             echo '<video controls preload="auto" poster="'.$video->getMiniatura().'" src="Controllers/streamVideoController.php?videoId='.$videoId.'&sign='.rand(0, getrandmax()).'"></video>';
-            echo '<h1 class="videoTitle">
+            echo '<div class="videosTitleContainer"><h1 class="videoTitle">
         '.$video->getTitulo().'
     </h1>
+    <button id="reportBtn" class="reportBtn">Reportar</button>
+    </div>
     <div class="descRepsContainer">
         <p class="description">'.$video->getDescripcion().'</p>
 
@@ -47,12 +50,12 @@ require_once "Classes/Listador.php";
     </div>
     <div class="likesContainer">
         <div class="likeContainerItem">
-            <span class="like">'.$video->getLikes().'</span>
-            <img src="imgs/LikeIcon.png">
+            <span class="like" id="likeValue">'.$video->getLikes().'</span>
+            <img src="imgs/LikeIcon.png" id="likeContainer">
         </div>
         <div class="likeContainerItem">
-            <span class="dislike">'.$video->getDislikes().'</span>
-            <img src="imgs/DislikeIcon.png">
+            <span class="dislike" id="dislikeValue">'.$video->getDislikes().'</span>
+            <img src="imgs/DislikeIcon.png" id="dislikeContainer">
         </div>
     </div>';
         } else {
