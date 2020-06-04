@@ -47,19 +47,17 @@ include "includes/navbarInclude.php";
             if(isDataAvailable($_GET)) {
                 if(isDataAvailable($_GET['categoryId'])) {
                     $videoArray = Listador::listarVideos(0, 9, 0, false, addslashes($_GET['categoryId']), false);
-                } else {
-                    if(isDataAvailable($_SESSION)) {
-                        if (isDataAvailable($_SESSION['userId'])) {
-                            $videoArray = Listador::listarVideos(0, 9, $_SESSION['userId'], true, 0, false);
-                        } else {
-                            $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
-                        }
+                }
+            } else {
+                if(isDataAvailable($_SESSION)) {
+                    if (isDataAvailable($_SESSION['userId'])) {
+                        $videoArray = Listador::listarVideos(0, 9, $_SESSION['userId'], true, 0, false);
                     } else {
                         $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
                     }
+                } else {
+                    $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
                 }
-            } else {
-                $videoArray = Listador::listarVideos(0, 9, 0, false, 0, false);
             }
 
             $displayCounter = 9;

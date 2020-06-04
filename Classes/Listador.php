@@ -17,7 +17,6 @@ class Listador
 
         if ($categoryId != 0 && is_numeric($categoryId)) {
             //Sacamos los ultimos videos de la categoría dada
-            //TODO: Sentencia preparada
             $query = "SELECT id_video FROM video WHERE id_cat=".$categoryId;
         } else {
             //Sacamos los videos de canales a los que sigue el usuario
