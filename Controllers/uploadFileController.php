@@ -29,6 +29,8 @@ $nombreArchivo = "";
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 $nombreArchivoFinal = substr(str_shuffle($permitted_chars), 0, 16);
+$tipo = "";
+
 foreach ($_FILES as $file) {
     $currentChunk = $_POST['resumableChunkNumber'];
     $tipo = trim(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -64,7 +66,7 @@ if ($totalChunks == $currentChunk && isDataAvailable($nombreArchivo)) {
 
     //Si todos los chunks están disponibles juntamos el video
     if ($insertable) {
-        $finalFile = fopen("../videos/" . $nombreArchivoFinal, "a");
+        $finalFile = fopen("../videos/" . $nombreArchivoFinal.".".$tipo, "a");
         for ($i = 1; $i <= $totalChunks; $i++) {
             fwrite($finalFile, file_get_contents("../videos/" . $nombreArchivo . ".part" . $i));
         }
