@@ -21,43 +21,50 @@ include_once "includes/navbarInclude.php";
 include_once "utils/utils.php";
 require_once "Classes/Video.php";
 require_once "Classes/Listador.php";
-
+require_once "Classes/BaseDeDatos.php";
 ?>
 
 <section class="mainContainer">
     <?php
-    if(isDataAvailable($_GET)) {
+    if (isDataAvailable($_GET)) {
         $videoId = intval($_GET['videoId']);
 
-        if($videoId != 0) {
+        if ($videoId != 0) {
+
             //Correcto
             $video = Video::getVideoById($videoId);
 
-            //Generamos un numero aleatorio para evitar que se guarde en caché. De esta manera, nos ahorramos problemas probados en Firefox
-            echo '<video controls preload="auto" poster="'.$video->getMiniatura().'" src="Controllers/streamVideoController.php?videoId='.$videoId.'&sign='.rand(0, getrandmax()).'"></video>';
-            echo '<div class="videosTitleContainer"><h1 class="videoTitle">
-        '.$video->getTitulo().'
+            //Comprobamos si el video está eliminado por moderacion
+            if ($video->getRepStatus() == 1) {
+                //Redirigimos al index porque el video está rechazado y no se puede ver
+                header("Location: index.php");
+            } else {
+                //Generamos un numero aleatorio para evitar que se guarde en caché. De esta manera, nos ahorramos problemas probados en Firefox
+                echo '<video controls preload="auto" poster="' . $video->getMiniatura() . '" src="Controllers/streamVideoController.php?videoId=' . $videoId . '&sign=' . rand(0, getrandmax()) . '"></video>';
+                echo '<div class="videosTitleContainer"><h1 class="videoTitle">
+        ' . $video->getTitulo() . '
     </h1>
-    <button id="reportBtn" class="reportBtn">Reportar</button>
+    <button id="reportBtn" class="reportBtn" data-reportedvideo="' . $video->getId() . '">Reportar</button>
     </div>
     <div class="descRepsContainer">
-        <p class="description">'.$video->getDescripcion().'</p>
+        <p class="description">' . $video->getDescripcion() . '</p>
 
         <p class="reproductions">
-            By <a href="channel.php?channelId='.$video->getIdUsuario().'" class="userLink">'.$video->getNombreUsuario().'</a> <br>
-            '.$video->getVisualizaciones().' reproducciones
+            By <a href="channel.php?channelId=' . $video->getIdUsuario() . '" class="userLink">' . $video->getNombreUsuario() . '</a> <br>
+            ' . $video->getVisualizaciones() . ' reproducciones
         </p>
     </div>
     <div class="likesContainer">
         <div class="likeContainerItem">
-            <span class="like" id="likeValue">'.$video->getLikes().'</span>
+            <span class="like" id="likeValue">' . $video->getLikes() . '</span>
             <img src="imgs/LikeIcon.png" id="likeContainer">
         </div>
         <div class="likeContainerItem">
-            <span class="dislike" id="dislikeValue">'.$video->getDislikes().'</span>
+            <span class="dislike" id="dislikeValue">' . $video->getDislikes() . '</span>
             <img src="imgs/DislikeIcon.png" id="dislikeContainer">
         </div>
     </div>';
+            }
         } else {
             //Error
             header("Location: index.php");
@@ -72,24 +79,30 @@ require_once "Classes/Listador.php";
 <aside class="relatedVideos">
     <h2>Videos relacionados</h2>
     <?php
+    //Cargamos videos del usuario q subio el video
+    $videos = Listador::listarVideos(0, 3, $video->getIdUsuario(), false, 0, false);
 
-    if(isDataAvailable($_SESSION)) {
-        if(isDataAvailable($_SESSION['userId'])) {
-            $videos = Listador::listarVideos(0, 3, $_SESSION['userId'], false, 0, false);
+    for ($i = 0; $i < sizeof($videos); $i++) {
+        $currentVideo = $videos[$i];
 
-            for($i = 0; $i < sizeof($videos); $i++) {
-                $currentVideo = $videos[$i];
-
-                echo '<div class="relatedVideoItem" data-video-redirection="'.$currentVideo->getId().'">
-                <img src="'.$currentVideo->getMiniatura().'">
-                <h3>'.$currentVideo->getTitulo().'</h3>
-                <h4>By '.$currentVideo->getNombreUsuario().'</h4>
-                <h4>'.$currentVideo->getVisualizaciones().' reproducciones</h4>
+        //Comprobamos si se puede mostrar el video
+        if($currentVideo->getRepStatus() != 1) {
+            echo '<div class="relatedVideoItem" data-video-redirection="' . $currentVideo->getId() . '">
+                <img src="' . $currentVideo->getMiniatura() . '">
+                <h3>' . $currentVideo->getTitulo() . '</h3>
+                <h4>By ' . $currentVideo->getNombreUsuario() . '</h4>
+                <h4>' . $currentVideo->getVisualizaciones() . ' reproducciones</h4>
             </div>';
-            }
         }
     }
+
     ?>
 </aside>
+
+<?php
+
+include "includes/loginInclude.php";
+
+?>
 </body>
 </html>

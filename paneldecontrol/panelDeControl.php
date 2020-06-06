@@ -167,6 +167,14 @@ require_once "../includes/navbarPanelControl.php";
                                     break;
                                 case 2:
                                     //Head de productos
+                                    echo '
+                                    <h3 class="gestionProductosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosLargosTableElement">Descripcion</h3>
+                                    <h3 class="gestionProductosTableElement">Empresa</h3>
+                                    <h3 class="gestionProductosTableElement">Precio</h3>
+                                    <h3 class="gestionProductosTableElement">Stock</h3>
+                                    <h3 class="gestionProductosTableElement">Imagen</h3>
+                                    ';
                                     break;
                                 case 3:
                                     //Head de empresas
@@ -229,6 +237,23 @@ require_once "../includes/navbarPanelControl.php";
                                         break;
                                     case 2:
                                         //Contenido de productos
+                                        for ($i = 0; $i < 9; $i++) {
+                                            echo '<div class="itemRow producto">
+                                        <p class="gestionProductosTableElement">Item1</p>
+                                        <p class="gestionProductosLargosTableElement">ESTO ES INA DESCRIPCION DE COMO MAXIMO 120 CARACTERES PORQUE SI NO NO DOY A BASTO CON EL 
+                                        ESPACIO ASIQUE VAMOS A INTRODUCIR 230 CARACTERES JAJA SALU5 HOLA QUE TAL ES HORRIBLE ESTO DEMASIADO TRABAJO 
+                                        DEBERIAMOS HABER EMPEZADO ANTES</p>
+                                        <p class="gestionProductosTableElement">Electronic arts entertainments</p>
+                                        <p class="gestionProductosTableElement">3385 €</p>
+                                        <p class="gestionProductosTableElement">556</p>
+                                        <div class="productoImg">asd</div>
+                                        <div class="iconsContainer">
+                                            <img src="../imgs/EditIcon.svg">
+                                            <img src="../imgs/DeleteIcon.svg">
+                                        </div>
+                                        
+                                        </div>';
+                                        }
                                         break;
                                     case 3:
                                         //Contenido de empresas
