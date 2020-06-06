@@ -26,6 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $totalChunks = $_POST['resumableTotalChunks'];
 }
 $nombreArchivo = "";
+$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+$nombreArchivoFinal = substr(str_shuffle($permitted_chars), 0, 16);
 foreach ($_FILES as $file) {
     $currentChunk = $_POST['resumableChunkNumber'];
     $tipo = trim(pathinfo($file['name'], PATHINFO_EXTENSION));
@@ -35,9 +38,8 @@ foreach ($_FILES as $file) {
     if (strpos($tipo, "avi") !== false || strpos($tipo, "mp4") !== false) {
         $nombreArchivo = limpiar_caracteres_especiales($file['name']);
         $nombreArchivo = trim($nombreArchivo, " ");
-        if (file_exists("../videos/" . $nombreArchivo)) {
+        if (file_exists("../videos/" . $nombreArchivoFinal)) {
             //Devolvemos mensaje de error si ya hay algun archivo con ese nombre en el server
-            //TODO: NOMBRES GENERADOS ALEATORIAMENTE?
             header("HTTP/1.0 404 Not Found");
         } else {
             move_uploaded_file($file['tmp_name'], "../videos/" . $nombreArchivo . ".part" . $currentChunk);
@@ -62,7 +64,7 @@ if ($totalChunks == $currentChunk && isDataAvailable($nombreArchivo)) {
 
     //Si todos los chunks están disponibles juntamos el video
     if ($insertable) {
-        $finalFile = fopen("../videos/" . $nombreArchivo, "a");
+        $finalFile = fopen("../videos/" . $nombreArchivoFinal, "a");
         for ($i = 1; $i <= $totalChunks; $i++) {
             fwrite($finalFile, file_get_contents("../videos/" . $nombreArchivo . ".part" . $i));
         }
