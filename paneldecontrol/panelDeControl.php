@@ -22,7 +22,7 @@ if (isDataAvailable($_GET)) {
     <link rel="stylesheet" href="css/navPanelControl.css">
     <link rel="stylesheet" href="css/panelDeControlStyle.css">
     <?php
-    if(isDataAvailable($pestana)) {
+    if (isDataAvailable($pestana)) {
         if ($pestana == 4) {
             //Mostramos el script de gestion
             echo "<script src='js/gestionControlPanelScript.js'></script>";
@@ -56,7 +56,7 @@ require_once "../includes/navbarPanelControl.php";
                     break;
                 case 1:
                     //Moderador
-                    if($pestana == 2) {
+                    if ($pestana == 2) {
                         echo '<div id="videoTag" class="itemVideos">
                             <h1>VIDEOS</h1>
                         </div>
@@ -74,7 +74,7 @@ require_once "../includes/navbarPanelControl.php";
                     break;
                 case 2:
                     //Administrador
-                    if($pestana == 2) {
+                    if ($pestana == 2) {
                         echo '<div id="videoTag" class="itemVideos">
                             <h1>VIDEOS</h1>
                         </div>
@@ -100,7 +100,7 @@ require_once "../includes/navbarPanelControl.php";
                         <div id="gestTag" class="itemVideos">
                             <h1>GESTION</h1>
                         </div>';
-                    } else if($pestana == 4) {
+                    } else if ($pestana == 4) {
                         echo '<div id="videoTag" class="itemVideos">
                             <h1>VIDEOS</h1>
                         </div>
@@ -149,16 +149,16 @@ require_once "../includes/navbarPanelControl.php";
                         break;
                     case 2:
                         //Moderacion
-                        echo '<h3 class="moderacionTableElement">Video</h3>
-                                <h3 class="moderacionTableElement">Titulo</h3>
-                                <h3 class="moderacionTableElement">Autor</h3>';
+                        echo '<h3 class="moderacionTableElementHeader">Video</h3>
+                                <h3 class="moderacionTableElementHeader">Titulo</h3>
+                                <h3 class="moderacionTableElementHeader">Autor</h3>';
                         break;
                     case 3:
                         //Administracion
                         break;
                     case 4:
                         //Gestion
-                        if(isset($_GET['item']) && !empty($_GET['item'])) {
+                        if (isset($_GET['item']) && !empty($_GET['item'])) {
                             $item = $_GET['item'];
 
                             switch ($item) {
@@ -167,6 +167,14 @@ require_once "../includes/navbarPanelControl.php";
                                     break;
                                 case 2:
                                     //Head de productos
+                                    echo '
+                                    <h3 class="gestionProductosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosLargosTableElement">Descripcion</h3>
+                                    <h3 class="gestionProductosTableElement">Empresa</h3>
+                                    <h3 class="gestionProductosTableElement">Precio</h3>
+                                    <h3 class="gestionProductosTableElement">Stock</h3>
+                                    <h3 class="gestionProductosTableElement">Imagen</h3>
+                                    ';
                                     break;
                                 case 3:
                                     //Head de empresas
@@ -209,6 +217,21 @@ require_once "../includes/navbarPanelControl.php";
                         //Pestaña de moderador
                         if ($user->getTipo() < 1) {
                             header("Location: ../index.php");
+                        } else {
+                            require_once "../Classes/Listador.php";
+
+                            $listaVideos = Listador::listarVideoReportados();
+
+                            for ($i = 0; $i < sizeof($listaVideos); $i++) {
+                                $video = $listaVideos[$i];
+                                echo '<div class="itemRow">
+                                <img class="moderacionTableElement" src="../' . $video->getMiniatura() . '">
+                                <p class="moderacionTableElement">' . $video->getTitulo() . '</p>
+                                <p class="moderacionTableElement">' . $video->getNombreUsuario() . '</p>
+                                <div id="acceptVideoBtn" class="actionIcon moderacionTableElement" data-acceptedvideo="'.$video->getId().'"><img src="../imgs/acceptButtonIcon.png" class="icon"></div>
+                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="'.$video->getId().'"><img src="../imgs/DeleteIcon.svg" class="icon"</div>
+                              </div>';
+                            }
                         }
                         break;
                     case 3:
@@ -216,11 +239,11 @@ require_once "../includes/navbarPanelControl.php";
                         break;
                     case 4:
                         //Pestaña de gestion
-                        if($user->getTipo() < 2) {
+                        if ($user->getTipo() < 2) {
                             header("Location: ../index.php");
                         } else {
                             //Comprobamos si el usuario ha seleccionado algun elemento en el panel de gestion
-                            if(isset($_GET['item']) && !empty($_GET['item']) && is_numeric($_GET['item'])) {
+                            if (isset($_GET['item']) && !empty($_GET['item']) && is_numeric($_GET['item'])) {
                                 $item = $_GET['item'];
 
                                 switch ($item) {
@@ -229,6 +252,23 @@ require_once "../includes/navbarPanelControl.php";
                                         break;
                                     case 2:
                                         //Contenido de productos
+                                        for ($i = 0; $i < 9; $i++) {
+                                            echo '<div class="itemRow producto">
+                                        <p class="gestionProductosTableElement">Item1</p>
+                                        <p class="gestionProductosLargosTableElement">ESTO ES INA DESCRIPCION DE COMO MAXIMO 120 CARACTERES PORQUE SI NO NO DOY A BASTO CON EL 
+                                        ESPACIO ASIQUE VAMOS A INTRODUCIR 230 CARACTERES JAJA SALU5 HOLA QUE TAL ES HORRIBLE ESTO DEMASIADO TRABAJO 
+                                        DEBERIAMOS HABER EMPEZADO ANTES</p>
+                                        <p class="gestionProductosTableElement">Electronic arts entertainments</p>
+                                        <p class="gestionProductosTableElement">3385 €</p>
+                                        <p class="gestionProductosTableElement">556</p>
+                                        <div class="productoImg">asd</div>
+                                        <div class="iconsContainer">
+                                            <img src="../imgs/EditIcon.svg">
+                                            <img src="../imgs/DeleteIcon.svg">
+                                        </div>
+                                        
+                                        </div>';
+                                        }
                                         break;
                                     case 3:
                                         //Contenido de empresas

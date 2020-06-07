@@ -49,7 +49,6 @@ class Listador
         //Obtenemos los datos
         $arrayDatos = $db->realizarConsulta($query);
 
-        $idVideo = 0;
         $video = "";
 
         for ($i = 0; $i < sizeof($arrayDatos); $i++) {
@@ -117,5 +116,29 @@ class Listador
         $db->cerrarConexion();
 
         return $canales;
+    }
+
+    public static function listarVideoReportados() {
+        $db = new BaseDeDatos();
+
+        $arrayResult = [];
+        $query = "SELECT video.id_video FROM video INNER JOIN reporte ON video.id_video = reporte.id_video WHERE stat_rep=0";
+
+        //Obtenemos los datos
+        $arrayDatos = $db->realizarConsulta($query);
+
+        $video = "";
+
+        for ($i = 0; $i < sizeof($arrayDatos); $i++) {
+            $video = Video::getVideoById($arrayDatos[$i][0]);
+            //Comprobamos si el video no está en el array para añadirlo
+            if(!in_array($video, $arrayResult)) {
+                array_push($arrayResult, $video);
+            }
+        }
+
+        $db->cerrarConexion();
+
+        return $arrayResult;
     }
 }

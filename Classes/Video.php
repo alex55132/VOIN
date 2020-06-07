@@ -16,6 +16,7 @@ class Video
     private $dislikes;
     private $direccion;
     private $descripcion;
+    private $repStatus;
 
     /**
      * @return mixed
@@ -211,8 +212,26 @@ class Video
         $this->descripcion = $descripcion;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRepStatus()
+    {
+        return $this->repStatus;
+    }
+
+    /**
+     * @param mixed $repStatus
+     */
+    public function setRepStatus($repStatus)
+    {
+        $this->repStatus = $repStatus;
+    }
+
+
+
     public function __construct($id, $idUsuario,$nombreUsuario, $titulo, $miniatura, $categoria, $visualizaciones, $fechaPublicacion, $likes,
-        $dislikes, $ruta, $descripcion)
+        $dislikes, $ruta, $descripcion, $repStatus = 0)
     {
         $this->setId($id);
         $this->setIdUsuario($idUsuario);
@@ -226,13 +245,13 @@ class Video
         $this->setDislikes($dislikes);
         $this->setDireccion($ruta);
         $this->setDescripcion($descripcion);
+        $this->setRepStatus($repStatus);
     }
 
     public static function getVideoById($id) {
         $bd = new BaseDeDatos();
 
-        $arrayDatos = $bd->realizarConsulta('SELECT video.id_video as "Id Video", usuarios.id_usu AS "Id usuario", usuarios.nom_usu AS "Nombre de usuario", categoria.id_cat AS "Categoria ID", categoria.nom_cat AS "Categoria", video.tit_video AS "Titulo video", video.visu_video AS "Visualizaciones", video.minia_video AS "Miniatura", video.fecha_video AS "Fecha publicacion", video.ruta_video AS "Ruta video", video.descr_video AS "Descripcion", (SELECT COUNT(valoracion.id_lidis) FROM valoracion WHERE valoracion.tipo_id_lidis = 1 && valoracion.id_video = '.$id.') AS "Likes",(SELECT COUNT(valoracion.id_lidis) FROM valoracion WHERE valoracion.tipo_id_lidis = -1 && valoracion.id_video = '.$id.') AS "Dislikes" FROM `video` INNER JOIN usuarios ON usuarios.id_usu = video.id_usu INNER JOIN categoria ON video.id_cat = categoria.id_cat LEFT JOIN valoracion ON valoracion.id_video = video.id_video WHERE video.id_video ='.$id);
-
+        $arrayDatos = $bd->realizarConsulta('SELECT video.id_video as "Id Video", usuarios.id_usu AS "Id usuario", usuarios.nom_usu AS "Nombre de usuario", categoria.id_cat AS "Categoria ID", categoria.nom_cat AS "Categoria", video.tit_video AS "Titulo video", video.visu_video AS "Visualizaciones", video.minia_video AS "Miniatura", video.fecha_video AS "Fecha publicacion", video.ruta_video AS "Ruta video", video.descr_video AS "Descripcion", (SELECT COUNT(valoracion.id_lidis) FROM valoracion WHERE valoracion.tipo_id_lidis = 1 && valoracion.id_video = '.$id.') AS "Likes",(SELECT COUNT(valoracion.id_lidis) FROM valoracion WHERE valoracion.tipo_id_lidis = -1 && valoracion.id_video = '.$id.') AS "Dislikes", (SELECT reporte.stat_rep FROM reporte WHERE reporte.id_video = '.$id.' LIMIT 1) AS "Status reporte" FROM `video` INNER JOIN usuarios ON usuarios.id_usu = video.id_usu INNER JOIN categoria ON video.id_cat = categoria.id_cat LEFT JOIN valoracion ON valoracion.id_video = video.id_video WHERE video.id_video = '.$id);
         $video = null;
 
         if($arrayDatos != null) {
@@ -248,8 +267,9 @@ class Video
             $descripcion = $arrayDatos[0][10];
             $likes = $arrayDatos[0][11];
             $dislikes = $arrayDatos[0][12];
+            $repStatus = $arrayDatos[0][13];
 
-            $video = new Video($id, $idUsuario, $nombreUsuario, $titulo, $miniatura, $idCategoria, $views, $fechaVideo, $likes, $dislikes, $ruta, $descripcion);
+            $video = new Video($id, $idUsuario, $nombreUsuario, $titulo, $miniatura, $idCategoria, $views, $fechaVideo, $likes, $dislikes, $ruta, $descripcion, $repStatus);
 
         }
 

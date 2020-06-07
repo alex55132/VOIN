@@ -26,7 +26,10 @@ if(isDataAvailable($_SESSION) && isDataAvailable($_POST) && isDataAvailable($_FI
     $fechaPubli = date('Y-m-d');
     $rutaVideo = str_replace(" ", "_", $rutaVideo);
 
-    $newMiniaturaName = substr(md5(time()), 0, 25).".png";
+    //Nombres de miniaturas aleatorios yay
+    $permittedChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    $newMiniaturaName = substr(str_shuffle($permittedChars), 0, 16).".png";
     _log("Nombre archivo hasheado: ".$newMiniaturaName."\n", "../logVideoUpload.txt");
 
     if(move_uploaded_file($miniaturaVideo['tmp_name'], "../imgs/miniaturas/".$newMiniaturaName)) {
