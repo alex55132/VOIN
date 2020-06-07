@@ -60,19 +60,23 @@ include "includes/navbarInclude.php";
                 }
             }
 
+            //DEBUGGING PURPOSES
             $displayCounter = 9;
 
             for ($i = 0; $i < sizeof($videoArray); $i++) {
                 $video = $videoArray[$i];
-                echo '<div class="videoItem" data-video-redirection="'.$video->getId().'" >
+                if($video->getRepStatus() != 1) {
+                    echo '<div class="videoItem" data-video-redirection="'.$video->getId().'" >
                                     <img src="' . $video->getMiniatura() . '">
                                     <h3>' . $video->getTitulo() . '</h3>
                                     <h4>By ' . $video->getNombreUsuario() . '</h4>
                                     <h4>' . $video->getVisualizaciones() . ' rep</h4>
                                   </div>';
+                }
                 $displayCounter = $displayCounter - 1;
             }
 
+            //DEBBUGGING PURPOSES
             if ($displayCounter > 0) {
                 /*for ($e = 0; $e < $displayCounter; $e++) {
                     echo '<div class="videoItem">

@@ -120,7 +120,7 @@ function sendNotification(status) {
         case 3:
             //Fallo al subir el archivo
             notificationContainer.style.backgroundColor = "#F2785C";
-            document.getElementById("notificationContent").innerText = "Error al subir el archivo!";
+            document.getElementById("notificationContent").innerText = "Error al subir el archivo! Intentalo de nuevo";
             break;
     }
 

@@ -4,6 +4,8 @@ let dislikeContainer;
 let likeValue;
 let dislikeValue;
 
+let reportBtn;
+
 window.addEventListener('load', function () {
     let videos = document.getElementsByClassName("relatedVideoItem");
 
@@ -26,8 +28,12 @@ window.addEventListener('load', function () {
     viewPetition.onreadystatechange = function (aEvt) {
         if (viewPetition.readyState === 4) {
             if(viewPetition.status === 200) {
-                //console.log(viewPetition.responseText)
-                console.log("Exito");
+                let response = JSON.parse(viewPetition.responseText);
+                if(response.statusCode === 1) {
+                    console.log("View insertada");
+                } else {
+                    console.log("ERROR AL INSERTAR LA VIEW");
+                }
             }
             else {
                 window.location.href = "index.php";
@@ -43,6 +49,8 @@ window.addEventListener('load', function () {
     likeValue = document.getElementById("likeValue");
     dislikeValue = document.getElementById("dislikeValue");
 
+    reportBtn = document.getElementById("reportBtn");
+
     let dataLikePetition = new FormData();
     dataLikePetition.append("videoId", urlParameters["videoId"]);
 
@@ -50,8 +58,6 @@ window.addEventListener('load', function () {
 
     //Variable para controlar la afluencia de peticiones
     let ongoingPetition = false;
-
-    valoracionPetition.open("POST", "Controllers/videoReactController.php");
 
     valoracionPetition.onreadystatechange = function () {
         if(valoracionPetition.readyState === 4) {
@@ -94,6 +100,7 @@ window.addEventListener('load', function () {
     likeContainer.addEventListener("click", function () {
         if(!ongoingPetition) {
             valoration = 1;
+            valoracionPetition.open("POST", "Controllers/videoReactController.php");
             dataLikePetition.append("valoracion", valoration.toString());
             valoracionPetition.send(dataLikePetition);
             ongoingPetition = true;
@@ -103,10 +110,32 @@ window.addEventListener('load', function () {
     dislikeContainer.addEventListener("click", function () {
         if(!ongoingPetition) {
             valoration = -1;
+            valoracionPetition.open("POST", "Controllers/videoReactController.php");
             dataLikePetition.append("valoracion", valoration.toString());
             valoracionPetition.send(dataLikePetition);
             ongoingPetition = true;
         }
+    });
+
+    reportBtn.addEventListener("click", function () {
+        //Incorporamos los datos para enviarlos al sistema de reportes
+        let reportData = new FormData();
+        reportData.append("reportedVideo", this.dataset.reportedvideo);
+
+        let reportRequest = new XMLHttpRequest();
+        reportRequest.open("POST", "Controllers/reportFileController.php");
+
+        reportRequest.onreadystatechange = function () {
+            if(reportRequest.readyState === 4) {
+                if (reportRequest.status === 200) {
+                    let response = JSON.parse(reportRequest.responseText);
+
+                    alert(response.message);
+                }
+            }
+        }
+
+        reportRequest.send(reportData);
     });
 });
 

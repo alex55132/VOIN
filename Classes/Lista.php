@@ -30,6 +30,5 @@ class Lista
         }
 
         return $html;
-
     }
 }
