@@ -18,6 +18,13 @@
 
                 $usuario = Usuario::getUsuarioById($userId);
 
+                //Control contra cuentas desactivadas
+                if($usuario->getTipo() == 3) {
+                    unset($_SESSION['userId']);
+                    session_destroy();
+                    header("Location: index.php");
+                }
+
                 echo '<li class="navItem logged">
                         <img src="imgs/gatete.jpg">
                         <div class="loggedOptions">

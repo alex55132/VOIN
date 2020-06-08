@@ -7,6 +7,13 @@
         $userId = $_SESSION['userId'];
 
         $usuario = Usuario::getUsuarioById($userId);
+
+        //Control contra cuentas desactivadas
+        if($usuario->getTipo() == 3) {
+            unset($_SESSION['userId']);
+            session_destroy();
+            header("Location: index.php");
+        }
     } else {
         header("Location: index.php");
     }
@@ -15,7 +22,7 @@
     <img id="atras" src="imgs/atras.jpg" alt="atras">
     <div id="usuario">
         <?php //TODO: IMAGEN DEL USUARIO ?>
-        <div id="icono"><img src="imgs/gatete.jpg" alt="icono"></div>
+        <div id="icono"><img <?php echo 'src="imgs/'.$usuario->getImg().'"'; ?> alt="icono"></div>
         <div>
             <p>Bienvenido <?php echo $usuario->getNombre();?></p>
             <p><a href="paneldecontrol/panelDeControl.php">Panel de control</a></p>
