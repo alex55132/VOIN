@@ -2,7 +2,7 @@
 
 <div id="loginFormContainer" class="loginForm hidden">
     <h1>IDENTIFICATE</h1>
-    <form id="loginForm" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+    <form id="loginForm" action="index.php" method="post">
         <label class="labelTextInput" for="email">Correo electrónico:</label>
         <input id="email" type="text" placeholder="Email" name="corr_usu">
         <label class="labelTextInput" for="password">Contraseña: </label>

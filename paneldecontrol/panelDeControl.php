@@ -31,6 +31,7 @@ if (isDataAvailable($_GET)) {
     ?>
     <script src="js/navPanelControlScript.js"></script>
     <script src="js/controlPanelScript.js"></script>
+    <script src="js/borrarScript.js"></script>
 </head>
 <body>
 <?php
@@ -223,8 +224,8 @@ require_once "../includes/navbarPanelControl.php";
                                 <p class="videoTableElement">' . $video->getFechaPublicacion() . '</p>
                                 <p class="videoTableElement">' . $video->getVisualizaciones() . '</p>
                                 <p class="videoTableElement">' . $categoria->getNombre() . '</p>
-                                <p class="actionIcon videoTableElement"><img src="../imgs/EditIcon.svg" class="icon"></p>
-                                <p class="actionIcon videoTableElement"><img src="../imgs/DeleteIcon.svg" class="icon"</p>
+                                <p class="actionIcon videoTableElement"><a href="modificarVideo.php?id='.$video->getId().'"><img src="../imgs/EditIcon.svg" class="icon"></a> </p>
+                                <p class="actionIcon videoTableElement"><a href="javascript:borrarVideo('.$video->getId().')"><img src="../imgs/DeleteIcon.svg" class="icon"></a></p>
                               </div>';
                         }
 

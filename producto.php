@@ -1,7 +1,6 @@
 <?php
 require "Classes/Producto.php";
 require "Classes/BaseDeDatos.php";
-require "Classes/Lista.php";
 
 session_start();
 

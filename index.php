@@ -9,7 +9,9 @@ if (isset($_POST)&& !empty($_POST)){
     $pass = addslashes($_POST['contr_usu']);
     $usuario=new Usuario();
     if ($usuario->login($corr,$pass)){
+
         $_SESSION['userId'] = $usuario->getId();
+
     }
 }
 ?>

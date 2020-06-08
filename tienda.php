@@ -1,12 +1,11 @@
 <?php
 require "Classes/Producto.php";
 require "Classes/BaseDeDatos.php";
-require "Classes/Lista.php";
+require "Classes/Listador.php";
 
 session_start();
 
-$lista =new Lista();
-$lista->obtenerElementos();
+$lista =new Listador();
 
 ?>
 <!doctype html>
@@ -27,9 +26,8 @@ include "includes/navTienda.php";
 ?>
     <section>
         <?php
-        echo $lista->imprimirProductosEnBack();
+        $lista->listarProductos();
         ?>
-
     </section>
 </body>
 </html>
