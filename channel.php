@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/channelStyle.css">
     <script src="js/mainScript.js"></script>
     <script src="js/channelScript.js"></script>
+    <script src="js/login.js"></script>
     <title>VOIN - Canal ejemplo</title>
 </head>
 <body>
@@ -16,10 +17,16 @@
 require_once "utils/utils.php";
 
 $existeUsuario = false;
-
+$userId = 0;
 if(isDataAvailable($_GET) && isDataAvailable($_GET['channelId'])) {
     //Iniciamos la sesion
     session_start();
+
+    if(isDataAvailable($_SESSION)) {
+        if(isDataAvailable($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+        }
+    }
 
     include "includes/navbarInclude.php";
 
@@ -33,6 +40,16 @@ if(isDataAvailable($_GET) && isDataAvailable($_GET['channelId'])) {
             header("Location: index.php");
         }
         $existeUsuario = true;
+
+        require_once "Classes/BaseDeDatos.php";
+
+        $db = new BaseDeDatos();
+
+        $arraySuscribed = $db->realizarConsulta("SELECT id_rel FROM relacion WHERE id_seguido=".$channelId." AND id_seguidor=".$userId);
+        $estaSuscrito = false;
+        if(sizeof($arraySuscribed) > 0) {
+            $estaSuscrito = true;
+        }
     } else {
         //Si el argumento pasado no es un numero redirigimos al index
         header("Location: index.php");
@@ -64,16 +81,16 @@ if(isDataAvailable($_GET) && isDataAvailable($_GET['channelId'])) {
                 <div class="topVideosTitleElements">
                     <h1>Top videos</h1>
                     <?php
-                        if(isDataAvailable($_SESSION)) {
-                            if (isDataAvailable($_SESSION['userId'])) {
+                        if($userId != 0) {
                                 if($existeUsuario) {
-                                    echo '<button class="suscribeBtn" id="suscribeBtn" data-suscriber="'.$_SESSION['userId'].'" data-suscribedTo="'.$channelId.'">Suscribirse</button>';
+                                    if($estaSuscrito) {
+                                        echo '<button class="suscribeBtn" id="suscribeBtn" data-suscriber="'.$_SESSION['userId'].'" data-suscribedto="'.$channelId.'">Suscrito</button>';
+                                    } else {
+                                        echo '<button class="suscribeBtn" id="suscribeBtn" data-suscriber="'.$_SESSION['userId'].'" data-suscribedto="'.$channelId.'">Suscribirse</button>';
+                                    }
                                 } else {
                                     echo '<button class="suscribeBtn">Suscribirse</button>';
                                 }
-                            } else {
-                                echo '<button class="suscribeBtn">Haz login para suscribirte</button>';
-                            }
                         } else {
                             echo '<button class="suscribeBtn">Haz login para suscribirte</button>';
                         }
