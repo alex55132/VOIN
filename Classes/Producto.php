@@ -265,8 +265,5 @@ class Producto
         $res=$conexion->realizarConsulta($sql);
         $this->llenar($res[0][0], $res[0][1], $res[0][2], $res[0][3], $res[0][4], $res[0][5],$res[0][6], $res[0][7]);
     }
-    public function insertar($datos){
-        $conexion = new BaseDeDatos();
-        $conexion->insertarElemento($this->tabla,$datos);
-    }
+
 }

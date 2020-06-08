@@ -14,10 +14,11 @@
 <nav id="tiendaNav">
     <img id="atras" src="imgs/atras.jpg" alt="atras">
     <div id="usuario">
+        <?php //TODO: IMAGEN DEL USUARIO ?>
         <div id="icono"><img src="imgs/gatete.jpg" alt="icono"></div>
         <div>
             <p>Bienvenido <?php echo $usuario->getNombre();?></p>
-            <p><a href="">Panel de control</a></p>
+            <p><a href="paneldecontrol/panelDeControl.php">Panel de control</a></p>
             <p><a href="channel.php?channelId=<?php echo $usuario->getId();?>">Canal </a></p>
             <p><a href="logout.php">Logout </a></p>
         </div>

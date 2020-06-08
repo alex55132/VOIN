@@ -129,7 +129,6 @@ class BaseDeDatos
         $resultado = false;
         $iudQueryAffectedRows = $this->getConexion()->query($query);
 
-
         if($iudQueryAffectedRows > 0) {
             $resultado = true;
         }

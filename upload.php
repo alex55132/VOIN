@@ -12,6 +12,7 @@
     <script src="js/mainScript.js"></script>
     <script src="js/uploadScript.js"></script>
     <script src="js/resumable.js"></script>
+    <script src="js/login.js"></script>
 </head>
 <body>
 <?php
@@ -55,7 +56,7 @@ require_once "utils/utils.php";
                 <div class="fileContainer">
                     <div class="fileUploadContainer">
                         <img src="imgs/UploadFileIcon.svg" style="height: 150px; width: 150px;">
-                        <p id="videoUploadMessage">Subir vídeo</p>
+                        <p id="videoUploadMessage">Subir vídeo (mp4 o avi)</p>
                     </div>
                     <input name="videoData" id="fileInput" type="file" class="inputFile">
                 </div>
