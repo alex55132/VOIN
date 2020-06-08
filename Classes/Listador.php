@@ -110,7 +110,9 @@ class Listador
 
         for($i = 0; $i < sizeof($datosArray); $i++) {
             $usuario = Usuario::getUsuarioById($datosArray[$i][0]);
-            array_push($canales, $usuario);
+            if($usuario->getTipo() != 3) {
+                array_push($canales, $usuario);
+            }
         }
 
         $db->cerrarConexion();

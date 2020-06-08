@@ -134,6 +134,18 @@ require_once "../includes/navbarPanelControl.php";
     </div>
 
     <div class="displayVideoContainer">
+        <?php
+        if (isDataAvailable($pestana)) {
+            if ($pestana == 3) {
+                echo '<div class="searchUserContainer">
+                        <form action="#">
+                            <input type="text" placeholder="Nombre de usuario" class="searchUserInput">
+                        </form>
+                    </div>';
+            }
+        }
+        ?>
+
         <div class="displayerHeader">
             <?php
             if (isDataAvailable($pestana)) {
@@ -155,6 +167,10 @@ require_once "../includes/navbarPanelControl.php";
                         break;
                     case 3:
                         //Administracion
+                        echo '<h3 class="administracionTableElement">Imagen</h3>
+                                <h3 class="administracionTableElement">Nº reportes</h3>
+                                <h3 class="administracionTableElement">Nombre</h3>
+                                <h3 class="administracionTableElement">Acciones</h3>';
                         break;
                     case 4:
                         //Gestion
@@ -228,14 +244,40 @@ require_once "../includes/navbarPanelControl.php";
                                 <img class="moderacionTableElement" src="../' . $video->getMiniatura() . '">
                                 <p class="moderacionTableElement">' . $video->getTitulo() . '</p>
                                 <p class="moderacionTableElement">' . $video->getNombreUsuario() . '</p>
-                                <div id="acceptVideoBtn" class="actionIcon moderacionTableElement" data-acceptedvideo="'.$video->getId().'"><img src="../imgs/acceptButtonIcon.png" class="icon"></div>
-                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="'.$video->getId().'"><img src="../imgs/DeleteIcon.svg" class="icon"</div>
+                                <div id="acceptVideoBtn" class="actionIcon moderacionTableElement" data-acceptedvideo="' . $video->getId() . '"><img src="../imgs/acceptButtonIcon.png" class="icon"></div>
+                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="' . $video->getId() . '"><img src="../imgs/DeleteIcon.svg" class="icon"</div>
                               </div>';
                             }
                         }
                         break;
                     case 3:
                         //Pestaña de administracion
+                        if ($user->getTipo() < 2) {
+                            header("Location: ../index.php");
+                        } else {
+                            require_once "../Classes/Listador.php";
+                            require_once "../Classes/BaseDeDatos.php";
+
+                            $db = new BaseDeDatos();
+                            $listaUsuarios = Listador::listarCanales(0, null);
+
+                            for($i = 0; $i < sizeof($listaUsuarios) ; $i++) {
+                                $usuario = $listaUsuarios[$i];
+                                $resultado = $db->realizarConsulta('SELECT COUNT(video.id_video) FROM video INNER JOIN reporte ON reporte.id_video = video.id_video WHERE reporte.id_usu = '.$usuario->getId());
+                                //Numero de reportes
+                                $nReportes = $resultado[0][0];
+                                echo '<div class="itemRow">
+                                        <img class="administracionTableElement" src="../'.$usuario->getImg().'">
+                                        <p class="administracionTableElement">'.$nReportes.'</p>
+                                        <p class="administracionTableElement">'.$usuario->getNombre().'</p>
+                                        <button data-canalid="'.$usuario->getId().'" class="administracionTableElement verCanalBtn">Ver canal</button>
+                                        <button data-canalid="'.$usuario->getId().'" class="administracionTableElement eliminarCuentaBtn">Eliminar cuenta</button>
+                                        </div>';
+
+                            }
+
+                            $db->cerrarConexion();
+                        }
                         break;
                     case 4:
                         //Pestaña de gestion
