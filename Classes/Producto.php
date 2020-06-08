@@ -9,7 +9,6 @@ class Producto
     private $pre_pro;
     private $stock_pro;
     private $descr_pro;
-    private $descor_pro;
     private $img_pro;
     private $directorio;
     private $tabla;
@@ -23,7 +22,7 @@ class Producto
      * @param $descr_pro
      * @param $img_pro
      */
-    public function __construct($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $descor_pro="", $img_pro="")
+    public function __construct($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $img_pro="")
     {
         $this->id_pro = $id_pro;
         $this->id_empr = $id_empr;
@@ -31,19 +30,17 @@ class Producto
         $this->pre_pro = $pre_pro;
         $this->stock_pro = $stock_pro;
         $this->descr_pro = $descr_pro;
-        $this->descor_pro = $descor_pro;
         $this->img_pro = $img_pro;
         $this->directorio="imgs/tienda/";
         $this->tabla="producto";
     }
-    public function llenar($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $descor_pro="", $img_pro=""){
+    public function llenar($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $img_pro=""){
         $this->id_pro = $id_pro;
         $this->id_empr = $id_empr;
         $this->nom_pro = $nom_pro;
         $this->pre_pro = $pre_pro;
         $this->stock_pro = $stock_pro;
         $this->descr_pro = $descr_pro;
-        $this->descor_pro = $descor_pro;
         $this->img_pro = $img_pro;
     }
     /**
@@ -190,7 +187,7 @@ class Producto
                         <h2>".$this->nom_pro."</h2>
                     </div>
                     <div class='incluyePro'>
-                        <p>".$this->descor_pro."</p>
+                       
                     </div>
                     <div class='botonComPro'>
                         ".$this->pre_pro."€
@@ -263,10 +260,6 @@ class Producto
         $sql="SELECT * FROM ".$this->tabla." WHERE 	id_pro=".$id;
         $conexion=new BaseDeDatos();
         $res=$conexion->realizarConsulta($sql);
-        $this->llenar($res[0][0], $res[0][1], $res[0][2], $res[0][3], $res[0][4], $res[0][5],$res[0][6], $res[0][7]);
-    }
-    public function insertar($datos){
-        $conexion = new BaseDeDatos();
-        $conexion->insertarElemento($this->tabla,$datos);
+        $this->llenar($res[0][0], $res[0][1], $res[0][2], $res[0][3], $res[0][4], $res[0][5],$res[0][6]);
     }
 }

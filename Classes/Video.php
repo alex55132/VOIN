@@ -230,7 +230,6 @@ class Video
 
     public static function getVideoById($id) {
         $bd = new BaseDeDatos();
-
         $arrayDatos = $bd->realizarConsulta('SELECT video.id_video as "Id Video", usuarios.id_usu AS "Id usuario", usuarios.nom_usu AS "Nombre de usuario", categoria.id_cat AS "Categoria ID", categoria.nom_cat AS "Categoria", video.tit_video AS "Titulo video", video.visu_video AS "Visualizaciones", video.minia_video AS "Miniatura", video.fecha_video AS "Fecha publicacion", video.ruta_video AS "Ruta video", video.descr_video AS "Descripcion", (SELECT COUNT(valoracion.id_lidis) FROM valoracion WHERE valoracion.tipo_id_lidis = 1 && valoracion.id_video = '.$id.') AS "Likes",(SELECT COUNT(valoracion.id_lidis) FROM valoracion WHERE valoracion.tipo_id_lidis = -1 && valoracion.id_video = '.$id.') AS "Dislikes" FROM `video` INNER JOIN usuarios ON usuarios.id_usu = video.id_usu INNER JOIN categoria ON video.id_cat = categoria.id_cat LEFT JOIN valoracion ON valoracion.id_video = video.id_video WHERE video.id_video ='.$id);
 
         $video = null;
@@ -263,7 +262,26 @@ class Video
         //TODO
     }
 
-    public function eliminarVideo() {
-        //TODO
+    public function eliminarVideo($id) {
+        $conexion=new BaseDeDatos();
+        $sql = "DELETE FROM video WHERE id_video=".$id;
+        $conexion->iudQuery($sql);
+    }
+
+    public function actualizarVideo($datos) {
+
+        $sentencias = array();
+        $id=0;
+        foreach ($datos as $campo => $valor) {
+            if ($campo != "id_video" && $campo != "x" && $campo != "y") {
+                $sentencias[] = $campo . "='".addslashes($valor)."'";
+            }else if($campo == "id_video"){
+                $id=$valor;
+            }
+        }
+        $campos = implode(",", $sentencias);
+        $sql = "UPDATE video SET " . $campos . " WHERE id_video=" . $id;
+        $conexion = new BaseDeDatos();
+        $conexion->iudQuery($sql);
     }
 }
