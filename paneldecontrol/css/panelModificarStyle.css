@@ -1,0 +1,26 @@
+.mainContainer{
+    margin: auto;
+    background: #050326;
+    font-size: 4vh;
+    color: #F2785C;
+    width: fit-content;
+    display: flex;
+    height: fit-content;
+    margin-top: 3vh;
+    padding: 2vh;
+}
+li{
+    list-style: none;
+}
+textarea{
+    width: 30vw;
+    margin-right: 1vw;
+    font-size: 2vh;
+}
+input{
+    font-size: 2vh;
+}
+select{
+    font-size: 2vh;
+    margin-left: 1vw;
+}

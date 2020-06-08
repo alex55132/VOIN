@@ -46,14 +46,13 @@ class Listador
                 }
             }
         }
-
         //Obtenemos los datos
         $arrayDatos = $db->realizarConsulta($query);
-
         $idVideo = 0;
         $video = "";
 
         for ($i = 0; $i < sizeof($arrayDatos); $i++) {
+
             $video = Video::getVideoById($arrayDatos[$i][0]);
             array_push($arrayResult, $video);
         }
@@ -118,5 +117,16 @@ class Listador
         $db->cerrarConexion();
 
         return $canales;
+    }
+    public function listarProductos(){
+        $lista=[];
+        $sql = "SELECT * FROM producto ";
+        $conexion = new BaseDeDatos();
+        $res = $conexion->realizarConsulta($sql);
+        for($i=0;$i<count($res);$i++){
+            $fila = new Producto($res[$i][0], $res[$i][1], $res[$i][2], $res[$i][3], $res[$i][4], $res[$i][5],$res[$i][6]);
+            $html = $fila->imprimeteEnTr($i);
+            echo $html;
+        }
     }
 }

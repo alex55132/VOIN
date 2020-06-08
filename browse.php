@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/browseStyle.css">
     <script src="js/mainScript.js"></script>
     <script src="js/browseScript.js"></script>
+    <script src="js/login.js"></script>
     <title>VOIN - Browse</title>
 </head>
 <body>

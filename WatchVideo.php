@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/navStyle.css">
     <link rel="stylesheet" href="css/watchVideo.css">
+    <script src="js/login.js"></script>
     <script src="js/WatchVideoScript.js"></script>
     <script src="js/utilFunctions.js"></script>
     <title>VOIN - Video</title>
@@ -88,5 +89,8 @@ require_once "Classes/Listador.php";
     }
     ?>
 </aside>
+<?php
+include "includes/loginInclude.php";
+?>
 </body>
 </html>

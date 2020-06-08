@@ -48,7 +48,6 @@ require_once "utils/utils.php";
         <h2>SUBIR UN VÍDEO</h2>
         <hr>
     </div>
-
     <div class="uploadContainer">
         <form enctype="multipart/form-data">
             <div class="controlContainer">
@@ -70,13 +69,12 @@ require_once "utils/utils.php";
                         }
                         ?>
                     </select>
-
                     <div class="miniaturaFileUploadContainer">
                         <button type="button" id="miniaturaButton" class="videoUploadBtn">Subir miniatura</button>
                         <input type="file" id="miniaturaInput" class="inputForm" accept="image/png, image/jpg">
                     </div>
                     <div class="miniaturaPreview">
-                        <img id="miniaturaPreview" src="">
+                        <img id="miniaturaPreview" src="#">
                     </div>
                     <button type="button" class="videoUploadBtn" id="videoUploadButton">Aceptar</button>
                     <div class="clearDiv"></div>
