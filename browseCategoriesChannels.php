@@ -37,17 +37,6 @@ if(isDataAvailable($_GET)) {
     <div class="categoriaContainer">
         <div class="categoriesNavigation">
             <h1><?php echo $pageTitle;?></h1>
-            <form class="sortForm">
-                <label for="sortBy">Ordenar por:</label>
-                <select id="sortBy">
-                    <option value="1" selected>Recomendado</option>
-                    <option value="2">Mas visitas</option>
-                    <option value="3">Menos visitas</option>
-                </select>
-            </form>
-            <form class="searchForm">
-                <input placeholder="Buscar">
-            </form>
         </div>
         <hr>
         <div class="categoryListContainer">
