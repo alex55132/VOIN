@@ -10,6 +10,10 @@ let rejectVideoBtn;
 let goToChannelBtns;
 let deleteUserBtns;
 
+let adminUserList;
+let itemsUsuario;
+let searchInput;
+
 window.addEventListener('load', function () {
     //Cargamos las pestañas y le agregamos los listeners
     videoTag = document.getElementById("videoTag");
@@ -21,6 +25,7 @@ window.addEventListener('load', function () {
     goToChannelBtns = document.getElementsByClassName("verCanalBtn");
     deleteUserBtns = document.getElementsByClassName("eliminarCuentaBtn");
 
+    //Listeners de los botones del panel de administracion
     if (goToChannelBtns != null && deleteUserBtns != null) {
         for (let i = 0; i < goToChannelBtns.length; i++) {
             goToChannelBtns[i].addEventListener("click", function () {
@@ -91,6 +96,7 @@ window.addEventListener('load', function () {
         });
     }
 
+    //Listeners del panel de aceptar o rechazar videos
     acceptVideoBtn = document.getElementById("acceptVideoBtn");
     if (acceptVideoBtn != null) {
         acceptVideoBtn.addEventListener("click", function () {
@@ -148,4 +154,29 @@ window.addEventListener('load', function () {
             rejectPetition.send(rejectPetitionData);
         });
     }
+
+
+    //Sistema de busqueda de usuarios en el panel de administracion
+    searchInput = document.getElementById("searchUserInput");
+    //Array de los containers
+    itemsUsuario = document.getElementsByClassName("itemUsuario");
+    //Obtenemos el array de los nombres
+    adminUserList = document.getElementsByClassName("nombreUsuario");
+
+    searchInput.addEventListener("input", function () {
+        let userInput = this.value.toLowerCase();
+
+        //Comprobamos el array de usuarios para ver cuales coinciden
+        for(let i = 0; i < adminUserList.length; i++) {
+            let userName = adminUserList[i].innerText;
+
+            if(userInput.length <= userName.length) {
+                if(userName.substring(0, userInput.length).toLowerCase() !== userInput) {
+                    itemsUsuario[i].style.display = "none";
+                } else {
+                    itemsUsuario[i].style.display = "flex";
+                }
+            }
+        }
+    });
 });
