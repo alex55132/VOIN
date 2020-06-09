@@ -24,7 +24,6 @@ window.addEventListener('load', function () {
             compraPetition.onreadystatechange = function () {
                 if(compraPetition.readyState === 4) {
                     if(compraPetition.status === 200) {
-                        console.log(compraPetition.responseText)
                         let jsonData = JSON.parse(compraPetition.responseText);
 
                         alert(jsonData.message);
