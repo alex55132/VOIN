@@ -66,7 +66,7 @@ if (isDataAvailable($_SESSION)) {
                                     if($dislikes == 0) {
                                         $dislikes = 1;
                                     }
-                                    $diferenciaLikes = $likes / $dislikes;
+                                    $diferenciaLikes = ceil($likes / $dislikes);
 
 
                                     //Actualizamos la cartera de ambos
