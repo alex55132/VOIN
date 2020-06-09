@@ -2,7 +2,6 @@
     require_once "Classes/Usuario.php";
     include_once "utils/utils.php";
 
-    session_start();
     if(isDataAvailable($_SESSION)) {
         $userId = $_SESSION['userId'];
 
@@ -21,11 +20,11 @@
 <nav id="tiendaNav">
     <img id="atras" src="imgs/atras.jpg" alt="atras">
     <div id="usuario">
-        <?php //TODO: IMAGEN DEL USUARIO ?>
-        <div id="icono"><img <?php echo 'src="imgs/'.$usuario->getImg().'"'; ?> alt="icono"></div>
+        <div id="icono"><img <?php echo 'src="'.$usuario->getImg().'"'; ?> alt="icono"></div>
         <div>
             <p>Bienvenido <?php echo $usuario->getNombre();?></p>
             <p><a href="paneldecontrol/panelDeControl.php">Panel de control</a></p>
+            <p><a href="perfil.php">Perfil</a></p>
             <p><a href="channel.php?channelId=<?php echo $usuario->getId();?>">Canal </a></p>
             <p><a href="logout.php">Logout </a></p>
         </div>
