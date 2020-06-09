@@ -189,8 +189,8 @@ class Producto
                     <div class='incluyePro'>
                        
                     </div>
-                    <div class='botonComPro'>
-                        ".$this->pre_pro."€
+                    <div data-productoid='".$this->id_pro."' data-precio='".$this->pre_pro."' class='botonComPro productoCompraBtn'>
+                        ".$this->pre_pro."
                     </div>
                     <div class='cantidadPro'>
                          <p>Quedan ".$this->stock_pro." unidades</p>
