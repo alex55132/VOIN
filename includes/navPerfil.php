@@ -23,7 +23,7 @@ if(isDataAvailable($_SESSION)) {
     <div id="cartera">
         <p>Cartera</p>
         <div>
-            <p><?php echo $usuario->getDineroCartera(); ?>€</p>
+            <p><?php echo $usuario->getDineroCartera(); ?></p>
         </div>
     </div>
     <div id="titulo">PERFIL</div>

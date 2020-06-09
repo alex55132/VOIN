@@ -23,7 +23,7 @@
                    header("Location: ../index.php");
                }
 
-               echo "<button>".$user->getDineroCartera()." €</button>";
+               echo "<button>".$user->getDineroCartera()." </button>";
            } else {
                header("Location: ../index.php");
            }
