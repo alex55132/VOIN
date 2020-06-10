@@ -12,8 +12,10 @@ class Usuario
     private $suscripciones;
     private $comprasRealizadas;
     private $dineroCartera;
+
     /**
-     * @return mixed
+     * Getter del id de usuario
+     * @return int Id del usuario
      */
     public function getId()
     {
@@ -21,7 +23,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $id
+     * Setter del id de usuario
+     * @param int $id Id del usuario
      */
     public function setId($id)
     {
@@ -29,7 +32,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter del nombre del usuario
+     * @return string Nombre del usuario
      */
     public function getNombre()
     {
@@ -37,7 +41,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $nombre
+     * Setter del nombre del usuario
+     * @param string $nombre Nombre del usuario
      */
     public function setNombre($nombre)
     {
@@ -45,7 +50,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter del correo electrónico del usuario
+     * @return string Correo del usuario
      */
     public function getCorreo()
     {
@@ -53,7 +59,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $correo
+     * Setter del correo electronico del usuario
+     * @param string $correo Correo electronico
      */
     public function setCorreo($correo)
     {
@@ -61,7 +68,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter de la fecha de nacimiento del usuario
+     * @return string Fecha de nacimiento
      */
     public function getFechaNacimiento()
     {
@@ -69,7 +77,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $fechaNacimiento
+     * Setter de la fecha de nacimiento del usuario
+     * @param string $fechaNacimiento Fecha de nacimiento en formato Y-m-d
      */
     public function setFechaNacimiento($fechaNacimiento)
     {
@@ -77,7 +86,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter de la imagen del video
+     * @return string Ruta de la imagen
      */
     public function getImg()
     {
@@ -85,7 +95,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $img
+     * Setter de la imagen del video
+     * @param string $img Ruta de la imagen
      */
     public function setImg($img)
     {
@@ -93,7 +104,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter del tipo de usuario
+     * @return int Tipo de usuario
      */
     public function getTipo()
     {
@@ -101,7 +113,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $tipo
+     * Setter del tipo de usuario
+     * @param int $tipo Tipo de usuario
      */
     public function setTipo($tipo)
     {
@@ -109,7 +122,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter de los videos subidos
+     * @return array Videos subidos
      */
     public function getVideosSubidos()
     {
@@ -117,7 +131,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $videoSubidos
+     * Setter de los videos subidos
+     * @param array $videoSubidos Array de videos subidos
      */
     public function setVideosSubidos($videoSubidos)
     {
@@ -125,7 +140,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter de las suscripciones
+     * @return array Suscripciones
      */
     public function getSuscripciones()
     {
@@ -133,7 +149,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $suscripciones
+     * Setter de las suscripciones
+     * @param array $suscripciones Suscripciones
      */
     public function setSuscripciones($suscripciones)
     {
@@ -141,7 +158,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter de las compras realizadas
+     * @return array
      */
     public function getComprasRealizadas()
     {
@@ -149,7 +167,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $comprasRealizadas
+     * Setter de las compras realizadas
+     * @param array $comprasRealizadas Compras
      */
     public function setComprasRealizadas($comprasRealizadas)
     {
@@ -157,7 +176,8 @@ class Usuario
     }
 
     /**
-     * @return mixed
+     * Getter del dinero de la cartera del usuario
+     * @return int Dinero de la cartera
      */
     public function getDineroCartera()
     {
@@ -165,7 +185,8 @@ class Usuario
     }
 
     /**
-     * @param mixed $dineroCartera
+     * Setter del dinero de la cartera del usuario
+     * @param int $dineroCartera Dinero de la cartera
      */
     public function setDineroCartera($dineroCartera)
     {
@@ -173,7 +194,19 @@ class Usuario
     }
 
 
-
+    /**
+     * Usuario constructor.
+     * @param int $id Id del usuario
+     * @param string $nombre Nombre del usuario
+     * @param string $correo Correo del usuario
+     * @param string $fechaNacimiento Fecha de nacimiento del usuario
+     * @param string $img Ruta de la imagen del usuario
+     * @param int $tipo Tipo del usuario
+     * @param int $dineroCartera Dinero de la cartera del usuario
+     * @param array $videoSubidos Videos subidos del usuario
+     * @param array $suscripciones Suscripciones del usuario
+     * @param array $comprasRealizadas Compras realizadas por el usuario
+     */
     public function __construct($id = 0, $nombre = "", $correo = "", $fechaNacimiento = "", $img = null, $tipo = null, $dineroCartera = 0, $videoSubidos = null, $suscripciones = null, $comprasRealizadas = null)
     {
         $this->setId($id);
@@ -188,6 +221,11 @@ class Usuario
         $this->setComprasRealizadas($comprasRealizadas);
     }
 
+    /**
+     * Funcion que retorna un Usuario en base a la id dad
+     * @param int $id Id del usuario a obtener
+     * @return Usuario|null Devuelve un objeto Usuario si tiene exito, si no, es null
+     */
     public static function getUsuarioById($id) {
         $db = new BaseDeDatos();
 
@@ -223,8 +261,6 @@ class Usuario
 
             $usuario->setSuscripciones($suscripcionesArray);
 
-            //TODO: COMPRAS REALIZADAS
-
             $db->cerrarConexion();
         } else {
             $usuario = null;
@@ -234,6 +270,12 @@ class Usuario
         return $usuario;
     }
 
+    /**
+     * Funcion para logear al usuario
+     * @param string $corr Correo
+     * @param string $cont Contraseña
+     * @return bool True si el login es exitoso, false si no
+     */
     public function login($corr,$cont){
         $ok=false;
         $sql="SELECT id_usu FROM usuarios WHERE corr_usu ='".$corr."' AND contr_usu='".md5($cont)."'";
@@ -248,6 +290,13 @@ class Usuario
         return $ok;
     }
 
+    /**
+     * Funcion para insertar a un usuario en la base de datos
+     * @param string $nom Nombre del usuario
+     * @param string $correo Correo del usuario
+     * @param string $contra Contraseña del usuario
+     * @return bool True si se realiza correctamente, false si no
+     */
     public static function insertarUsuario($nom,$correo,$contra){
         $bd=new BaseDeDatos();
         $sql ="INSERT INTO `cartera` (`cant_car`) VALUES ('25');";
