@@ -183,6 +183,10 @@
     background-color: yellow;
 }
 
+.productoImg>img{
+    width: 100% !important;
+    height: 100% !important;
+}
 .iconsContainer {
     width: 16%;
     height: auto;
@@ -225,4 +229,9 @@
 
 .displayerBodyAdministracion {
     height: 70% !important;
+}
+button{
+    background-color: #F2785C;
+    width: 5vw;
+    font-size: 2vh;
 }

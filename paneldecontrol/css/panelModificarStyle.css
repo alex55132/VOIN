@@ -24,3 +24,9 @@ select{
     font-size: 2vh;
     margin-left: 1vw;
 }
+.miniaturaPreview{
+    width: 10vw;
+}
+.miniaturaPreview>img{
+    width: 100%;
+}
