@@ -289,8 +289,6 @@ class Producto
             $sentencias[] = "foto='".$ruta."'";
         }
 
-
-
         $campos = implode(",", $sentencias);
         $sql = "UPDATE producto SET " . $campos . " WHERE id_pro=" . $id;
         echo $sql;
