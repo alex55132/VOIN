@@ -190,12 +190,14 @@ require_once "../includes/navbarPanelControl.php";
                                 case 2:
                                     //Head de productos
                                     echo '
+
                                     <h3 class="gestionProductosTableElement">Nombre</h3>
                                     <h3 class="gestionProductosLargosTableElement">Descripcion</h3>
                                     <h3 class="gestionProductosTableElement">Empresa</h3>
                                     <h3 class="gestionProductosTableElement">Precio</h3>
                                     <h3 class="gestionProductosTableElement">Stock</h3>
                                     <h3 class="gestionProductosTableElement">Imagen</h3>
+                                    <a href="panelProducto.php"><button>Añadir</button></a>
                                     ';
                                     break;
                                 case 3:
@@ -286,6 +288,10 @@ require_once "../includes/navbarPanelControl.php";
                         }
                         break;
                     case 4:
+                        require_once "../Classes/Listador.php";
+                        require_once "../Classes/Categoria.php";
+                        require_once "../Classes/Producto.php";
+                        require_once "../Classes/Empresa.php";
                         //Pestaña de gestion
                         if ($user->getTipo() < 2) {
                             header("Location: ../index.php");
@@ -299,20 +305,21 @@ require_once "../includes/navbarPanelControl.php";
                                         //Contenido de categorias
                                         break;
                                     case 2:
+                                        $productos = Listador::listarDatosProductos();
                                         //Contenido de productos
-                                        for ($i = 0; $i < 9; $i++) {
+                                        for ($i = 0; $i < sizeof($productos); $i++) {
+                                            $producto=$productos[$i];
+                                            $empresa = Empresa::getEmpresaById($producto->getIdEmpr());
                                             echo '<div class="itemRow producto">
-                                        <p class="gestionProductosTableElement">Item1</p>
-                                        <p class="gestionProductosLargosTableElement">ESTO ES INA DESCRIPCION DE COMO MAXIMO 120 CARACTERES PORQUE SI NO NO DOY A BASTO CON EL 
-                                        ESPACIO ASIQUE VAMOS A INTRODUCIR 230 CARACTERES JAJA SALU5 HOLA QUE TAL ES HORRIBLE ESTO DEMASIADO TRABAJO 
-                                        DEBERIAMOS HABER EMPEZADO ANTES</p>
-                                        <p class="gestionProductosTableElement">Electronic arts entertainments</p>
-                                        <p class="gestionProductosTableElement">3385 €</p>
-                                        <p class="gestionProductosTableElement">556</p>
-                                        <div class="productoImg">asd</div>
+                                        <p class="gestionProductosTableElement">'.$producto->getNomPro().'</p>
+                                        <p class="gestionProductosLargosTableElement">'.$producto->getDescrPro().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getNomEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$producto->getPrePro().' €</p>
+                                        <p class="gestionProductosTableElement">'.$producto->getStockPro().'</p>
+                                        <div class="productoImg"><img src="../imgs/tienda/'.$producto->getImgPro().'" alt="producto"></div>
                                         <div class="iconsContainer">
-                                            <img src="../imgs/EditIcon.svg">
-                                            <img src="../imgs/DeleteIcon.svg">
+                                            <a href="panelProducto.php?id='.$producto->getIdPro().'"><img src="../imgs/EditIcon.svg"></a> 
+                                            <a href="javascript:borrarProducto('.$producto->getIdPro().')"><img src="../imgs/DeleteIcon.svg"></a>
                                         </div>
                                         
                                         </div>';
