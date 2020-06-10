@@ -29,9 +29,6 @@ $canales = Listador::listarCanales();
         <div class="categoryChannelContainer">
             <div class="categoryChannelHeader">
                 <h1>Categorias</h1>
-                <form class="searchForm">
-                    <input type="text" placeholder="Holiquetal">
-                </form>
             </div>
             <hr>
             <div class="categoryChannelContent">
@@ -55,9 +52,6 @@ $canales = Listador::listarCanales();
         <div class="categoryChannelContainer">
             <div class="categoryChannelHeader">
                 <h1>Canales</h1>
-                <form class="searchForm">
-                    <input type="text" placeholder="Holiquetal">
-                </form>
             </div>
             <hr>
             <div class="categoryChannelContent">
