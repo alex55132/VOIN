@@ -283,7 +283,26 @@ class Video
         //TODO
     }
 
-    public function eliminarVideo() {
-        //TODO
+    public function eliminarVideo($id) {
+        $conexion=new BaseDeDatos();
+        $sql = "DELETE FROM video WHERE id_video=".$id;
+        $conexion->iudQuery($sql);
+    }
+
+    public function actualizarVideo($datos) {
+
+        $sentencias = array();
+        $id=0;
+        foreach ($datos as $campo => $valor) {
+            if ($campo != "id_video" && $campo != "x" && $campo != "y") {
+                $sentencias[] = $campo . "='".addslashes($valor)."'";
+            }else if($campo == "id_video"){
+                $id=$valor;
+            }
+        }
+        $campos = implode(",", $sentencias);
+        $sql = "UPDATE video SET " . $campos . " WHERE id_video=" . $id;
+        $conexion = new BaseDeDatos();
+        $conexion->iudQuery($sql);
     }
 }

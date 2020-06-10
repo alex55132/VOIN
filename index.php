@@ -4,12 +4,21 @@ require "Classes/Usuario.php";
 
 session_start();
 
+$alertDeletedAccount = false;
+
 if (isset($_POST)&& !empty($_POST)){
     $corr = addslashes($_POST['corr_usu']);
     $pass = addslashes($_POST['contr_usu']);
     $usuario=new Usuario();
     if ($usuario->login($corr,$pass)){
-        $_SESSION['userId'] = $usuario->getId();
+
+        $finalUser = Usuario::getUsuarioById($usuario->getId());
+
+        if($finalUser->getTipo() == 3) {
+            $alertDeletedAccount = true;
+        } else {
+            $_SESSION['userId'] = $usuario->getId();
+        }
     }
 }
 ?>
@@ -25,6 +34,13 @@ if (isset($_POST)&& !empty($_POST)){
     <link rel="stylesheet" href="css/navStyle.css">
     <script src="js/login.js"></script>
     <script src="js/mainScript.js"></script>
+    <?php
+    if($alertDeletedAccount) {
+        echo "<script>window.addEventListener('load', function() {
+          alert('Esta cuenta está desactivada!');
+        });</script>";
+    }
+    ?>
 </head>
 <body>
 <?php
