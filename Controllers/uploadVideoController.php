@@ -14,7 +14,6 @@ if(isDataAvailable($_SESSION) && isDataAvailable($_POST) && isDataAvailable($_FI
         $$clave = $valor;
     }
 
-    //TODO: PERMITIR MINIATURAS VARIABLES
     _log($_POST['tituloVideo']."\n", "../logVideoUpload.txt");
     _log($_POST['descripcionVideo']."\n", "../logVideoUpload.txt");
     _log($_POST['etiquetasVideo']."\n", "../logVideoUpload.txt");
@@ -32,7 +31,7 @@ if(isDataAvailable($_SESSION) && isDataAvailable($_POST) && isDataAvailable($_FI
     $newMiniaturaName = substr(str_shuffle($permittedChars), 0, 16).".png";
     _log("Nombre archivo hasheado: ".$newMiniaturaName."\n", "../logVideoUpload.txt");
 
-    if(move_uploaded_file($miniaturaVideo['tmp_name'], "../imgs/miniaturas/".$newMiniaturaName)) {
+    if($miniaturaVideo['size'] < 10000000 && move_uploaded_file($miniaturaVideo['tmp_name'], "../imgs/miniaturas/".$newMiniaturaName)) {
 
         $db = new BaseDeDatos();
 
