@@ -1,6 +1,6 @@
 <?php
 require "Classes/Producto.php";
-require "Classes/BaseDeDatos.php";
+require_once "Classes/BaseDeDatos.php";
 
 session_start();
 

@@ -129,7 +129,17 @@ class Listador
             echo $html;
         }
     }
-
+    public function listarDatosProductos(){
+        $lista=[];
+        $sql = "SELECT * FROM producto ";
+        $conexion = new BaseDeDatos();
+        $res = $conexion->realizarConsulta($sql);
+        for($i=0;$i<count($res);$i++){
+            $producto = new Producto($res[$i][0], $res[$i][1], $res[$i][2], $res[$i][3], $res[$i][4], $res[$i][5],$res[$i][6]);
+            array_push($lista, $producto);
+        }
+        return $lista;
+    }
     public static function listarVideoReportados() {
         $db = new BaseDeDatos();
 
