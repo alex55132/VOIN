@@ -181,6 +181,11 @@ require_once "../includes/navbarPanelControl.php";
                             switch ($item) {
                                 case 1:
                                     //Head de categorias
+                                    echo '
+                                    <h3 class="gestionProductosLargosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosLargosTableElement">Imagen</h3>
+                                    <a href="panelProducto.php"><button>Añadir</button></a>
+                                    ';
                                     break;
                                 case 2:
                                     //Head de productos

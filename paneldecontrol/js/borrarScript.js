@@ -22,12 +22,21 @@ function borrarVideo(id) {
         myRand = parseInt(Math.random() * 999999999999999);
         modurl = myurl + '?rand=' + myRand + '&id=' + id;
         borrar.open('GET', modurl, true);
-        borrar.onreadystatechange = borrarVideoResponse;
+        borrar.onreadystatechange = borrarResponse;
         borrar.send(null);
     }
 }
-
-function borrarVideoResponse() {
+function borrarProducto(id) {
+    if(confirm("¿Seguro que deseas eliminar el Producto?")) {
+        var myurl = 'controllers/borrarProducto.php';
+        myRand = parseInt(Math.random() * 999999999999999);
+        modurl = myurl + '?rand=' + myRand + '&id=' + id;
+        borrar.open('GET', modurl, true);
+        borrar.onreadystatechange = borrarResponse;
+        borrar.send(null);
+    }
+}
+function borrarResponse() {
 
     if (borrar.readyState == 4) {
         if(borrar.status == 200) {
