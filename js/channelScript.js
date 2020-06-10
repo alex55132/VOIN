@@ -88,7 +88,6 @@ window.addEventListener('load', function () {
                     if (suscribePetition.readyState === 4) {
                         if (suscribePetition.status === 200) {
                             preventMultipleClick = false;
-                            console.log(suscribePetition.responseText);
                             let jsonData = JSON.parse(suscribePetition.responseText);
 
                             switch (jsonData.statusCode) {
@@ -100,6 +99,9 @@ window.addEventListener('load', function () {
                                     break;
                                 case 2:
                                     suscribeBtn.innerText = "Suscribirse";
+                                    break;
+                                case 3:
+                                    alert("No te puedes suscribir a ti mismo!");
                                     break;
                             }
                         }
