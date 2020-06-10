@@ -12,12 +12,14 @@ window.addEventListener('load', function () {
         item.addEventListener("click", function () {
             let productoId = this.dataset.productoid;
             let precio = this.dataset.precio;
+            let stock = this.dataset.stock;
 
             let compraPetition = new XMLHttpRequest();
             let compraData = new FormData();
 
             compraData.append("productoId", productoId);
             compraData.append("precio", precio);
+            compraData.append("stock", stock);
 
             compraPetition.open("POST", "Controllers/compraProductoController.php");
 

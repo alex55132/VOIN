@@ -12,15 +12,16 @@ class Producto
     private $img_pro;
     private $directorio;
     private $tabla;
+
     /**
      * Producto constructor.
-     * @param $id_pro
-     * @param $id_empr
-     * @param $nom_pro
-     * @param $pre_pro
-     * @param $stock_pro
-     * @param $descr_pro
-     * @param $img_pro
+     * @param string $id_pro Id del producto
+     * @param string $id_empr Id empresa
+     * @param string $nom_pro Nombre del producto
+     * @param string $pre_pro Precio del producto
+     * @param string $stock_pro Stock del producto
+     * @param string $descr_pro Descripcion del producto
+     * @param string $img_pro Ruta de la imagen del producto
      */
     public function __construct($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $img_pro="")
     {
@@ -34,6 +35,17 @@ class Producto
         $this->directorio="imgs/tienda/";
         $this->tabla="producto";
     }
+
+    /**
+     * Funcion para llenar los datos del objeto
+     * @param string $id_pro Id del producto
+     * @param string $id_empr Id de la empresa
+     * @param string $nom_pro Nombre del producto
+     * @param string $pre_pro Precio del producto
+     * @param string $stock_pro Stock del producto
+     * @param string $descr_pro Descripcion del producto
+     * @param string $img_pro Imagen del producto
+     */
     public function llenar($id_pro="", $id_empr="", $nom_pro="", $pre_pro="", $stock_pro="", $descr_pro="", $img_pro=""){
         $this->id_pro = $id_pro;
         $this->id_empr = $id_empr;
@@ -44,7 +56,8 @@ class Producto
         $this->img_pro = $img_pro;
     }
     /**
-     * @return mixed
+     * Getter del id del producto
+     * @return string id del producto
      */
     public function getIdPro()
     {
@@ -52,7 +65,8 @@ class Producto
     }
 
     /**
-     * @param mixed $id_pro
+     * Setter del id del producto
+     * @param string $id_pro Id del producto
      */
     public function setIdPro($id_pro)
     {
@@ -60,7 +74,8 @@ class Producto
     }
 
     /**
-     * @return mixed
+     * Getter id de la empresa del producto
+     * @return string Id de la empresa
      */
     public function getIdEmpr()
     {
@@ -68,7 +83,8 @@ class Producto
     }
 
     /**
-     * @param mixed $id_empr
+     * Setter del id de la empresa
+     * @param string $id_empr
      */
     public function setIdEmpr($id_empr)
     {
@@ -76,7 +92,8 @@ class Producto
     }
 
     /**
-     * @return mixed
+     * Getter del nombre del producto
+     * @return string Nombre del producto
      */
     public function getNomPro()
     {
@@ -84,7 +101,8 @@ class Producto
     }
 
     /**
-     * @param mixed $nom_pro
+     * Setter del nombre del producto
+     * @param string $nom_pro Nombre del producto
      */
     public function setNomPro($nom_pro)
     {
@@ -92,7 +110,8 @@ class Producto
     }
 
     /**
-     * @return mixed
+     * Getter del precio del producto
+     * @return string Precio del producto
      */
     public function getPrePro()
     {
@@ -100,7 +119,8 @@ class Producto
     }
 
     /**
-     * @param mixed $pre_pro
+     * Setter del precio del producto
+     * @param string $pre_pro Precio del producto
      */
     public function setPrePro($pre_pro)
     {
@@ -108,7 +128,8 @@ class Producto
     }
 
     /**
-     * @return mixed
+     * Getter del stock del producto
+     * @return string Stock del producto
      */
     public function getStockPro()
     {
@@ -116,7 +137,8 @@ class Producto
     }
 
     /**
-     * @param mixed $stock_pro
+     * Setter del stock del producto
+     * @param string $stock_pro Stock
      */
     public function setStockPro($stock_pro)
     {
@@ -124,7 +146,8 @@ class Producto
     }
 
     /**
-     * @return mixed
+     * Getter de la descripcion del producto
+     * @return string Descripcion
      */
     public function getDescrPro()
     {
@@ -132,7 +155,8 @@ class Producto
     }
 
     /**
-     * @param mixed $descr_pro
+     * Setter de la descripcion del producto
+     * @param string $descr_pro Descripcion
      */
     public function setDescrPro($descr_pro)
     {
@@ -140,23 +164,8 @@ class Producto
     }
 
     /**
-     * @return mixed
-     */
-    public function getDescorPro()
-    {
-        return $this->descor_pro;
-    }
-
-    /**
-     * @param mixed $descor_pro
-     */
-    public function setDescorPro($descor_pro)
-    {
-        $this->descor_pro = $descor_pro;
-    }
-
-    /**
-     * @return mixed
+     * Getter de la ruta de la imagen
+     * @return string Ruta de imagen
      */
     public function getImgPro()
     {
@@ -164,12 +173,19 @@ class Producto
     }
 
     /**
-     * @param mixed $img_pro
+     * Setter ruta de la imagen
+     * @param string $img_pro Ruta de la imagen del producto
      */
     public function setImgPro($img_pro)
     {
         $this->img_pro = $img_pro;
     }
+
+    /**
+     * Funcion que imprime el producto
+     * @param int $i Index que indica la posicion en el bucle para determinar si se posiciona a la izq o a la der
+     * @return string Cadena html
+     */
     public function imprimeteEnTr($i){
         $html="
         <div class='producto'>";
@@ -189,7 +205,7 @@ class Producto
                     <div class='incluyePro'>
                        
                     </div>
-                    <div data-productoid='".$this->id_pro."' data-precio='".$this->pre_pro."' class='botonComPro productoCompraBtn'>
+                    <div data-productoid='".$this->id_pro."' data-precio='".$this->pre_pro."' data-stock='".$this->stock_pro."' class='botonComPro productoCompraBtn'>
                         ".$this->pre_pro."
                     </div>
                     <div class='cantidadPro'>
@@ -212,6 +228,11 @@ class Producto
         return $html;
 
     }
+
+    /**
+     * Funcion para mostrar el producto
+     * @return string Html con los datos del producto
+     */
     public function imprimirEnFicha(){
     $web=$this->obtenerWeb($this->id_empr);
             $html="<section>
@@ -250,12 +271,23 @@ class Producto
         return $html;
 
     }
+
+    /**
+     * Funcion que obtiene la web de una empresa
+     * @param int $id Id de la empresa
+     * @return array|null Array con los resultados
+     */
     function obtenerWeb($id){
         $sql = "SELECT web_empr FROM empresa WHERE id_empr=".$id." ;";
         $conexion = new BaseDeDatos();
         $res = $conexion->realizarConsulta($sql);
         return $res;
     }
+
+    /**
+     * Funcion para obtener un producto segun su ID. (Ya que se puede generar el objeto vacio, no hace falta que este sea estático)
+     * @param int $id Id del producto
+     */
     public function ObtenerPorId($id){
         $sql="SELECT * FROM ".$this->tabla." WHERE 	id_pro=".$id;
         $conexion=new BaseDeDatos();
