@@ -6,6 +6,16 @@ require_once "Usuario.php";
 
 class Listador
 {
+    /**
+     * Funcion que devuelve una cantidad de $numberRows videos procedentes de la base de datos
+     * @param int $start Index de comienzo de la obtencion de los videos en la base de datos
+     * @param int $numberRows Cantidad de videos a obtener
+     * @param int $channelId Si es 0, el parametro $following es false y no hay una categoría definida, devuelve todos los videos. Si es distinto de 0, devuelve los videos de un canal
+     * @param bool $following Si category es 0 y following es true, devolverá los videos de usuarios a los que esté siguiendo el usuario logeado
+     * @param int $categoryId Si es distinto de 0, devuelve todos los videos pertenecientes a esa categoría
+     * @param bool $mostPopular Si el channelid es diferente de 0 y mostpopular es true se devuelven los videos con más views correspondiente a ese canal
+     * @return array Array de videos retornados en base a los parametros dados
+     */
     public static function listarVideos($start = 0, $numberRows = 9, $channelId = 0, $following = false, $categoryId = 0, $mostPopular = false)
     {
 
@@ -60,6 +70,12 @@ class Listador
         return $arrayResult;
     }
 
+    /**
+     * Funcion para listar categorias
+     * @param int $index Index de la base de datos
+     * @param int $limit Cantidad de categorias a obtener
+     * @return array Array de categorias
+     */
     public static function listarCategorias($index = 0, $limit = 6)
     {
 
@@ -68,7 +84,7 @@ class Listador
         $query = "";
 
         $arrayResult = [];
-        if ($limit == null) {
+        if ($limit == null && $limit == 0) {
             $query = "SELECT * FROM categoria ORDER BY id_cat DESC";
         } else {
             $query = "SELECT * FROM categoria ORDER BY id_cat DESC LIMIT " . $index . "," . $limit;
@@ -86,6 +102,14 @@ class Listador
         return $arrayResult;
     }
 
+    /**
+     * Funcion para listar canales
+     * @param int $start Index de comienzo
+     * @param int $numberRows Cantidad de canales para obtener
+     * @param bool $following Si es true, devolvemos los canales a los que el usuario sigue
+     * @param int $userId Usuario del que se obtienen los canales seguidos
+     * @return array Array de canales
+     */
     public static function listarCanales($start = 0, $numberRows = 6, $following = false, $userId = 0) {
         $db = new BaseDeDatos();
 
@@ -118,6 +142,10 @@ class Listador
 
         return $canales;
     }
+
+    /**
+     * Funcion para obtener y mostrar los productos
+     */
     public function listarProductos(){
         $lista=[];
         $sql = "SELECT * FROM producto ";
@@ -129,6 +157,11 @@ class Listador
             echo $html;
         }
     }
+  
+  /**
+   * Funcion para obtener una lista de los datos
+   * @return array Array de productos
+   */
     public function listarDatosProductos(){
         $lista=[];
         $sql = "SELECT * FROM producto ";
@@ -140,6 +173,11 @@ class Listador
         }
         return $lista;
     }
+  
+    /**
+     * Funcion para listar los videos reportados
+     * @return array Array con los videos reportados
+     */
     public static function listarVideoReportados() {
         $db = new BaseDeDatos();
 

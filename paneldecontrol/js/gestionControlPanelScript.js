@@ -8,18 +8,24 @@ window.addEventListener('load', function () {
     prodItem = document.getElementById("prodItem");
     empItem = document.getElementById("empItem");
 
-    catItem.addEventListener("click", function () {
-        //El 1 se corresponde a la gestion de categorias
-        window.location.href = "panelDeControl.php?pestana=4&item=1";
-    });
+    if(catItem != null) {
+        catItem.addEventListener("click", function () {
+            //El 1 se corresponde a la gestion de categorias
+            window.location.href = "panelDeControl.php?pestana=4&item=1";
+        });
+    }
 
-    prodItem.addEventListener("click", function () {
-        //El 2 se corresponde a la gestion de productos
-        window.location.href = "panelDeControl.php?pestana=4&item=2";
-    });
+    if(prodItem != null) {
+        prodItem.addEventListener("click", function () {
+            //El 2 se corresponde a la gestion de productos
+            window.location.href = "panelDeControl.php?pestana=4&item=2";
+        });
+    }
 
-    empItem.addEventListener("click", function () {
-        //El 3 se corresponde a la gestion de empresas
-        window.location.href = "panelDeControl.php?pestana=4&item=3";
-    });
+    if(empItem != null) {
+        empItem.addEventListener("click", function () {
+            //El 3 se corresponde a la gestion de empresas
+            window.location.href = "panelDeControl.php?pestana=4&item=3";
+        });
+    }
 });

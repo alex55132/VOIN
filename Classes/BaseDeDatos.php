@@ -8,7 +8,8 @@ class BaseDeDatos
     private $conexion;
 
     /**
-     * @return mixed
+     * Getter de la url de la base de datos
+     * @return string Url
      */
     public function getUrl()
     {
@@ -16,7 +17,8 @@ class BaseDeDatos
     }
 
     /**
-     * @param mixed $url
+     * Setter de la url de la base de datos
+     * @param string $url Url de la base de datos
      */
     public function setUrl($url)
     {
@@ -24,7 +26,8 @@ class BaseDeDatos
     }
 
     /**
-     * @return mixed
+     * Getter del usuario de la base de datos
+     * @return string Nombre del usuario
      */
     public function getUser()
     {
@@ -32,7 +35,8 @@ class BaseDeDatos
     }
 
     /**
-     * @param mixed $user
+     * Setter del usuario de la base de datos
+     * @param string $user Nombre del usuario
      */
     public function setUser($user)
     {
@@ -40,7 +44,8 @@ class BaseDeDatos
     }
 
     /**
-     * @return mixed
+     * Getter de la contraseña del usuario
+     * @return string Contraseña
      */
     public function getPass()
     {
@@ -48,7 +53,8 @@ class BaseDeDatos
     }
 
     /**
-     * @param mixed $pass
+     * Setter de la contraseña
+     * @param string $pass Contraseña de la base de datos
      */
     public function setPass($pass)
     {
@@ -56,7 +62,8 @@ class BaseDeDatos
     }
 
     /**
-     * @return mixed
+     * Getter de la base de datos
+     * @return string Base de datos
      */
     public function getDb()
     {
@@ -64,7 +71,8 @@ class BaseDeDatos
     }
 
     /**
-     * @param mixed $db
+     * Setter de la base de datos
+     * @param string $db Base de datos
      */
     public function setDb($db)
     {
@@ -72,7 +80,8 @@ class BaseDeDatos
     }
 
     /**
-     * @return mixed
+     * Getter de la conexion de la base de datos
+     * @return mysqli Conexion de la base de datos
      */
     public function getConexion()
     {
@@ -80,13 +89,21 @@ class BaseDeDatos
     }
 
     /**
-     * @param mixed $conexion
+     * Setter de la conexion de la base de datos
+     * @param mysqli $conexion Conexion de la base de datos
      */
     public function setConexion($conexion)
     {
         $this->conexion = $conexion;
     }
 
+    /**
+     * BaseDeDatos constructor.
+     * @param string $url Url del servidor
+     * @param string $user Usuario del servidor
+     * @param string $pass Contraseña del servidor
+     * @param string $db Base de datos del servidor
+     */
     function __construct($url = "localhost", $user = "root", $pass = "", $db = "voin")
     {
         $this->setUrl($url);
@@ -103,10 +120,19 @@ class BaseDeDatos
         }
     }
 
+    /**
+     * Funcion para cerrar la conexion
+     */
     public function cerrarConexion() {
         $this->getConexion()->close();
     }
 
+
+    /**
+     * Funcion para realizar una consulta
+     * @param string $query Query a introducir en la base de datos
+     * @return array|null Devuelve un array si la query tiene exito
+     */
     public function realizarConsulta($query) {
         $resQuery = $this->getConexion()->query($query);
 
@@ -124,7 +150,11 @@ class BaseDeDatos
         return $arrayLista;
     }
 
-    //IUD se corresponde a INSERT, UPDATE, DELETE
+    /**
+     * Funcion para realizar querys INSERT, UPDATE, DELETE en la base de datos
+     * @param string $query Query a introducir
+     * @return bool True si la query tiene exito
+     */
     public function iudQuery($query) {
         $resultado = false;
         $iudQueryAffectedRows = $this->getConexion()->query($query);

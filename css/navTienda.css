@@ -49,7 +49,8 @@ a{
     width: fit-content;
     margin: auto;
     font-size: 40px;
-    margin-top:20px ;
+    margin-top:20px;
+    font-weight: bold;
 }
 #cartera{
     float: right;

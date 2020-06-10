@@ -50,6 +50,13 @@
     width: 85%;
 }
 
+.topVideosTitle h1 {
+    color: #F2785C;
+    font-size: 32px;
+    display: block;
+    width: 85%;
+}
+
 .topVideosTitle hr {
     border: 2px solid #F2785C;
     width: 100%;

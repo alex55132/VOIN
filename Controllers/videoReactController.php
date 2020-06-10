@@ -28,7 +28,7 @@ if (isDataAvailable($_SESSION)) {
                 $video = Video::getVideoById($videoId);
 
                 //Comprobamos que el usuario que da la valoracion no es el mismo que el que subio el video
-                if($video->getIdUsuario() == $userId) {
+                if ($video->getIdUsuario() == $userId) {
                     $response['statusCode'] = 0;
                     $response['message'] = "No puedes valorar tu propio video";
                 } else {
@@ -56,29 +56,29 @@ if (isDataAvailable($_SESSION)) {
                                     $response['statusCode'] = 3;
                                     $response['message'] = "Formato incorrecto";
                                 } else {
-                                    if($val == 1) {
-                                        //Actualizamos la cartera de ambos
-                                        $carteraVideoActualizada = $db->iudQuery("UPDATE cartera INNER JOIN usuarios ON usuarios.id_car = cartera.id_car SET cartera.cant_car = cartera.cant_car + 50 WHERE usuarios.id_usu = ".$video->getIdUsuario());
-                                        $carteraUsuarioActualizada = $db->iudQuery("UPDATE cartera INNER JOIN usuarios ON usuarios.id_car = cartera.id_car SET cartera.cant_car = cartera.cant_car + 5 WHERE usuarios.id_usu = ".$userId);
 
-                                        if($carteraUsuarioActualizada && $carteraVideoActualizada) {
-                                            $response['statusCode'] = 1;
-                                            $response['message'] = "Valoracion insertada correctamente";
-                                        } else {
-                                            $response['statusCode'] = 4;
-                                            $response['message'] = "Error al actualizar la cartera";
-                                        }
+                                    $likes = $video->getLikes();
+                                    $dislikes = $video->getDislikes();
+
+                                    if($likes == 0) {
+                                        $likes = 1;
+                                    }
+                                    if($dislikes == 0) {
+                                        $dislikes = 1;
+                                    }
+                                    $diferenciaLikes = ceil($likes / $dislikes);
+
+
+                                    //Actualizamos la cartera de ambos
+                                    $carteraVideoActualizada = $db->iudQuery("UPDATE cartera INNER JOIN usuarios ON usuarios.id_car = cartera.id_car SET cartera.cant_car = cartera.cant_car + " . $diferenciaLikes * 3 . " WHERE usuarios.id_usu = " . $video->getIdUsuario());
+                                    $carteraUsuarioActualizada = $db->iudQuery("UPDATE cartera INNER JOIN usuarios ON usuarios.id_car = cartera.id_car SET cartera.cant_car = cartera.cant_car + 5 WHERE usuarios.id_usu = " . $userId);
+
+                                    if ($carteraUsuarioActualizada && $carteraVideoActualizada) {
+                                        $response['statusCode'] = 1;
+                                        $response['message'] = "Valoracion insertada correctamente";
                                     } else {
-                                        //Actualizamos solo la cartera del usuario
-                                        $carteraUsuarioActualizada = $db->iudQuery("UPDATE cartera INNER JOIN usuarios ON usuarios.id_car = cartera.id_car SET cartera.cant_car = cartera.cant_car + 5 WHERE usuarios.id_usu = ".$userId);
-
-                                        if($carteraUsuarioActualizada) {
-                                            $response['statusCode'] = 1;
-                                            $response['message'] = "Valoracion insertada correctamente";
-                                        } else {
-                                            $response['statusCode'] = 4;
-                                            $response['message'] = "Error al actualizar la cartera";
-                                        }
+                                        $response['statusCode'] = 4;
+                                        $response['message'] = "Error al actualizar la cartera";
                                     }
                                 }
                             }

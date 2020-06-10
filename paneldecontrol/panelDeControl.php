@@ -140,7 +140,7 @@ require_once "../includes/navbarPanelControl.php";
             if ($pestana == 3) {
                 echo '<div class="searchUserContainer">
                         <form action="#">
-                            <input type="text" placeholder="Nombre de usuario" class="searchUserInput">
+                            <input id="searchUserInput" type="text" placeholder="Nombre de usuario" class="searchUserInput">
                         </form>
                     </div>';
             }
@@ -272,10 +272,10 @@ require_once "../includes/navbarPanelControl.php";
                                 $resultado = $db->realizarConsulta('SELECT COUNT(video.id_video) FROM video INNER JOIN reporte ON reporte.id_video = video.id_video WHERE reporte.id_usu = '.$usuario->getId());
                                 //Numero de reportes
                                 $nReportes = $resultado[0][0];
-                                echo '<div class="itemRow">
+                                echo '<div class="itemRow itemUsuario">
                                         <img class="administracionTableElement" src="../'.$usuario->getImg().'">
                                         <p class="administracionTableElement">'.$nReportes.'</p>
-                                        <p class="administracionTableElement">'.$usuario->getNombre().'</p>
+                                        <p class="administracionTableElement nombreUsuario">'.$usuario->getNombre().'</p>
                                         <button data-canalid="'.$usuario->getId().'" class="administracionTableElement verCanalBtn">Ver canal</button>
                                         <button data-canalid="'.$usuario->getId().'" class="administracionTableElement eliminarCuentaBtn">Eliminar cuenta</button>
                                         </div>';
