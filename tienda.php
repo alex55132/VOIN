@@ -1,7 +1,7 @@
 <?php
-require "Classes/Producto.php";
-require "Classes/BaseDeDatos.php";
-require "Classes/Listador.php";
+require_once "Classes/Producto.php";
+require_once "Classes/BaseDeDatos.php";
+require_once "Classes/Listador.php";
 
 session_start();
 

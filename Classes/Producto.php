@@ -1,5 +1,5 @@
 <?php
-
+require_once "BaseDeDatos.php";
 
 class Producto
 {
@@ -293,5 +293,56 @@ class Producto
         $conexion=new BaseDeDatos();
         $res=$conexion->realizarConsulta($sql);
         $this->llenar($res[0][0], $res[0][1], $res[0][2], $res[0][3], $res[0][4], $res[0][5],$res[0][6]);
+
+    }
+    public function eliminarProducto($id) {
+        $conexion=new BaseDeDatos();
+        $sql = "DELETE FROM producto WHERE id_pro=".$id;
+        $conexion->iudQuery($sql);
+    }
+    public function subirProducto($datos,$foto,$carpeta="../imgs/tienda/"){
+        require_once "../Controllers/manejoFotos.php";
+        $claves  = array();
+        $valores = array();
+        foreach ($datos as $clave => $valor){
+            $claves[] = $clave;
+            $valores[] = "'".$valor."'";
+        }
+        if($foto['foto'] ['size']!= ""){
+
+            $ruta = subirFoto($foto['foto'],$carpeta);
+
+            $claves[] = "img_pro";
+            $valores[] = "'".$ruta."'";
+        }
+        $sql = "INSERT INTO producto (".implode(',', $claves).") VALUES  (".implode(',', $valores).")";
+
+        $conexion=new BaseDeDatos();
+        $conexion->iudQuery($sql);
+    }
+    public function updateProducto($datos,$foto,$carpeta="../imgs/tienda/"){
+        require_once "../Controllers/manejoFotos.php";
+        $sentencias = array();
+        $id=0;
+        foreach ($datos as $campo => $valor) {
+            if ($campo != "id_pro" && $campo != "x" && $campo != "y") {
+                $sentencias[] = $campo . "='".addslashes($valor)."'";
+                //UPDATE tabla SET nombreCampo = 'valor1', nombreCampo='valor'....
+            }else if($campo == "id_pro"){
+                $id=$valor;
+            }
+        }
+        if(strlen($foto['foto']['name'])>0){
+            $ruta= subirFoto($foto['foto'], $carpeta);
+            $sentencias[] = "foto='".$ruta."'";
+        }
+
+
+
+        $campos = implode(",", $sentencias);
+        $sql = "UPDATE producto SET " . $campos . " WHERE id_pro=" . $id;
+        echo $sql;
+        $conexion=new BaseDeDatos();
+        $conexion->iudQuery($sql);
     }
 }

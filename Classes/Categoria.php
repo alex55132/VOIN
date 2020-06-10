@@ -61,7 +61,6 @@ class Categoria
         $this->imagen = $imagen;
     }
 
-
     /**
      * Categoria constructor.
      * @param int $id Id de la categoria
@@ -90,5 +89,51 @@ class Categoria
         $categoria = new Categoria($arrayCategorias[0][0], $arrayCategorias[0][1], "imgs/categorias/".$arrayCategorias[0][2]);
 
         return $categoria;
+    }
+    public function eliminarCategoria($id) {
+        $conexion=new BaseDeDatos();
+        $sql = "DELETE FROM categoria WHERE id_cat=".$id;
+        $conexion->iudQuery($sql);
+    }
+    public function subirCategoria($datos,$foto,$carpeta="../imgs/tienda/"){
+        require_once "../Controllers/manejoFotos.php";
+        $claves  = array();
+        $valores = array();
+        foreach ($datos as $clave => $valor){
+            $claves[] = $clave;
+            $valores[] = "'".$valor."'";
+        }
+        if($foto['foto'] ['size']!= ""){
+
+            $ruta = subirFoto($foto['foto'],$carpeta);
+
+            $claves[] = "img_pro";
+            $valores[] = "'".$ruta."'";
+        }
+        $sql = "INSERT INTO categoria (".implode(',', $claves).") VALUES  (".implode(',', $valores).")";
+        $conexion=new BaseDeDatos();
+        $conexion->iudQuery($sql);
+    }
+    public function updateCategoria($datos,$foto,$carpeta="../imgs/tienda/"){
+        require_once "../Controllers/manejoFotos.php";
+        $sentencias = array();
+        $id=0;
+        foreach ($datos as $campo => $valor) {
+            if ($campo != "id_pro" && $campo != "x" && $campo != "y") {
+                $sentencias[] = $campo . "='".addslashes($valor)."'";
+                //UPDATE tabla SET nombreCampo = 'valor1', nombreCampo='valor'....
+            }else if($campo == "id_pro"){
+                $id=$valor;
+            }
+        }
+        if(strlen($foto['foto']['name'])>0){
+            $ruta= subirFoto($foto['foto'], $carpeta);
+            $sentencias[] = "foto='".$ruta."'";
+        }
+        $campos = implode(",", $sentencias);
+        $sql = "UPDATE categoria SET " . $campos . " WHERE id_pro=" . $id;
+        echo $sql;
+        $conexion=new BaseDeDatos();
+        $conexion->iudQuery($sql);
     }
 }

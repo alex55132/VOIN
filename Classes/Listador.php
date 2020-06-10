@@ -157,7 +157,23 @@ class Listador
             echo $html;
         }
     }
-
+  
+  /**
+   * Funcion para obtener una lista de los datos
+   * @return array Array de productos
+   */
+    public function listarDatosProductos(){
+        $lista=[];
+        $sql = "SELECT * FROM producto ";
+        $conexion = new BaseDeDatos();
+        $res = $conexion->realizarConsulta($sql);
+        for($i=0;$i<count($res);$i++){
+            $producto = new Producto($res[$i][0], $res[$i][1], $res[$i][2], $res[$i][3], $res[$i][4], $res[$i][5],$res[$i][6]);
+            array_push($lista, $producto);
+        }
+        return $lista;
+    }
+  
     /**
      * Funcion para listar los videos reportados
      * @return array Array con los videos reportados
