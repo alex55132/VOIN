@@ -182,9 +182,10 @@ require_once "../includes/navbarPanelControl.php";
                                 case 1:
                                     //Head de categorias
                                     echo '
-                                    <h3 class="gestionProductosLargosTableElement">Nombre</h3>
-                                    <h3 class="gestionProductosLargosTableElement">Imagen</h3>
-                                    <a href="panelProducto.php"><button>Añadir</button></a>
+                                    <h3 class="gestionProductosMuyLargosTableElement">Id</h3>
+                                    <h3 class="gestionProductosMuyLargosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosMuyLargosTableElement">Imagen</h3>
+                                    <a href="panelCategoria.php"><button>Añadir</button></a>
                                     ';
                                     break;
                                 case 2:
@@ -202,6 +203,15 @@ require_once "../includes/navbarPanelControl.php";
                                     break;
                                 case 3:
                                     //Head de empresas
+                                    echo '
+
+                                    <h3 class="gestionProductosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosTableElement">Correo</h3>
+                                    <h3 class="gestionProductosLargosTableElement">Direccion</h3>
+                                    <h3 class="gestionProductosTableElement">Telefono</h3>
+                                    <h3 class="gestionProductosTableElement">Web</h3>
+                                    <a href="panelEmpresa.php"><button>Añadir</button></a>
+                                    ';
                                     break;
                             }
                         }
@@ -303,6 +313,21 @@ require_once "../includes/navbarPanelControl.php";
                                 switch ($item) {
                                     case 1:
                                         //Contenido de categorias
+                                        $categorias = Listador::listarCategorias(0,0);
+
+                                        for ($i = 0; $i < sizeof($categorias); $i++){
+                                            $categoria=$categorias[$i];
+                                            echo '<div class="itemRow categoria">
+                                        <p class="gestionProductosMuyLargosTableElement">'.$categoria->getId().'</p>
+                                        <p class="gestionProductosMuyLargosTableElement">'.$categoria->getNombre().'</p>
+                                        <div class="gestionProductosMuyLargosTableElement"><div class="categoriaImg"><img src="../'.$categoria->getImagen().'" alt="producto"></div></div>
+                                        <div class="iconsContainer">
+                                            <a href="panelCategoria.php?id='.$categoria->getId().'"><img src="../imgs/EditIcon.svg"></a> 
+                                           <a href="javascript:borrarCategoria('.$categoria->getId().')"><img src="../imgs/DeleteIcon.svg"></a>
+                                        </div>
+                                        
+                                        </div>';
+                                        }
                                         break;
                                     case 2:
                                         $productos = Listador::listarDatosProductos();
@@ -326,7 +351,23 @@ require_once "../includes/navbarPanelControl.php";
                                         }
                                         break;
                                     case 3:
+
+                                        $empresas = Listador::listarEmpresas();
                                         //Contenido de empresas
+                                        for ($i = 0; $i < sizeof($empresas); $i++) {
+                                            $empresa=$empresas[$i];
+                                            echo '<div class="itemRow producto">
+                                        <p class="gestionProductosTableElement">'.$empresa->getNomEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getCorreoEmpr().'</p>
+                                        <p class="gestionProductosLargosTableElement">'.$empresa->getDireccionEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getTelefonoEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getWebEmpr().'</p>
+                                        <div class="iconsContainer">
+                                            <a href="panelEmpresa.php?id='.$empresa->getId().'"><img src="../imgs/EditIcon.svg"></a> 
+                                            <a href="javascript:borrarEmpresa('.$empresa->getId().')"><img src="../imgs/DeleteIcon.svg"></a>
+                                        </div>
+                                        </div>';
+                                        }
                                         break;
                                     default:
                                         header("Location: panelDeControl.php");
@@ -334,9 +375,9 @@ require_once "../includes/navbarPanelControl.php";
                                 }
                             } else {
                                 echo "<div class='gestionContainer'>
-                                <div id='catItem' class='gestionItem'>Categorias (CAMBIAR POR LOGOS)</div>
-                                <div id='prodItem' class='gestionItem'>Productos</div>
-                                <div id='empItem' class='gestionItem'>Empresas</div>
+                                <div id='catItem' class='gestionItem'><div class='borrar'><img src='../imgs/iconos/categoria_icon.png' alt='icono categoria'></div></div>
+                                <div id='prodItem' class='gestionItem'><div class='borrar'><img src='../imgs/iconos/producto_icon.png' alt='icono producto'></div></div>
+                                <div id='empItem' class='gestionItem'><div class='borrar'><img src='../imgs/iconos/empresa_icon.png' alt='icono empresa'></div></div>
                                 </div>";
                             }
                         }

@@ -173,7 +173,17 @@ class Listador
         }
         return $lista;
     }
-  
+    public function listarEmpresas(){
+        $lista=[];
+        $sql = "SELECT * FROM empresa ";
+        $conexion = new BaseDeDatos();
+        $res = $conexion->realizarConsulta($sql);
+        for($i=0;$i<count($res);$i++){
+            $empresa = new Empresa($res[$i][0], $res[$i][1], $res[$i][2], $res[$i][3], $res[$i][4], $res[$i][5]);
+            array_push($lista, $empresa);
+        }
+        return $lista;
+    }
     /**
      * Funcion para listar los videos reportados
      * @return array Array con los videos reportados
