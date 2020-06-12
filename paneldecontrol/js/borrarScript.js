@@ -56,6 +56,26 @@ function borrarEmpresa(id) {
         borrar.send(null);
     }
 }
+function borrarCategoria(id) {
+    if(confirm("¿Seguro que deseas eliminar la Categoria?")) {
+        var myurl = 'controllers/borrarCategoria.php';
+        myRand = parseInt(Math.random() * 999999999999999);
+        modurl = myurl + '?rand=' + myRand + '&id=' + id;
+        borrar.open('GET', modurl, true);
+        borrar.onreadystatechange = borrarResponse;
+        borrar.send(null);
+    }
+}
+function borrarEmpresa(id) {
+    if(confirm("¿Seguro que deseas eliminar la Empresa?")) {
+        var myurl = 'controllers/borrarEmpresa.php';
+        myRand = parseInt(Math.random() * 999999999999999);
+        modurl = myurl + '?rand=' + myRand + '&id=' + id;
+        borrar.open('GET', modurl, true);
+        borrar.onreadystatechange = borrarResponse;
+        borrar.send(null);
+    }
+}
 function borrarResponse() {
 
     if (borrar.readyState == 4) {

@@ -27,8 +27,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    cursor: pointer;
 }
 
 .itemVideos h1 {
@@ -180,6 +178,7 @@
 .categoriaImg {
     width: 30%;
     height: 100%;
+    background-color: yellow;
 }
 .categoriaImg>img{
     width: 100% !important;
@@ -190,6 +189,7 @@
 .productoImg {
     width: 10%;
     height: 100%;
+    background-color: yellow;
 }
 .categoria p {
     font-size: 3vh !important;
