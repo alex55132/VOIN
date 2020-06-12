@@ -307,7 +307,7 @@ class Video
             $idCategoria = $arrayDatos[0][3];
             $titulo = $arrayDatos[0][5];
             $views = $arrayDatos[0][6];
-            $miniatura = "./imgs/miniaturas/".$arrayDatos[0][7];
+            $miniatura = "imgs/miniaturas/".$arrayDatos[0][7];
             $fechaVideo = $arrayDatos[0][8];
             $ruta = $arrayDatos[0][9];
             $descripcion = $arrayDatos[0][10];
@@ -339,8 +339,8 @@ class Video
      * Funcion para actualizar un video
      * @param array $datos Array de datos del video a actualizar
      */
-    public function actualizarVideo($datos) {
-
+    public function actualizarVideo($datos,$foto,$carpeta="../imgs/miniaturas/") {
+        require_once "../Controllers/manejoFotos.php";
         $sentencias = array();
         $id=0;
         foreach ($datos as $campo => $valor) {
@@ -349,6 +349,10 @@ class Video
             }else if($campo == "id_video"){
                 $id=$valor;
             }
+        }
+        if(strlen($foto['foto']['name'])>0){
+            $ruta= subirFoto($foto['foto'], $carpeta);
+            $sentencias[] = "minia_video='".$ruta."'";
         }
         $campos = implode(",", $sentencias);
         $sql = "UPDATE video SET " . $campos . " WHERE id_video=" . $id;
