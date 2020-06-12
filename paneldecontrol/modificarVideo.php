@@ -14,7 +14,7 @@ if(isDataAvailable($_SESSION)) {
             $video = Video::getVideoById($id);
             $videocat=$video->getCategoria();
             if (isset($_POST)&& !empty($_POST)){
-                $video->actualizarVideo($_POST);
+                $video->actualizarVideo($_POST,$_FILES);
                 header("Location: panelDeControl.php");
              }
         }
@@ -65,10 +65,10 @@ require_once "../includes/navbarPanelControl.php";
                     ?>
                 </select></li>
                     <li><div class="miniaturaFileUploadContainer"></li>
-                    <li><input type="file" id="miniaturaInput" class="inputForm" accept="image/png, image/jpg">
+                    <li><input name="foto" type="file" id="miniaturaInput" class="inputForm" accept="image/png, image/jpg">
                 </div>
             <li><div class="miniaturaPreview">
-                    <img id="miniaturaPreview" src="">
+                    <img id="miniaturaPreview" src="../<?php echo $video->getMiniatura()?>">
                 </div></li>
                     <li><input type="submit" value="Guardar"></li>
 
