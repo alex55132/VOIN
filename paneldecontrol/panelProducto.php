@@ -68,6 +68,7 @@ $user = "";
 //LA VARIABLE $USER y el utils.php SE DECLARA DENTRO DE ESTE REQUIRE
 require_once "../includes/navbarPanelControl.php";
 ?>
+
 <section class="mainContainer">
     <form  enctype="multipart/form-data" name="modificar" action="<?php echo $_SERVER['PHP_SELF']."?id=".$id ?>" method="post">
         <ul><div class="dataContainer">
@@ -105,6 +106,7 @@ require_once "../includes/navbarPanelControl.php";
     </form>
     </div>
 </section>
+
 </body>
 </html>
 

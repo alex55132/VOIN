@@ -21,7 +21,7 @@
 
 .uploadContainer {
     width: 100%;
-    background-color: #050326;
+    background-color: #010022;
     padding: 15px;
 }
 
@@ -37,7 +37,7 @@
     /*display: flex;
     justify-content: center;
     align-items: center;*/
-    border: 2px dashed #050326;
+    border: 2px dashed #010022;
 }
 
 .fileUploadContainer {
@@ -78,7 +78,7 @@
     width: 100%;
     height: auto;
     border-radius: 5px;
-    border: 3px solid #050326;
+    border: 3px solid #010022;
 }
 
 .selectItem {
@@ -106,7 +106,7 @@
     background-color: #F2785C;
     border: 2px solid #F2785C;
     border-radius: 5px;
-    color: #050326;
+    color: #010022;
     font-weight: bold;
 }
 

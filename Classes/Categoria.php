@@ -67,7 +67,7 @@ class Categoria
      * @param string $nombre Nombre de la categoria
      * @param string $rutaImagen Ruta de la imagen de la categoria
      */
-    public function __construct($id, $nombre, $rutaImagen)
+    public function __construct($id="", $nombre="", $rutaImagen="")
     {
         $this->setId($id);
         $this->setNombre($nombre);
@@ -93,9 +93,10 @@ class Categoria
     public function eliminarCategoria($id) {
         $conexion=new BaseDeDatos();
         $sql = "DELETE FROM categoria WHERE id_cat=".$id;
+        echo $sql;
         $conexion->iudQuery($sql);
     }
-    public function subirCategoria($datos,$foto,$carpeta="../imgs/tienda/"){
+    public function subirCategoria($datos,$foto,$carpeta="../imgs/categorias/"){
         require_once "../Controllers/manejoFotos.php";
         $claves  = array();
         $valores = array();
@@ -107,32 +108,32 @@ class Categoria
 
             $ruta = subirFoto($foto['foto'],$carpeta);
 
-            $claves[] = "img_pro";
+            $claves[] = "img_cat";
             $valores[] = "'".$ruta."'";
         }
         $sql = "INSERT INTO categoria (".implode(',', $claves).") VALUES  (".implode(',', $valores).")";
         $conexion=new BaseDeDatos();
         $conexion->iudQuery($sql);
     }
-    public function updateCategoria($datos,$foto,$carpeta="../imgs/tienda/"){
+    public function updateCategoria($datos,$foto,$carpeta="../imgs/categorias/"){
         require_once "../Controllers/manejoFotos.php";
         $sentencias = array();
         $id=0;
         foreach ($datos as $campo => $valor) {
-            if ($campo != "id_pro" && $campo != "x" && $campo != "y") {
+            if ($campo != "id_cat" && $campo != "x" && $campo != "y") {
                 $sentencias[] = $campo . "='".addslashes($valor)."'";
                 //UPDATE tabla SET nombreCampo = 'valor1', nombreCampo='valor'....
-            }else if($campo == "id_pro"){
+            }else if($campo == "id_cat"){
                 $id=$valor;
             }
         }
         if(strlen($foto['foto']['name'])>0){
             $ruta= subirFoto($foto['foto'], $carpeta);
-            $sentencias[] = "foto='".$ruta."'";
+            $sentencias[] = "img_cat='".$ruta."'";
         }
         $campos = implode(",", $sentencias);
-        $sql = "UPDATE categoria SET " . $campos . " WHERE id_pro=" . $id;
-        echo $sql;
+        $sql = "UPDATE categoria SET " . $campos . " WHERE id_cat=" . $id;
+
         $conexion=new BaseDeDatos();
         $conexion->iudQuery($sql);
     }

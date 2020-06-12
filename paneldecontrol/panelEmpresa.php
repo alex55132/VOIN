@@ -5,32 +5,33 @@ if(isDataAvailable($_SESSION)) {
     if(isDataAvailable($_SESSION['userId'])) {
         $userId = $_SESSION['userId'];
         include_once "../Classes/BaseDeDatos.php";
-        include_once "../Classes/Categoria.php";
+        include_once "../Classes/Empresa.php";
         if (isset($_GET)&& !empty($_GET)){
             if ($_GET['id']!=0){
                 $id=$_GET['id'];
-                $categoria=Categoria::getCategoriaById($id);
+                $empresa=new Empresa();
+                $empresa=$empresa->getEmpresaById($id);
             }
             else{
                 $id=0;
-                $categoria=new Categoria();
+                $empresa=new Empresa();
             }
         }else{
             $id=0;
-            $categoria=new Categoria();
+            $empresa=new Empresa();
         }
         if (isset($_POST)&& !empty($_POST)){
-            if ($_POST['nom_cat']!=""){
+            if ($_POST['nom_empr']!="" && is_numeric($_POST['telefono_empr'])  && $_POST['correo_empr']!="" && $_POST['direccion_empr']!="" && $_POST['web_empr']!=""){
+               if (!empty($_POST['id_empr'])){
 
-                if (!empty($_POST['id_cat'])){
-                    Categoria::updateCategoria($_POST,$_FILES);
+                   Empresa::updateEmpresa($_POST);
                 }else{
-                    Categoria::subirCategoria($_POST,$_FILES);
+                   Empresa::subirEmpresa($_POST);
                 }
                 header("Location: panelDeControl.php");
             }
             else{
-                echo "<script>alert('rellena todo los datos correctamente')</script>";
+                echo "<script>alert('rellena todos los datos correctamente')</script>";
             }
         }
     } else {
@@ -60,22 +61,16 @@ $user = "";
 //LA VARIABLE $USER y el utils.php SE DECLARA DENTRO DE ESTE REQUIRE
 require_once "../includes/navbarPanelControl.php";
 ?>
+
 <section class="mainContainer">
     <form  enctype="multipart/form-data" name="modificar" action="<?php echo $_SERVER['PHP_SELF']."?id=".$id ?>" method="post">
         <ul><div class="dataContainer">
-                <input type="hidden" name="id_cat" value="<?php echo $categoria->getId() ?>">
-                <li><label>Nombre</label></li><li><input value="<?php echo $categoria->getNombre()?>" type="text" id="nombre" class="inputForm inputSingleLined" placeholder="Nombre de la categoria" name="nom_cat"></li>
-                <li><div class="miniaturaFileUploadContainer">
-                <input name="foto" type="file" id="miniaturaInput" class="inputForm" accept="image/png, image/jpg">
-            </div></li>
-            <li><div class="miniaturaPreview">
-                    <img id="miniaturaPreview" src="<?php if($categoria->getImagen()!=""){
-                        echo "../".$categoria->getImagen();
-                    }else{
-                        echo "#";
-                    }
-                    ?>">
-                </div></li>
+                <input type="hidden" name="id_empr" value="<?php echo $empresa->getId() ?>">
+                <li><label>Nombre</label></li><li><input value="<?php echo $empresa->getNomEmpr()?>" type="text" id="nombre" class="inputForm inputSingleLined" placeholder="Nombre de la Empresa" name="nom_empr"></li>
+                <li><label>Correo</label></li><li><input value="<?php echo $empresa->getCorreoEmpr()?>" type="text" id="correo" class="inputForm inputSingleLined" placeholder="Correo" name="correo_empr"></li>
+                <li><label>Direccion</label></li><li><input value="<?php echo $empresa->getDireccionEmpr()?>" type="text" id="direccion" class="inputForm inputSingleLined" placeholder="Direccion" name="direccion_empr"></li>
+                <li><label>Telefono</label></li><li><input value="<?php echo $empresa->getTelefonoEmpr()?>" type="text" id="telefono" class="inputForm inputSingleLined" placeholder="Telefono" name="telefono_empr"></li>
+                <li><label>Web</label></li><li><input value="<?php echo $empresa->getWebEmpr()?>" type="text" id="web" class="inputForm inputSingleLined" placeholder="Web" name="web_empr"></li>
             <li><input type="submit" value="Guardar"></li>
 
             </div>
@@ -83,6 +78,7 @@ require_once "../includes/navbarPanelControl.php";
     </form>
     </div>
 </section>
+
 </body>
 </html>
 
