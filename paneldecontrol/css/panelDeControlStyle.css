@@ -31,7 +31,7 @@
 
 .itemVideos h1 {
     margin: 0;
-    color: #050326;
+    color: #010022;
 }
 
 .selected {
@@ -83,7 +83,7 @@
     width: 9% !important;
     background-color: #F2785C;
     border-radius: 10px;
-    border: 3px solid #050326;
+    border: 3px solid #010022;
     margin-left: 6% !important;
 }
 
@@ -92,7 +92,7 @@
     width: 15%;
     background-color: #FF0000;
     border-radius: 10px;
-    border: 3px solid #050326;
+    border: 3px solid #010022;
     color: white;
 }
 
@@ -137,7 +137,6 @@
     height: 7%;
     padding-top: 1%;
     padding-bottom: 2%;
-
     display: flex;
     flex-direction: row;
 
@@ -153,7 +152,7 @@
     height: 100%;
 
     border-radius: 5px;
-    border: 3px solid #050326;
+    border: 3px solid #010022;
 }
 
 /* Zona de gestion */
@@ -175,6 +174,16 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+/*Gestion de categorias*/
+.categoriaImg {
+    width: 30%;
+    height: 100%;
+    background-color: yellow;
+}
+.categoriaImg>img{
+    width: 100% !important;
+    height: 100% !important;
+}
 
 /*Gestion de productos*/
 .productoImg {
@@ -182,7 +191,10 @@
     height: 100%;
     background-color: yellow;
 }
-
+.categoria p {
+    font-size: 3vh !important;
+    text-align: left !important;
+}
 .productoImg>img{
     width: 100% !important;
     height: 100% !important;
@@ -213,6 +225,12 @@
     width: 20% !important;
     margin-left: 1% !important;
 }
+.gestionProductosMuyLargosTableElement {
+    margin: 0 !important;
+    width: 24% !important;
+    margin-left: 1% !important;
+    font-size: 4vh;
+}
 
 .producto p {
     font-size: 11px !important;
@@ -234,4 +252,14 @@ button{
     background-color: #F2785C;
     width: 5vw;
     font-size: 2vh;
+}
+.gestionItem img{
+    height: 90%;
+    margin: 5%;
+}
+.borrar{
+    margin: auto;
+    width: fit-content;
+    width: -moz-fit-content;
+    height: 100%;
 }

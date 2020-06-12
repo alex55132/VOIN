@@ -27,16 +27,18 @@ html {
     width: 80%;
     margin: 10%;
 
-    background-color: #F2785C;
-}
 
+}
+.logo img{
+    width: 100%;
+}
 .navBar {
     height: 100%;
     width: 20%;
     position: fixed;
     left: 0 !important;
     top: 0 !important;
-    background-color: #050326;
+    background-color: #010022;
 }
 
 .navItem {
@@ -52,7 +54,7 @@ html {
 
 .navItem a {
     text-decoration: none;
-    color: #050326;
+    color: #010022;
     font-weight: bold;
     font-size: 32px;
 }
@@ -152,7 +154,7 @@ html {
 
     height: 47px;
     width: 120px;
-    background-color: #050326;
+    background-color: #010022;
     color: white;
     border-radius: 5px;
 
@@ -164,7 +166,7 @@ html {
     height: 10px !important;
 
     border-radius: 5px !important;
-    border: 1px solid #050326 !important;
+    border: 1px solid #010022 !important;
 }
 
 .rememberCheckBoxContainer, .termsConditionsCheckBoxContainer {
