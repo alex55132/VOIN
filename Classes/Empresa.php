@@ -19,7 +19,7 @@ class Empresa
      * @param $telefono_empr
      * @param $web_empr
      */
-    public function __construct($id, $nom_empr, $correo_empr, $direccion_empr, $telefono_empr, $web_empr)
+    public function __construct($id="", $nom_empr="", $correo_empr="", $direccion_empr="", $telefono_empr="", $web_empr="")
     {
         $this->id = $id;
         $this->nom_empr = $nom_empr;
@@ -135,5 +135,40 @@ class Empresa
         $empresa = new Empresa($arrayEmpresas[0][0], $arrayEmpresas[0][1], $arrayEmpresas[0][2],$arrayEmpresas[0][3],$arrayEmpresas[0][4],$arrayEmpresas[0][5]);
 
         return $empresa;
+    }
+    public function eliminarEmpresa($id) {
+        $conexion=new BaseDeDatos();
+        $sql = "DELETE FROM empresa WHERE id_empr=".$id;
+        $conexion->iudQuery($sql);
+    }
+    public function subirEmpresa($datos){
+        $claves  = array();
+        $valores = array();
+        foreach ($datos as $clave => $valor){
+            $claves[] = $clave;
+            $valores[] = "'".$valor."'";
+        }
+        $sql = "INSERT INTO empresa (".implode(',', $claves).") VALUES  (".implode(',', $valores).")";
+        echo $sql;
+        $conexion=new BaseDeDatos();
+        $conexion->iudQuery($sql);
+    }
+    public function updateEmpresa($datos){
+        $sentencias = array();
+        $id=0;
+        foreach ($datos as $campo => $valor) {
+            if ($campo != "id_empr" && $campo != "x" && $campo != "y") {
+                $sentencias[] = $campo . "='".addslashes($valor)."'";
+                //UPDATE tabla SET nombreCampo = 'valor1', nombreCampo='valor'....
+            }else if($campo == "id_empr"){
+                $id=$valor;
+            }
+        }
+
+        $campos = implode(",", $sentencias);
+        $sql = "UPDATE empresa SET " . $campos . " WHERE  id_empr=" . $id;
+
+        $conexion=new BaseDeDatos();
+        $conexion->iudQuery($sql);
     }
 }

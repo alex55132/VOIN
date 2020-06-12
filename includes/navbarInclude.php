@@ -1,7 +1,7 @@
 <nav class="navBar">
 
     <div class="logo">
-
+        <img src="imgs/iconos/voin.png" alt="">
     </div>
 
     <ul class="navContainer">
