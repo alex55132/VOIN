@@ -241,7 +241,7 @@ require_once "../includes/navbarPanelControl.php";
                                 <p class="videoTableElement">' . $video->getFechaPublicacion() . '</p>
                                 <p class="videoTableElement">' . $video->getVisualizaciones() . '</p>
                                 <p class="videoTableElement">' . $categoria->getNombre() . '</p>
-                                <p class="actionIcon videoTableElement"><a href="modificarVideo.php?id='.$video->getId().'"><img src="../imgs/EditIcon.svg" class="icon"></a> </p>
+                                <p class="actionIcon videoTableElement"><a href="modificarVideo.php?id='.$video->getId().'"><img src="../imgs/EditIcon.svg" class="icon"></a></p>
                                 <p class="actionIcon videoTableElement"><a href="javascript:borrarVideo('.$video->getId().')"><img src="../imgs/DeleteIcon.svg" class="icon"></a></p>
                               </div>';
                         }
@@ -263,7 +263,7 @@ require_once "../includes/navbarPanelControl.php";
                                 <p class="moderacionTableElement">' . $video->getTitulo() . '</p>
                                 <p class="moderacionTableElement">' . $video->getNombreUsuario() . '</p>
                                 <div id="acceptVideoBtn" class="actionIcon moderacionTableElement" data-acceptedvideo="' . $video->getId() . '"><img src="../imgs/acceptButtonIcon.png" class="icon"></div>
-                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="' . $video->getId() . '"><img src="../imgs/DeleteIcon.svg" class="icon"</div>
+                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="' . $video->getId() . '"><img src="../imgs/DeleteIcon.svg" class="icon"></div>
                               </div>';
                             }
                         }
