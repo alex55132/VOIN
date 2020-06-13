@@ -1,7 +1,7 @@
 <nav class="navBar">
 
     <div class="logo">
-
+        <img src="imgs/iconos/voin.png" alt="">
     </div>
 
     <ul class="navContainer">
@@ -26,7 +26,7 @@
                 }
 
                 echo '<li class="navItem logged">
-                        <img src="imgs/gatete.jpg">
+                        <img src="'.$usuario->getImg().'">
                         <div class="loggedOptions">
                             <p>Bienvenido '.$usuario->getNombre().'</p>
                             <p><a href="paneldecontrol/panelDeControl.php">Panel de control</a></p>

@@ -181,20 +181,37 @@ require_once "../includes/navbarPanelControl.php";
                             switch ($item) {
                                 case 1:
                                     //Head de categorias
+                                    echo '
+                                    <h3 class="gestionProductosMuyLargosTableElement">Id</h3>
+                                    <h3 class="gestionProductosMuyLargosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosMuyLargosTableElement">Imagen</h3>
+                                    <a href="panelCategoria.php"><button>Añadir</button></a>
+                                    ';
                                     break;
                                 case 2:
                                     //Head de productos
                                     echo '
+
                                     <h3 class="gestionProductosTableElement">Nombre</h3>
                                     <h3 class="gestionProductosLargosTableElement">Descripcion</h3>
                                     <h3 class="gestionProductosTableElement">Empresa</h3>
                                     <h3 class="gestionProductosTableElement">Precio</h3>
                                     <h3 class="gestionProductosTableElement">Stock</h3>
                                     <h3 class="gestionProductosTableElement">Imagen</h3>
+                                    <a href="panelProducto.php"><button>Añadir</button></a>
                                     ';
                                     break;
                                 case 3:
                                     //Head de empresas
+                                    echo '
+
+                                    <h3 class="gestionProductosTableElement">Nombre</h3>
+                                    <h3 class="gestionProductosTableElement">Correo</h3>
+                                    <h3 class="gestionProductosLargosTableElement">Direccion</h3>
+                                    <h3 class="gestionProductosTableElement">Telefono</h3>
+                                    <h3 class="gestionProductosTableElement">Web</h3>
+                                    <a href="panelEmpresa.php"><button>Añadir</button></a>
+                                    ';
                                     break;
                             }
                         }
@@ -224,7 +241,7 @@ require_once "../includes/navbarPanelControl.php";
                                 <p class="videoTableElement">' . $video->getFechaPublicacion() . '</p>
                                 <p class="videoTableElement">' . $video->getVisualizaciones() . '</p>
                                 <p class="videoTableElement">' . $categoria->getNombre() . '</p>
-                                <p class="actionIcon videoTableElement"><a href="modificarVideo.php?id='.$video->getId().'"><img src="../imgs/EditIcon.svg" class="icon"></a> </p>
+                                <p class="actionIcon videoTableElement"><a href="modificarVideo.php?id='.$video->getId().'"><img src="../imgs/EditIcon.svg" class="icon"></a></p>
                                 <p class="actionIcon videoTableElement"><a href="javascript:borrarVideo('.$video->getId().')"><img src="../imgs/DeleteIcon.svg" class="icon"></a></p>
                               </div>';
                         }
@@ -246,7 +263,7 @@ require_once "../includes/navbarPanelControl.php";
                                 <p class="moderacionTableElement">' . $video->getTitulo() . '</p>
                                 <p class="moderacionTableElement">' . $video->getNombreUsuario() . '</p>
                                 <div id="acceptVideoBtn" class="actionIcon moderacionTableElement" data-acceptedvideo="' . $video->getId() . '"><img src="../imgs/acceptButtonIcon.png" class="icon"></div>
-                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="' . $video->getId() . '"><img src="../imgs/DeleteIcon.svg" class="icon"</div>
+                                <div id="rejectVideoBtn" class="actionIcon moderacionTableElement" data-rejectedvideo="' . $video->getId() . '"><img src="../imgs/DeleteIcon.svg" class="icon"></div>
                               </div>';
                             }
                         }
@@ -281,6 +298,10 @@ require_once "../includes/navbarPanelControl.php";
                         }
                         break;
                     case 4:
+                        require_once "../Classes/Listador.php";
+                        require_once "../Classes/Categoria.php";
+                        require_once "../Classes/Producto.php";
+                        require_once "../Classes/Empresa.php";
                         //Pestaña de gestion
                         if ($user->getTipo() < 2) {
                             header("Location: ../index.php");
@@ -292,29 +313,61 @@ require_once "../includes/navbarPanelControl.php";
                                 switch ($item) {
                                     case 1:
                                         //Contenido de categorias
+                                        $categorias = Listador::listarCategorias(0,0);
+
+                                        for ($i = 0; $i < sizeof($categorias); $i++){
+                                            $categoria=$categorias[$i];
+                                            echo '<div class="itemRow categoria">
+                                        <p class="gestionProductosMuyLargosTableElement">'.$categoria->getId().'</p>
+                                        <p class="gestionProductosMuyLargosTableElement">'.$categoria->getNombre().'</p>
+                                        <div class="gestionProductosMuyLargosTableElement"><div class="categoriaImg"><img src="../'.$categoria->getImagen().'" alt="producto"></div></div>
+                                        <div class="iconsContainer">
+                                            <a href="panelCategoria.php?id='.$categoria->getId().'"><img src="../imgs/EditIcon.svg"></a> 
+                                           <a href="javascript:borrarCategoria('.$categoria->getId().')"><img src="../imgs/DeleteIcon.svg"></a>
+                                        </div>
+                                        
+                                        </div>';
+                                        }
                                         break;
                                     case 2:
+                                        $productos = Listador::listarDatosProductos();
                                         //Contenido de productos
-                                        for ($i = 0; $i < 9; $i++) {
+                                        for ($i = 0; $i < sizeof($productos); $i++) {
+                                            $producto=$productos[$i];
+                                            $empresa = Empresa::getEmpresaById($producto->getIdEmpr());
                                             echo '<div class="itemRow producto">
-                                        <p class="gestionProductosTableElement">Item1</p>
-                                        <p class="gestionProductosLargosTableElement">ESTO ES INA DESCRIPCION DE COMO MAXIMO 120 CARACTERES PORQUE SI NO NO DOY A BASTO CON EL 
-                                        ESPACIO ASIQUE VAMOS A INTRODUCIR 230 CARACTERES JAJA SALU5 HOLA QUE TAL ES HORRIBLE ESTO DEMASIADO TRABAJO 
-                                        DEBERIAMOS HABER EMPEZADO ANTES</p>
-                                        <p class="gestionProductosTableElement">Electronic arts entertainments</p>
-                                        <p class="gestionProductosTableElement">3385 €</p>
-                                        <p class="gestionProductosTableElement">556</p>
-                                        <div class="productoImg">asd</div>
+                                        <p class="gestionProductosTableElement">'.$producto->getNomPro().'</p>
+                                        <p class="gestionProductosLargosTableElement">'.$producto->getDescrPro().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getNomEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$producto->getPrePro().' €</p>
+                                        <p class="gestionProductosTableElement">'.$producto->getStockPro().'</p>
+                                        <div class="productoImg"><img src="../imgs/tienda/'.$producto->getImgPro().'" alt="producto"></div>
                                         <div class="iconsContainer">
-                                            <img src="../imgs/EditIcon.svg">
-                                            <img src="../imgs/DeleteIcon.svg">
+                                            <a href="panelProducto.php?id='.$producto->getIdPro().'"><img src="../imgs/EditIcon.svg"></a> 
+                                            <a href="javascript:borrarProducto('.$producto->getIdPro().')"><img src="../imgs/DeleteIcon.svg"></a>
                                         </div>
                                         
                                         </div>';
                                         }
                                         break;
                                     case 3:
+
+                                        $empresas = Listador::listarEmpresas();
                                         //Contenido de empresas
+                                        for ($i = 0; $i < sizeof($empresas); $i++) {
+                                            $empresa=$empresas[$i];
+                                            echo '<div class="itemRow producto">
+                                        <p class="gestionProductosTableElement">'.$empresa->getNomEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getCorreoEmpr().'</p>
+                                        <p class="gestionProductosLargosTableElement">'.$empresa->getDireccionEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getTelefonoEmpr().'</p>
+                                        <p class="gestionProductosTableElement">'.$empresa->getWebEmpr().'</p>
+                                        <div class="iconsContainer">
+                                            <a href="panelEmpresa.php?id='.$empresa->getId().'"><img src="../imgs/EditIcon.svg"></a> 
+                                            <a href="javascript:borrarEmpresa('.$empresa->getId().')"><img src="../imgs/DeleteIcon.svg"></a>
+                                        </div>
+                                        </div>';
+                                        }
                                         break;
                                     default:
                                         header("Location: panelDeControl.php");
@@ -322,9 +375,9 @@ require_once "../includes/navbarPanelControl.php";
                                 }
                             } else {
                                 echo "<div class='gestionContainer'>
-                                <div id='catItem' class='gestionItem'>Categorias (CAMBIAR POR LOGOS)</div>
-                                <div id='prodItem' class='gestionItem'>Productos</div>
-                                <div id='empItem' class='gestionItem'>Empresas</div>
+                                <div id='catItem' class='gestionItem'><div class='borrar'><img src='../imgs/iconos/categoria_icon.png' alt='icono categoria'></div></div>
+                                <div id='prodItem' class='gestionItem'><div class='borrar'><img src='../imgs/iconos/producto_icon.png' alt='icono producto'></div></div>
+                                <div id='empItem' class='gestionItem'><div class='borrar'><img src='../imgs/iconos/empresa_icon.png' alt='icono empresa'></div></div>
                                 </div>";
                             }
                         }
