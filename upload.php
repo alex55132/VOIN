@@ -53,10 +53,11 @@ require_once "utils/utils.php";
         <form enctype="multipart/form-data">
             <div class="controlContainer">
                 <div class="fileContainer">
-                    <div class="fileUploadContainer">
+                    <div class="fileUploadContainer" id="fileUploadContainer">
                         <img src="imgs/UploadFileIcon.svg" style="height: 150px; width: 150px;">
                         <p id="videoUploadMessage">Subir vídeo (mp4 o avi)</p>
                     </div>
+
                     <input name="videoData" id="fileInput" type="file" class="inputFile">
                 </div>
                 <div class="dataContainer">

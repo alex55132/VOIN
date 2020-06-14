@@ -19,7 +19,8 @@ class Video
     private $repStatus;
 
     /**
-     * @return mixed
+     * Getter del id del video
+     * @return int Id del video
      */
     public function getId()
     {
@@ -27,7 +28,8 @@ class Video
     }
 
     /**
-     * @param mixed $id
+     * Setter del id del video
+     * @param int $id Id del usuario
      */
     public function setId($id)
     {
@@ -35,7 +37,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter del id del usuario
+     * @return int Id del usuario
      */
     public function getIdUsuario()
     {
@@ -43,7 +46,8 @@ class Video
     }
 
     /**
-     * @param mixed $idUsuario
+     * Setter del id del usuario
+     * @param int $idUsuario Id del usuario
      */
     public function setIdUsuario($idUsuario)
     {
@@ -51,7 +55,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter del nombre del usuario
+     * @return string Nombre del usuario
      */
     public function getNombreUsuario()
     {
@@ -59,7 +64,8 @@ class Video
     }
 
     /**
-     * @param mixed $nombreUsuario
+     * Setter del nombre de usuario
+     * @param string $nombreUsuario Nombre del usuario
      */
     public function setNombreUsuario($nombreUsuario)
     {
@@ -67,7 +73,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter del titulo del video
+     * @return string Titulo del video
      */
     public function getTitulo()
     {
@@ -75,7 +82,8 @@ class Video
     }
 
     /**
-     * @param mixed $titulo
+     * Setter del titulo del video
+     * @param string $titulo Titulo del video
      */
     public function setTitulo($titulo)
     {
@@ -83,7 +91,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter de la ruta de la miniatura
+     * @return string Ruta de la miniatura
      */
     public function getMiniatura()
     {
@@ -91,7 +100,8 @@ class Video
     }
 
     /**
-     * @param mixed $miniatura
+     * Setter de la ruta de la miniatura
+     * @param string $miniatura Ruta de la miniatura
      */
     public function setMiniatura($miniatura)
     {
@@ -101,7 +111,8 @@ class Video
 
 
     /**
-     * @return mixed
+     * Getter del id de la categoria
+     * @return int Id categoria
      */
     public function getCategoria()
     {
@@ -109,7 +120,8 @@ class Video
     }
 
     /**
-     * @param mixed $categoria
+     * Setter del id de la categoria
+     * @param int $categoria Id de la categoria
      */
     public function setCategoria($categoria)
     {
@@ -117,7 +129,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter de la cantidad de visualizaciones del video
+     * @return int Visualizaciones del video
      */
     public function getVisualizaciones()
     {
@@ -125,7 +138,8 @@ class Video
     }
 
     /**
-     * @param mixed $visualizaciones
+     * Setter de visualizaciones del video
+     * @param int $visualizaciones Visualizaciones del video
      */
     public function setVisualizaciones($visualizaciones)
     {
@@ -133,7 +147,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter de la fecha de publicacion del video
+     * @return string Fecha de publicacion del video
      */
     public function getFechaPublicacion()
     {
@@ -141,7 +156,8 @@ class Video
     }
 
     /**
-     * @param mixed $fechaPublicacion
+     * Setter de la fecha de publicación
+     * @param string $fechaPublicacion Fecha de publicacion
      */
     public function setFechaPublicacion($fechaPublicacion)
     {
@@ -149,7 +165,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter de likes del video
+     * @return int likes
      */
     public function getLikes()
     {
@@ -157,7 +174,8 @@ class Video
     }
 
     /**
-     * @param mixed $likes
+     * Setter de los likes del video
+     * @param int $likes
      */
     public function setLikes($likes)
     {
@@ -165,7 +183,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Setter de los dislikes del video
+     * @return int Dislikes
      */
     public function getDislikes()
     {
@@ -173,7 +192,8 @@ class Video
     }
 
     /**
-     * @param mixed $dislikes
+     * Setter de los dislikes del video
+     * @param int $dislikes Dislikes del video
      */
     public function setDislikes($dislikes)
     {
@@ -181,7 +201,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter de la ruta del video
+     * @return string Ruta del video
      */
     public function getDireccion()
     {
@@ -189,7 +210,8 @@ class Video
     }
 
     /**
-     * @param mixed $direccion
+     * Setter de la ruta del video
+     * @param string $direccion Ruta del video
      */
     public function setDireccion($direccion)
     {
@@ -197,7 +219,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter de la descripcion del video
+     * @return string Descripcion
      */
     public function getDescripcion()
     {
@@ -205,7 +228,8 @@ class Video
     }
 
     /**
-     * @param mixed $descripcion
+     * Setter de la descripcion del video
+     * @param string $descripcion
      */
     public function setDescripcion($descripcion)
     {
@@ -213,7 +237,8 @@ class Video
     }
 
     /**
-     * @return mixed
+     * Getter el status de reporte del video
+     * @return int Status
      */
     public function getRepStatus()
     {
@@ -221,7 +246,8 @@ class Video
     }
 
     /**
-     * @param mixed $repStatus
+     * Setter del status de reporte del video
+     * @param int $repStatus Status del reporte
      */
     public function setRepStatus($repStatus)
     {
@@ -229,7 +255,22 @@ class Video
     }
 
 
-
+    /**
+     * Video constructor.
+     * @param int $id Id del video
+     * @param int $idUsuario Id del usuario propietario del video
+     * @param string $nombreUsuario Nombre del usuario propietario del video
+     * @param string $titulo Titulo del video
+     * @param string $miniatura Ruta de la miniatura
+     * @param int $categoria Id de la categoria
+     * @param int $visualizaciones Cantidad de visualizaciones
+     * @param string $fechaPublicacion Fecha de publicacion
+     * @param int $likes Cantidad de likes
+     * @param int $dislikes Cantidad de dislikes
+     * @param string $ruta Ruta del video
+     * @param string $descripcion Descripcion del video
+     * @param int $repStatus Status del reporte
+     */
     public function __construct($id, $idUsuario,$nombreUsuario, $titulo, $miniatura, $categoria, $visualizaciones, $fechaPublicacion, $likes,
         $dislikes, $ruta, $descripcion, $repStatus = 0)
     {
@@ -248,6 +289,11 @@ class Video
         $this->setRepStatus($repStatus);
     }
 
+    /**
+     * Funcion que retorna un objeto video en base al id dado
+     * @param int $id Id del video
+     * @return Video|null Si es exitoso devuelve un objeto Video, si no devuelve null
+     */
     public static function getVideoById($id) {
         $bd = new BaseDeDatos();
 
@@ -261,7 +307,7 @@ class Video
             $idCategoria = $arrayDatos[0][3];
             $titulo = $arrayDatos[0][5];
             $views = $arrayDatos[0][6];
-            $miniatura = "./imgs/miniaturas/".$arrayDatos[0][7];
+            $miniatura = "imgs/miniaturas/".$arrayDatos[0][7];
             $fechaVideo = $arrayDatos[0][8];
             $ruta = $arrayDatos[0][9];
             $descripcion = $arrayDatos[0][10];
@@ -279,18 +325,22 @@ class Video
 
     }
 
-    public function guardarVideo($titulo, $categoria, $descripcion) {
-        //TODO
-    }
-
+    /**
+     * Funcion para eliminar un video
+     * @param $id Id del video a eliminar
+     */
     public function eliminarVideo($id) {
         $conexion=new BaseDeDatos();
         $sql = "DELETE FROM video WHERE id_video=".$id;
         $conexion->iudQuery($sql);
     }
 
-    public function actualizarVideo($datos) {
-
+    /**
+     * Funcion para actualizar un video
+     * @param array $datos Array de datos del video a actualizar
+     */
+    public function actualizarVideo($datos,$foto,$carpeta="../imgs/miniaturas/") {
+        require_once "../Controllers/manejoFotos.php";
         $sentencias = array();
         $id=0;
         foreach ($datos as $campo => $valor) {
@@ -299,6 +349,10 @@ class Video
             }else if($campo == "id_video"){
                 $id=$valor;
             }
+        }
+        if(strlen($foto['foto']['name'])>0){
+            $ruta= subirFoto($foto['foto'], $carpeta);
+            $sentencias[] = "minia_video='".$ruta."'";
         }
         $campos = implode(",", $sentencias);
         $sql = "UPDATE video SET " . $campos . " WHERE id_video=" . $id;

@@ -1,12 +1,12 @@
 
 body{
-    background: linear-gradient(to right, rgba(5,3,38,1) 0%, rgba(102,97,188,1) 100%);
+    background: linear-gradient(to right, rgb(1, 0, 34) 0%, rgba(102,97,188,1) 100%);
 }
 footer{
     position: fixed;
     left: 0;
     bottom: 0;
-    background: #050326;
+    background: #010022;
     width: 100vw;
 }
 footer>div{

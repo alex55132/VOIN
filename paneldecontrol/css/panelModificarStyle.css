@@ -1,6 +1,6 @@
 .mainContainer{
     margin: auto;
-    background: #050326;
+    background: #010022;
     font-size: 4vh;
     color: #F2785C;
     width: fit-content;
@@ -8,6 +8,7 @@
     height: fit-content;
     margin-top: 3vh;
     padding: 2vh;
+    width: -moz-fit-content;
 }
 li{
     list-style: none;
@@ -23,4 +24,10 @@ input{
 select{
     font-size: 2vh;
     margin-left: 1vw;
+}
+.miniaturaPreview{
+    width: 10vw;
+}
+.miniaturaPreview>img{
+    width: 100%;
 }
