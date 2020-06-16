@@ -1,5 +1,6 @@
 let fileInput;
 let videoUploadMessage;
+let fileUploadContainer;
 
 let uploadBtn;
 
@@ -13,6 +14,7 @@ let miniaturaInput;
 let miniaturaPreview;
 
 window.addEventListener('load',function () {
+    fileUploadContainer = document.getElementById("fileUploadContainer");
     notificationContainer = document.getElementById("notificationContainer");
     fileInput = document.getElementById("fileInput");
     videoUploadMessage = document.getElementById("videoUploadMessage");
@@ -23,6 +25,10 @@ window.addEventListener('load',function () {
     etiquetasVideo = document.getElementById("etiquetasVideo");
     miniaturaInput = document.getElementById("miniaturaInput");
     miniaturaPreview = document.getElementById("miniaturaPreview");
+
+
+    fileInput.style.top = "-" + fileUploadContainer.clientHeight.toString() + "px";
+
 
     let r = new Resumable({
         /*Aqui hay un agujero de seguridad, ya que mostramos ruta real de los archivos

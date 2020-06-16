@@ -18,7 +18,7 @@ function ajax() {
 var borrar = new ajax();
 function borrarVideo(id) {
     if(confirm("¿Seguro que deseas eliminar el Video?")) {
-        var myurl = 'controllers/borrarVideo.php';
+        var myurl = 'Controllers/borrarVideo.php';
         myRand = parseInt(Math.random() * 999999999999999);
         modurl = myurl + '?rand=' + myRand + '&id=' + id;
         borrar.open('GET', modurl, true);
@@ -28,7 +28,7 @@ function borrarVideo(id) {
 }
 function borrarProducto(id) {
     if(confirm("¿Seguro que deseas eliminar el Producto?")) {
-        var myurl = 'controllers/borrarProducto.php';
+        var myurl = 'Controllers/borrarProducto.php';
         myRand = parseInt(Math.random() * 999999999999999);
         modurl = myurl + '?rand=' + myRand + '&id=' + id;
         borrar.open('GET', modurl, true);
@@ -38,7 +38,7 @@ function borrarProducto(id) {
 }
 function borrarCategoria(id) {
     if(confirm("¿Seguro que deseas eliminar la Categoria?")) {
-        var myurl = 'controllers/borrarCategoria.php';
+        var myurl = 'Controllers/borrarCategoria.php';
         myRand = parseInt(Math.random() * 999999999999999);
         modurl = myurl + '?rand=' + myRand + '&id=' + id;
         borrar.open('GET', modurl, true);
@@ -48,7 +48,7 @@ function borrarCategoria(id) {
 }
 function borrarEmpresa(id) {
     if(confirm("¿Seguro que deseas eliminar la Empresa?")) {
-        var myurl = 'controllers/borrarEmpresa.php';
+        var myurl = 'Controllers/borrarEmpresa.php';
         myRand = parseInt(Math.random() * 999999999999999);
         modurl = myurl + '?rand=' + myRand + '&id=' + id;
         borrar.open('GET', modurl, true);
