@@ -63,19 +63,16 @@
 }
 
 .categoryImg {
-    cursor: pointer;
-}
-
-.categoryImg {
     width: 100%;
     height: 50%;
     border: 2px solid #F2785C;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .categoryImg img {
-    width: 100%;
-    height: 100%;
+    width: 16vw;
+    height: 8vw;
 }
 
 .itemCategoryChannel h3, .itemCategoryChannel h4 {
