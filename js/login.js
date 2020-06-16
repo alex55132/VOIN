@@ -88,7 +88,7 @@ function response() {
                 alert("Usuario registrado correctamente");
                 location.reload();
             } else {
-                alert("Algo ha ido mal");
+                alert("Correo no valido");
             }
         } else {
             alert("Algo ha ido mal");
